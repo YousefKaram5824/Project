@@ -3,7 +3,7 @@
 #include <string>
 
 using namespace std;
-\\help!
+
 
 struct DATE
 {

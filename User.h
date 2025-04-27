@@ -2,7 +2,8 @@
 #define USER_H
 #include <QString>
 
-struct User {
+struct User
+{
     QString username;
     QString id;
     QString password;

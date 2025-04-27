@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
     MainPage mainPage(usersMap);
     mainPage.show();
 
-   // Register w(usersMap);
-   // w.show();
+    // Register w(usersMap);
+    // w.show();
 
     int result = a.exec();
 

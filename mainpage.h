@@ -2,9 +2,9 @@
 #define MAINPAGE_H
 
 #include <QDialog>
-#include <QWidget>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QWidget>
 #include "register.h"
 
 //Habiba Hatem
@@ -21,7 +21,7 @@ class MainPage : public QMainWindow
     Q_OBJECT
 
 public:
-     explicit MainPage(QMap<QString, User> &usersMapRef, QWidget *parent = nullptr);
+    explicit MainPage(QMap<QString, User> &usersMapRef, QWidget *parent = nullptr);
     ~MainPage();
 
 private slots:

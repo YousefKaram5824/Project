@@ -2,14 +2,14 @@
 #include <QMessageBox>
 #include "ui_mainpage.h"
 
-
 MainPage::MainPage(QMap<QString, User> &usersMapRef, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainPage), usersMap(usersMapRef)
+    : QMainWindow(parent)
+    , ui(new Ui::MainPage)
+    , usersMap(usersMapRef)
 {
     ui->setupUi(this);
     this->setWindowState(Qt::WindowMaximized);
 }
-
 
 MainPage::~MainPage()
 {
@@ -45,7 +45,7 @@ void MainPage::on_getStarted_clicked()
 
 void MainPage::on_register_2_clicked()
 {
-   registerWin = new Register(usersMap, this);
+    registerWin = new Register(usersMap, this);
     registerWin->show();
     registerWin->raise();
     registerWin->activateWindow();

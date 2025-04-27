@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QMainWindow>
-#include "User.h"
 #include <QMap>
+#include "User.h"
 
 namespace Ui {
 class Register;
@@ -24,8 +24,10 @@ private slots:
 
 private:
     Ui::Register *ui;
-    QMap<QString, User> &usersMap; // <<< هنا أهم حاجة نضيف المرجع
+    QMap<QString, User> &usersMap;
     bool isclient = false;
+    QString generateUniqueID(int typee);
+    void clearAll();
 };
 
 #endif // REGISTER_H

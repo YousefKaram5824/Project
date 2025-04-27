@@ -1,24 +1,19 @@
 #ifndef MAINPAGE_H
 #define MAINPAGE_H
 
-#include <QMainWindow>
-#include "register.h"
 #include <QDialog>
+#include <QMainWindow>
 #include <QMessageBox>
+#include "register.h"
 
+//Habiba
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
 }
 QT_END_NAMESPACE
 
-enum class UserType {
-    Customer,
-    Coach,
-    Receptionist,
-    Manager,
-    Invalid
-};
+enum class UserType { Customer, Coach, Receptionist, Manager, Invalid };
 
 class MainPage : public QMainWindow
 {

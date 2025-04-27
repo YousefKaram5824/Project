@@ -1,6 +1,6 @@
 #include "mainpage.h"
-#include "ui_mainpage.h"
 #include <QMessageBox>
+#include "ui_mainpage.h"
 
 MainPage::MainPage(QWidget *parent)
     : QMainWindow(parent)
@@ -30,7 +30,7 @@ UserType MainPage::getUserType(const QString &username)
         return UserType::Coach;
     } else if (prefix == "re") {
         return UserType::Receptionist;
-    }else if (prefix == "ad") {
+    } else if (prefix == "ad") {
         return UserType::Manager;
     }
 
@@ -68,7 +68,8 @@ void MainPage::on_login_clicked()
     UserType userType = getUserType(username);
 
     if (userType == UserType::Invalid) {
-        QMessageBox::warning(this, "Login Error",
+        QMessageBox::warning(this,
+                             "Login Error",
                              "Invalid username format. Username must start with:\n"
                              "- 'cu' for Customer\n"
                              "- 'co' for Coach\n"

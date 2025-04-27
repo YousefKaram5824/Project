@@ -1,7 +1,7 @@
 #include "filemanager.h"
 #include <QDebug>
 
-FileManager& FileManager::getInstance()
+FileManager &FileManager::getInstance()
 {
     static FileManager instance;
     return instance;
@@ -21,7 +21,7 @@ void FileManager::loadAllData()
     receptionists = loadFromFile(RECEPTIONISTS_FILE);
 }
 
-void FileManager::saveToFile(const QString& filename, const QVector<QString>& data)
+void FileManager::saveToFile(const QString &filename, const QVector<QString> &data)
 {
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -30,14 +30,14 @@ void FileManager::saveToFile(const QString& filename, const QVector<QString>& da
     }
 
     QTextStream out(&file);
-    for (const QString& item : data) {
+    for (const QString &item : data) {
         out << item << "\n";
     }
 
     file.close();
 }
 
-QVector<QString> FileManager::loadFromFile(const QString& filename)
+QVector<QString> FileManager::loadFromFile(const QString &filename)
 {
     QVector<QString> data;
     QFile file(filename);

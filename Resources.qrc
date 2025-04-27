@@ -1,12 +1,11 @@
 <RCC>
     <qresource prefix="/bg">
         <file>mainpage.png</file>
+        <file>fitora.png</file>
+        <file>loginn.png</file>
     </qresource>
     <qresource prefix="/icon">
         <file>icon.png</file>
     </qresource>
     <qresource prefix="/reg"/>
-    <qresource prefix="/">
-        <file>reg.qrc</file>
-    </qresource>
 </RCC>

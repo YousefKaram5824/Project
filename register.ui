@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/reg/fitora.png);</string>
+   <string notr="true"/>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -250,6 +250,47 @@
     </rect>
    </property>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame#frame {
+	background-image: url(:/bg/fitora.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>label</zorder>
+  <zorder>usernameLineEdit</zorder>
+  <zorder>passwordLineEdit</zorder>
+  <zorder>confirmPasswordLineEdit</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>idLineEdit</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_6</zorder>
+  <zorder>userTypeComboBox</zorder>
+  <zorder>label_7</zorder>
+  <zorder>birthDateEdit</zorder>
+  <zorder>label_8</zorder>
+  <zorder>subscriptionPeriodSpinBox</zorder>
  </widget>
  <resources/>
  <connections/>

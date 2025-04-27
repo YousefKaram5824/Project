@@ -19,7 +19,7 @@ public:
     ~Register();
 
 private slots:
-    void on_userTypeComboBox_currentIndexChanged(int index);
+    void on_userTypeComboBox_currentIndexChanged();
     void on_pushButton_clicked();
 
 private:

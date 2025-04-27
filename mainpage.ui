@@ -117,8 +117,7 @@ QPushButton#getStarted:pressed {
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame#frame2 {
-	background-image: url(:/icon/icon.png);
-    background-position: center;
+	background-image: url(:/bg/loginn.png);
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -133,9 +132,9 @@ QPushButton#getStarted:pressed {
       <widget class="QPushButton" name="login">
        <property name="geometry">
         <rect>
-         <x>620</x>
-         <y>460</y>
-         <width>271</width>
+         <x>310</x>
+         <y>510</y>
+         <width>171</width>
          <height>71</height>
         </rect>
        </property>
@@ -149,10 +148,10 @@ QPushButton#getStarted:pressed {
       <widget class="QCommandLinkButton" name="register_2">
        <property name="geometry">
         <rect>
-         <x>660</x>
-         <y>610</y>
-         <width>121</width>
-         <height>31</height>
+         <x>310</x>
+         <y>660</y>
+         <width>171</width>
+         <height>71</height>
         </rect>
        </property>
        <property name="cursor">
@@ -165,28 +164,28 @@ QPushButton#getStarted:pressed {
       <widget class="QLineEdit" name="id">
        <property name="geometry">
         <rect>
-         <x>602</x>
-         <y>100</y>
-         <width>191</width>
-         <height>51</height>
+         <x>220</x>
+         <y>320</y>
+         <width>371</width>
+         <height>71</height>
         </rect>
        </property>
       </widget>
       <widget class="QLineEdit" name="password">
        <property name="geometry">
         <rect>
-         <x>600</x>
-         <y>170</y>
-         <width>191</width>
-         <height>51</height>
+         <x>220</x>
+         <y>410</y>
+         <width>371</width>
+         <height>71</height>
         </rect>
        </property>
       </widget>
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>100</y>
+         <x>40</x>
+         <y>330</y>
          <width>161</width>
          <height>61</height>
         </rect>
@@ -198,8 +197,8 @@ QPushButton#getStarted:pressed {
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>360</x>
-         <y>160</y>
+         <x>50</x>
+         <y>410</y>
          <width>161</width>
          <height>61</height>
         </rect>
@@ -237,6 +236,33 @@ QPushButton#getStarted:pressed {
        <string>customer</string>
       </property>
      </widget>
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1536</width>
+        <height>864</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#frame_2 {
+	background-image: url(:/bg/fitora.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+     </widget>
+     <zorder>frame_2</zorder>
+     <zorder>logOut_4</zorder>
+     <zorder>label_4</zorder>
     </widget>
     <widget class="QWidget" name="coachPage">
      <widget class="QLabel" name="label_3">
@@ -265,6 +291,33 @@ QPushButton#getStarted:pressed {
        <string>logout</string>
       </property>
      </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1536</width>
+        <height>864</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#frame {
+	background-image: url(:/bg/fitora.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+     </widget>
+     <zorder>frame</zorder>
+     <zorder>label_3</zorder>
+     <zorder>logOut_3</zorder>
     </widget>
     <widget class="QWidget" name="receptionistPage">
      <widget class="QPushButton" name="logOut">
@@ -293,6 +346,33 @@ QPushButton#getStarted:pressed {
        <string>receptionist</string>
       </property>
      </widget>
+     <widget class="QFrame" name="frame_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1536</width>
+        <height>864</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#frame_4 {
+	background-image: url(:/bg/fitora.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+     </widget>
+     <zorder>frame_4</zorder>
+     <zorder>logOut</zorder>
+     <zorder>label_6</zorder>
     </widget>
     <widget class="QWidget" name="managerPage">
      <widget class="QPushButton" name="logOut_2">
@@ -321,6 +401,33 @@ QPushButton#getStarted:pressed {
        <string>manager</string>
       </property>
      </widget>
+     <widget class="QFrame" name="frame_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1536</width>
+        <height>864</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#frame_3 {
+	background-image: url(:/bg/fitora.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+     </widget>
+     <zorder>frame_3</zorder>
+     <zorder>logOut_2</zorder>
+     <zorder>label_5</zorder>
     </widget>
    </widget>
   </widget>

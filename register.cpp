@@ -11,16 +11,16 @@ Register::Register(QMap<QString, User> &usersMapRef, QWidget *parent)
     ui->setupUi(this);
 }
 
-
 Register::~Register()
 {
     delete ui;
 }
+
 bool isclient=0;
-void Register::on_userTypeComboBox_currentIndexChanged(int index)
+
+void Register::on_userTypeComboBox_currentIndexChanged()
 {
     QString userType = ui->userTypeComboBox->currentText();
-
 
     if (userType == "Client") {
        ui->birthDateEdit->setEnabled(true);
@@ -32,7 +32,6 @@ void Register::on_userTypeComboBox_currentIndexChanged(int index)
     }
 
 }
-
 
 void Register::on_pushButton_clicked()
 {
@@ -87,4 +86,3 @@ void Register::on_pushButton_clicked()
 */
     QMessageBox::information(this, "Success", "User registered successfully!");
 }
-

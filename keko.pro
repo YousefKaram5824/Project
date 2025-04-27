@@ -1,4 +1,6 @@
 QT       += core gui
+QT       += widgets
+QT       += core gui widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,6 +17,7 @@ SOURCES += \
     register.cpp
 
 HEADERS += \
+    User.h \
     filemanager.h \
     mainpage.h \
     register.h
@@ -30,3 +33,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Resources.qrc
+
+DISTFILES += \
+    users

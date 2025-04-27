@@ -1,33 +1,33 @@
+// FileManager.h
+/*
 #ifndef FILEMANAGER_H
 #define FILEMANAGER_H
 
-#include <QFile>
-#include <QMap>
 #include <QString>
+#include <QFile>
 #include <QTextStream>
-#include <QVector>
+#include <QMap>
+#include "User.h"
+
+class FileManager {
+public:
+    static bool saveToFile(const QString &filename, const QMap<QString, User> &users);
+    static bool loadFromFile(const QString &filename, QMap<QString, User> &users);
+    //QMap<QString, User> users;
+};
+#endif // FILEMANAGER_H
+*/
+#ifndef FILEMANAGER_H
+#define FILEMANAGER_H
+
+#include <QMap>
+#include "User.h"
 
 class FileManager
 {
 public:
-    static FileManager &getInstance();
-    void saveAllData();
-    void loadAllData();
-
-private:
-    FileManager() {}
-    FileManager(const FileManager &) = delete;
-    FileManager &operator=(const FileManager &) = delete;
-
-    const QString CUSTOMERS_FILE = "customers.txt";
-    const QString COACHES_FILE = "coaches.txt";
-    const QString RECEPTIONISTS_FILE = "receptionists.txt";
-
-    QVector<QString> customers;
-    QVector<QString> coaches;
-    QVector<QString> receptionists;
-
-    void saveToFile(const QString &filename, const QVector<QString> &data);
-    QVector<QString> loadFromFile(const QString &filename);
+    static void save(const QMap<QString, User> &usersMap);
+    static void load(QMap<QString, User> &usersMap);
 };
-#endif
+
+#endif // FILEMANAGER_H

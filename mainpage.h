@@ -2,6 +2,7 @@
 #define MAINPAGE_H
 
 #include <QDialog>
+#include <QWidget>
 #include <QMainWindow>
 #include <QMessageBox>
 #include "register.h"
@@ -20,7 +21,7 @@ class MainPage : public QMainWindow
     Q_OBJECT
 
 public:
-    MainPage(QWidget *parent = nullptr);
+     explicit MainPage(QMap<QString, User> &usersMapRef, QWidget *parent = nullptr);
     ~MainPage();
 
 private slots:
@@ -43,5 +44,6 @@ private:
     Register *registerWin;
     bool validateLogin(const QString &username, const QString &password);
     UserType getUserType(const QString &username);
+    QMap<QString, User> &usersMap;
 };
 #endif // MAINPAGE_H

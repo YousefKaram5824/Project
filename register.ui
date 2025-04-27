@@ -13,54 +13,68 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/reg/fitora.png);</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>60</y>
+     <x>360</x>
+     <y>120</y>
      <width>63</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Imprint MT Shadow</family>
+    </font>
    </property>
    <property name="text">
     <string>Register</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="usernameLineEdit">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>130</y>
-     <width>113</width>
+     <x>170</x>
+     <y>210</y>
+     <width>161</width>
      <height>28</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="passwordLineEdit">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>180</y>
-     <width>113</width>
+     <x>170</x>
+     <y>270</y>
+     <width>161</width>
      <height>28</height>
     </rect>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::Password</enum>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="confirmPasswordLineEdit">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>230</y>
-     <width>113</width>
+     <x>600</x>
+     <y>270</y>
+     <width>161</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::EchoMode::Password</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>130</y>
+     <x>30</x>
+     <y>210</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -72,8 +86,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>180</y>
+     <x>30</x>
+     <y>270</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -85,8 +99,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>240</y>
+     <x>450</x>
+     <y>280</y>
      <width>131</width>
      <height>16</height>
     </rect>
@@ -98,14 +112,136 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>380</y>
+     <x>340</x>
+     <y>500</y>
      <width>83</width>
      <height>29</height>
     </rect>
    </property>
    <property name="text">
     <string>Register</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="idLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>210</y>
+     <width>161</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>220</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ID</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>360</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>User Type</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="userTypeComboBox">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>350</y>
+     <width>161</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="currentIndex">
+    <number>-1</number>
+   </property>
+   <property name="maxVisibleItems">
+    <number>9</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>Client</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Staff</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>440</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Birth Date</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="birthDateEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>440</y>
+     <width>110</width>
+     <height>29</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>450</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Subscription Period (Months)</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="subscriptionPeriodSpinBox">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>450</y>
+     <width>44</width>
+     <height>29</height>
+    </rect>
    </property>
   </widget>
  </widget>

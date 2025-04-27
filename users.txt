@@ -1,0 +1,6 @@
+haaaa,a12345,1478,0,null,null
+karam,cu147,1478,1,2000-01-01,6
+habiba,cu1478,12345,1,2000-01-04,5
+kkkkkkkkk,cu852,1478,1,2005-01-01,2
+bib,cu8528,159,0,null,null
+jjjjj,srf55,1236,0,null,null

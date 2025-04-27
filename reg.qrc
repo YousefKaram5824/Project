@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/reg">
+        <file>fitora.png</file>
+    </qresource>
+</RCC>

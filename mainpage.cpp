@@ -43,7 +43,7 @@ void MainPage::on_getStarted_clicked()
     ui->holder->setCurrentIndex(1);
 }
 
-void MainPage::on_register_2_clicked()
+void MainPage::on_pushButton_clicked()
 {
     registerWin = new Register(usersMap, this);
     registerWin->show();
@@ -131,3 +131,6 @@ void MainPage::clearAll()
     ui->id->clear();
     ui->password->clear();
 }
+
+
+

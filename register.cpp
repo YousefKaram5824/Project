@@ -11,7 +11,8 @@ Register::Register(QMap<QString, User> &usersMapRef, QWidget *parent)
     ui->setupUi(this);
 }
 
-Register::~Register(){
+Register::~Register()
+{
     delete ui;
 }
 
@@ -101,5 +102,5 @@ void Register::on_pushButton_clicked()
     clearAll();
 
     QString message = QString("User registered successfully!\nYour ID is: %1").arg(id);
-    QMessageBox::information(this, "Success",message);
+    QMessageBox::information(this, "Success", message);
 }

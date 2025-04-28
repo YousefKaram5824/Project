@@ -26,7 +26,6 @@ public:
 private slots:
     void on_getStarted_clicked();
 
-    void on_register_2_clicked();
 
     void on_login_clicked();
 
@@ -37,6 +36,8 @@ private slots:
     void on_logOut_4_clicked();
 
     void on_logOut_3_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainPage *ui;

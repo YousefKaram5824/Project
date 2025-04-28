@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -65,8 +65,8 @@
        </property>
        <property name="font">
         <font>
-         <family>Modern</family>
-         <pointsize>13</pointsize>
+         <family>Book Antiqua</family>
+         <pointsize>22</pointsize>
          <italic>false</italic>
          <bold>true</bold>
          <underline>false</underline>
@@ -88,8 +88,9 @@
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton#getStarted {
-    background-color: #e74c3c;
-    border-radius: 20px; 
+    background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
     font-weight: bold;
 }
 QPushButton#getStarted:hover {
@@ -109,8 +110,8 @@ QPushButton#getStarted:pressed {
      <widget class="QFrame" name="frame2">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
+        <x>-70</x>
+        <y>-20</y>
         <width>1536</width>
         <height>864</height>
        </rect>
@@ -118,6 +119,7 @@ QPushButton#getStarted:pressed {
       <property name="styleSheet">
        <string notr="true">QFrame#frame2 {
 	background-image: url(:/bg/loginn.png);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -132,53 +134,78 @@ QPushButton#getStarted:pressed {
       <widget class="QPushButton" name="login">
        <property name="geometry">
         <rect>
-         <x>310</x>
-         <y>510</y>
-         <width>171</width>
-         <height>71</height>
+         <x>370</x>
+         <y>430</y>
+         <width>151</width>
+         <height>61</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Book Antiqua</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
        </property>
        <property name="text">
         <string>Login</string>
        </property>
       </widget>
-      <widget class="QCommandLinkButton" name="register_2">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>660</y>
-         <width>171</width>
-         <height>71</height>
-        </rect>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="text">
-        <string>Register</string>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="id">
        <property name="geometry">
         <rect>
-         <x>220</x>
-         <y>320</y>
-         <width>371</width>
-         <height>71</height>
+         <x>270</x>
+         <y>250</y>
+         <width>341</width>
+         <height>41</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    border: 1px solid #DC3E22; 
+    border-radius: 5px;        
+    background: transparent;  
+    padding: 8px;
+	color: rgb(255, 255, 255);
+    font-siza: 18px
+}</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="password">
        <property name="geometry">
         <rect>
-         <x>220</x>
-         <y>410</y>
-         <width>371</width>
-         <height>71</height>
+         <x>270</x>
+         <y>340</y>
+         <width>341</width>
+         <height>41</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    border: 1px solid #DC3E22; 
+    border-radius: 5px;        
+    background: transparent;  
+    padding: 8px;
+	color: rgb(255, 255, 255);
+    font-siza: 18px
+}</string>
        </property>
        <property name="echoMode">
         <enum>QLineEdit::EchoMode::Password</enum>
@@ -187,11 +214,19 @@ QPushButton#getStarted:pressed {
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>330</y>
+         <x>100</x>
+         <y>230</y>
          <width>161</width>
          <height>61</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>ID</string>
@@ -200,14 +235,57 @@ QPushButton#getStarted:pressed {
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>410</y>
+         <x>100</x>
+         <y>320</y>
          <width>161</width>
          <height>61</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Password</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>580</y>
+         <width>121</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Book Antiqua</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Register</string>
        </property>
       </widget>
      </widget>

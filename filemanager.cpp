@@ -13,9 +13,9 @@
 
 void FileManager::save(const QMap<QString, User> &usersMap)
 {
-    QFile file("Y:/Final Project/users.txt");
+    QFile file("E:/Project/users.txt");
 
-    //"E:/Project1/users.txt" PATH of Habiba
+    //"E:/Project/users.txt" PATH of Habiba
     //"Y:/Final Project/users.txt" PATH of keko
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -34,9 +34,9 @@ void FileManager::save(const QMap<QString, User> &usersMap)
 
 void FileManager::load(QMap<QString, User> &usersMap)
 {
-    QFile file("Y:/Final Project/users.txt");
+    QFile file("E:/Project/users.txt");
 
-    //"E:/Project1/users.txt" PATH of Habiba
+    //"E:/Project/users.txt" PATH of Habiba
     //"Y:/Final Project/users.txt" PATH of keko
 
     if (!file.exists()) {

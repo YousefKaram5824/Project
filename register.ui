@@ -27,9 +27,12 @@
    </property>
    <property name="font">
     <font>
-     <family>Lucida Sans</family>
-     <pointsize>24</pointsize>
+     <family>Book Antiqua</family>
+     <pointsize>20</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Register</string>
@@ -44,6 +47,15 @@
      <height>28</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    border: 1px solid #DC3E22; 
+    border-radius: 5px;        
+    background: transparent;  
+    color: white; 
+ padding: 5px;
+}</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="passwordLineEdit">
    <property name="geometry">
@@ -53,6 +65,15 @@
      <width>161</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    border: 1px solid #DC3E22; 
+    border-radius: 5px;        
+    background: transparent;   
+    color: white;     
+ padding: 5px;          
+}</string>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::EchoMode::Password</enum>
@@ -67,6 +88,14 @@
      <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>Username</string>
    </property>
@@ -79,6 +108,14 @@
      <width>111</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Password</string>
@@ -93,12 +130,29 @@
      <height>600</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Book Antiqua</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">QFrame#frame {
 	background-image: url(:/bg/fitora.png);
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
+}
+QComboBox, QSpinBox, QDateEdit {
+    background: transparent;    
+    border: 1px solid  #DC3E22;     
+    border-radius: 5px;         
+    color: white;               
+    padding: 5px;             
+}
+QSpinBox:disabled, QDateEdit:disabled {
+    border: 2px solid gray;    
+    color: gray;              
 }</string>
    </property>
    <property name="frameShape">
@@ -155,6 +209,14 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
      <string>User Type</string>
     </property>
@@ -168,6 +230,15 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+    border: 1px solid #DC3E22; 
+    border-radius: 5px;        
+    background: transparent;  
+color: white; 
+ padding: 5px;
+}</string>
+    </property>
     <property name="echoMode">
      <enum>QLineEdit::EchoMode::Password</enum>
     </property>
@@ -175,11 +246,19 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>410</x>
       <y>280</y>
-      <width>131</width>
+      <width>151</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Confirm Password</string>
@@ -203,9 +282,17 @@
      <rect>
       <x>20</x>
       <y>370</y>
-      <width>191</width>
+      <width>221</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Subscription Period (Months)</string>
@@ -233,6 +320,14 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
      <string>Birth Date</string>
     </property>
@@ -241,10 +336,31 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>480</y>
-      <width>83</width>
-      <height>29</height>
+      <y>460</y>
+      <width>101</width>
+      <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Book Antiqua</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
     </property>
     <property name="text">
      <string>Register</string>

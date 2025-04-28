@@ -14,39 +14,34 @@ Register::Register(QMap<QString, User> &usersMapRef, QWidget *parent)
 Register::~Register(){
     delete ui;
 }
- bool isclient = 0;
-int type=0;
+
+bool isclient = false;
+int type = 0;
+
 void Register::on_userTypeComboBox_currentIndexChanged()
 {
-
-
     QString userType = ui->userTypeComboBox->currentText();
-
+    ui->birthDateEdit->setEnabled(false);
+    ui->subscriptionPeriodSpinBox->setEnabled(false);
     if (userType == "Client") {
         ui->birthDateEdit->setEnabled(true);
         ui->subscriptionPeriodSpinBox->setEnabled(true);
-        isclient=1;
-        type=1;
-    } else if(userType == "coach") {
-        ui->birthDateEdit->setEnabled(false);
-        ui->subscriptionPeriodSpinBox->setEnabled(false);
-        isclient=0;
-         type=2;
+        isclient = true;
+        type = 1;
     }
-    else {
-        ui->birthDateEdit->setEnabled(false);
-        ui->subscriptionPeriodSpinBox->setEnabled(false);
-        isclient=0;
-        type=3;
+    if (userType == "Coach") {
+        type = 2;
     }
-
+    if (userType == "Receptionist") {
+        type = 3;
+    }
 }
-QString Register::generateUniqueID(int typee)
+QString Register::generateUniqueID()
 {
     QString prefix = "";
 
     if (type == 1) {
-        prefix = "cu";
+        prefix = "cl";
     } else if (type == 2) {
         prefix = "co";
     } else if (type == 3) {
@@ -62,22 +57,20 @@ void Register::clearAll()
     ui->usernameLineEdit->clear();
     ui->passwordLineEdit->clear();
     ui->confirmPasswordLineEdit->clear();
-    //ui->userTypeComboBox->clear();
     ui->userTypeComboBox->setCurrentIndex(-1);
     ui->birthDateEdit->clear();
     ui->subscriptionPeriodSpinBox->clear();
-
 }
 
 void Register::on_pushButton_clicked()
 {
     QString username = ui->usernameLineEdit->text();
-    QString id = generateUniqueID(type);
+    QString id = generateUniqueID();
     QString password = ui->passwordLineEdit->text();
     QString confirmPassword = ui->confirmPasswordLineEdit->text();
-    QString userType = ui->userTypeComboBox->currentText();
     QString birthDateString;
     QString subscriptionPeriodString;
+
     if (isclient == 1) {
         birthDateString = ui->birthDateEdit->date().toString("yyyy-MM-dd");
         subscriptionPeriodString = QString::number(ui->subscriptionPeriodSpinBox->value());
@@ -96,8 +89,6 @@ void Register::on_pushButton_clicked()
         return;
     }
 
-
-
     User newUser;
     newUser.username = username;
     newUser.id = id;
@@ -107,15 +98,8 @@ void Register::on_pushButton_clicked()
     newUser.subscriptionPeriod = subscriptionPeriodString;
 
     usersMap.insert(id, newUser);
-    /*
-    qDebug() << "UsersMap contains:";
-    for (auto user : usersMap) {
-        qDebug() << "Username:" << user.username << ", ID:" << user.id;
-    }
-*/
     clearAll();
 
     QString message = QString("User registered successfully!\nYour ID is: %1").arg(id);
     QMessageBox::information(this, "Success",message);
-
 }

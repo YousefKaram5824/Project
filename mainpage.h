@@ -7,14 +7,13 @@
 #include <QWidget>
 #include "register.h"
 
-//Habiba Hatem
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
 }
 QT_END_NAMESPACE
 
-enum class UserType { Customer, Coach, Receptionist, Manager, Invalid };
+enum class UserType { Client, Coach, Receptionist, Manager, Invalid };
 
 class MainPage : public QMainWindow
 {
@@ -42,8 +41,9 @@ private slots:
 private:
     Ui::MainPage *ui;
     Register *registerWin;
-    bool validateLogin(const QString &username, const QString &password);
+    bool validateLogin(const QString &id, const QString &password);
+    void clearAll();
     UserType getUserType(const QString &username);
     QMap<QString, User> &usersMap;
 };
-#endif // MAINPAGE_H
+#endif

@@ -121,6 +121,9 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="currentIndex">
      <number>-1</number>
     </property>
@@ -134,7 +137,7 @@
     </item>
     <item>
      <property name="text">
-      <string>coach</string>
+      <string>Coach</string>
      </property>
     </item>
     <item>
@@ -188,9 +191,9 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>360</y>
-      <width>44</width>
+      <x>250</x>
+      <y>370</y>
+      <width>71</width>
       <height>29</height>
      </rect>
     </property>
@@ -200,7 +203,7 @@
      <rect>
       <x>20</x>
       <y>370</y>
-      <width>131</width>
+      <width>191</width>
       <height>21</height>
      </rect>
     </property>

@@ -13,28 +13,33 @@
 
 void FileManager::save(const QMap<QString, User> &usersMap)
 {
-    QFile file("E:/Project1/users.txt");
-    // qDebug() << "Attempting to open file...";
+    QFile file("Y:/Final Project/users.txt");
+
+    //"E:/Project1/users.txt" PATH of Habiba
+    //"Y:/Final Project/users.txt" PATH of keko
+
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file for writing.";
         return;
     }
-    // qDebug() << "File opened successfully.";
+
     QTextStream out(&file);
 
     for (const auto &user : usersMap) {
         out << user.username << "," << user.id << "," << user.password << "," << user.isClient
             << "," << user.birthDate << "," << user.subscriptionPeriod << "\n";
     }
-    // qDebug() << "Data saved to file.";
     file.close();
 }
 
 void FileManager::load(QMap<QString, User> &usersMap)
 {
-    QFile file("E:/Project1/users.txt");
+    QFile file("Y:/Final Project/users.txt");
+
+    //"E:/Project1/users.txt" PATH of Habiba
+    //"Y:/Final Project/users.txt" PATH of keko
+
     if (!file.exists()) {
-        // If file doesn't exist, create an empty file
         QFile newFile("users.txt");
         newFile.open(QIODevice::WriteOnly);
         newFile.close();
@@ -47,10 +52,10 @@ void FileManager::load(QMap<QString, User> &usersMap)
     }
 
     QTextStream in(&file);
-    int lineCount = 0;
+
     while (!in.atEnd()) {
         QString line = in.readLine();
-        lineCount++;
+
         if (line.trimmed().isEmpty())
             continue; // Skip empty lines
 
@@ -68,9 +73,7 @@ void FileManager::load(QMap<QString, User> &usersMap)
         user.isClient = (fields[3] == "1");
         user.birthDate = fields[4];
         user.subscriptionPeriod = fields[5];
-
         usersMap.insert(user.id, user);
     }
-    // qDebug() << "Loaded" << lineCount << "lines from the file.";
     file.close();
 }

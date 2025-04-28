@@ -26,7 +26,7 @@ private:
     Ui::Register *ui;
     QMap<QString, User> &usersMap;
     bool isclient = false;
-    QString generateUniqueID(int typee);
+    QString generateUniqueID();
     void clearAll();
 };
 

@@ -12,4 +12,4 @@ struct User
     QString subscriptionPeriod;
 };
 
-#endif // USER_H
+#endif

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -77,11 +77,14 @@
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="tabletTracking">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="acceptDrops">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="autoFillBackground">
         <bool>false</bool>
@@ -110,8 +113,8 @@ QPushButton#getStarted:pressed {
      <widget class="QFrame" name="frame2">
       <property name="geometry">
        <rect>
-        <x>-70</x>
-        <y>-20</y>
+        <x>0</x>
+        <y>0</y>
         <width>1536</width>
         <height>864</height>
        </rect>

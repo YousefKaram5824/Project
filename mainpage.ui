@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -179,6 +179,9 @@ QPushButton#getStarted:pressed {
          <width>371</width>
          <height>71</height>
         </rect>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::EchoMode::Password</enum>
        </property>
       </widget>
       <widget class="QLabel" name="label">

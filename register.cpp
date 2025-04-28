@@ -11,15 +11,15 @@ Register::Register(QMap<QString, User> &usersMapRef, QWidget *parent)
     ui->setupUi(this);
 }
 
-Register::~Register()
-{
+Register::~Register(){
     delete ui;
 }
-
-bool isclient = 0;
+ bool isclient = 0;
 int type=0;
 void Register::on_userTypeComboBox_currentIndexChanged()
 {
+
+
     QString userType = ui->userTypeComboBox->currentText();
 
     if (userType == "Client") {
@@ -27,18 +27,19 @@ void Register::on_userTypeComboBox_currentIndexChanged()
         ui->subscriptionPeriodSpinBox->setEnabled(true);
         isclient=1;
         type=1;
-    } else {
+    } else if(userType == "coach") {
         ui->birthDateEdit->setEnabled(false);
         ui->subscriptionPeriodSpinBox->setEnabled(false);
+        isclient=0;
+         type=2;
     }
-    if (userType == "coach")
-    {
-        type=2;
-    }
-    if (userType == "Receptionist")
-    {
+    else {
+        ui->birthDateEdit->setEnabled(false);
+        ui->subscriptionPeriodSpinBox->setEnabled(false);
+        isclient=0;
         type=3;
     }
+
 }
 QString Register::generateUniqueID(int typee)
 {
@@ -61,7 +62,8 @@ void Register::clearAll()
     ui->usernameLineEdit->clear();
     ui->passwordLineEdit->clear();
     ui->confirmPasswordLineEdit->clear();
-    ui->userTypeComboBox->clear();
+    //ui->userTypeComboBox->clear();
+    ui->userTypeComboBox->setCurrentIndex(-1);
     ui->birthDateEdit->clear();
     ui->subscriptionPeriodSpinBox->clear();
 
@@ -115,4 +117,5 @@ void Register::on_pushButton_clicked()
 
     QString message = QString("User registered successfully!\nYour ID is: %1").arg(id);
     QMessageBox::information(this, "Success",message);
+
 }

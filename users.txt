@@ -1,2 +1,3 @@
-habiba,co1952,1235,1,2000-01-01,0
-haboba,cu1756,123,1,2000-04-01,3
+hatem,co652,1236,0,null,null
+karam,co7316,123,0,null,null
+habiba,cu7022,1478,1,2000-01-01,6

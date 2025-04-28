@@ -8,4 +8,5 @@
         <file>icon.png</file>
     </qresource>
     <qresource prefix="/reg"/>
+    <qresource prefix="/textt"/>
 </RCC>

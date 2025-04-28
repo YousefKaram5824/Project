@@ -78,7 +78,7 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="mouseTracking">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="tabletTracking">
         <bool>false</bool>

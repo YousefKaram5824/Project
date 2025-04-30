@@ -14,14 +14,16 @@ SOURCES += \
     filemanager.cpp \
     main.cpp \
     mainpage.cpp \
-    register.cpp
+    register.cpp \
+    SearchManager.cpp
 
 HEADERS += \
     Court.h \
     User.h \
     filemanager.h \
     mainpage.h \
-    register.h
+    register.h \
+    SearchManager.h
 
 FORMS += \
     mainpage.ui \

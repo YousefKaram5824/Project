@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QWidget>
 #include "register.h"
+#include "SearchManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -49,9 +50,12 @@ private slots:
 
     void on_getClientData_clicked();
 
+    void on_search_2_clicked();
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;
+    SearchManager *searchManager;
     bool validateLogin(const QString &id, const QString &password);
     void clearAll();
     UserType getUserType(const QString &username);

@@ -9,12 +9,20 @@ MainPage::MainPage(QMap<QString, User> &usersMapRef, QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowState(Qt::WindowMaximized);
+
+    // Initialize SearchManager
+    searchManager = new SearchManager(ui->courtTable,
+                                    ui->comboBoxcourt,
+                                    ui->datecourt,
+                                    ui->timecourt,
+                                    this);
 }
 
 MainPage::~MainPage()
 {
     delete ui;
     delete registerWin;
+    delete searchManager;
 }
 
 UserType MainPage::getUserType(const QString &username)
@@ -175,4 +183,13 @@ void MainPage::on_getClientData_clicked()
     ui->getClientName->setText(client.username);
     ui->getClientDateOfBirth->setText(client.birthDate);
     ui->getSubscriptionPeriod->setText(client.subscriptionPeriod);
+}
+
+void MainPage::on_search_2_clicked()
+{
+    QString location = ui->comboBoxcourt->currentText();
+    QDate date = ui->datecourt->date();
+    QTime time = ui->timecourt->time();
+
+    searchManager->searchCourts(location, date, time);
 }

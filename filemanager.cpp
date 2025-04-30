@@ -7,8 +7,10 @@
 #include "User.h"
 */
 #include "FileManager.h"
+#include "Court.h"
 #include <QDebug>
 #include <QFile>
+#include <QList>
 #include <QTextStream>
 
 void FileManager::save(const QMap<QString, User> &usersMap)
@@ -57,13 +59,13 @@ void FileManager::load(QMap<QString, User> &usersMap)
         QString line = in.readLine();
 
         if (line.trimmed().isEmpty())
-            continue; // Skip empty lines
+            continue;
 
         QStringList fields = line.split(',');
 
         if (fields.size() != 6) {
             qDebug() << "Invalid line format:" << line;
-            continue; // Skip invalid lines
+            continue;
         }
 
         User user;
@@ -77,3 +79,63 @@ void FileManager::load(QMap<QString, User> &usersMap)
     }
     file.close();
 }
+
+void FileManager::savecourt(const QList<Court> &courtsList)
+{
+    QFile file("courts.txt");
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file for writing.";
+        return;
+    }
+
+    QTextStream out(&file);
+
+    for (const auto &court : courtsList) {
+        out << court.location << "," << court.date.toString("yyyy-MM-dd")
+        << "," << court.time.toString("HH:mm") << "," << court.isBooked << "\n";
+    }
+    file.close();
+}
+
+void FileManager::loadcourt(QList<Court> &courtsList)
+{
+    QFile file("courts.txt");
+
+    if (!file.exists()) {
+        QFile newFile("courts.txt");
+        newFile.open(QIODevice::WriteOnly);
+        newFile.close();
+        return;
+    }
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file for reading.";
+        return;
+    }
+
+    QTextStream in(&file);
+
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        if (line.trimmed().isEmpty())
+            continue;
+
+        QStringList fields = line.split(',');
+
+        if (fields.size() != 4) {
+            qDebug() << "Invalid line format:" << line;
+            continue;
+        }
+
+        Court court;
+        court.location = fields[0];
+        court.date = QDate::fromString(fields[1], "yyyy-MM-dd");
+        court.time = QTime::fromString(fields[2], "HH:mm");
+        court.isBooked = (fields[3] == "1");
+
+        courtsList.append(court);
+    }
+    file.close();
+}
+

@@ -134,3 +134,18 @@ void MainPage::clearAll()
 
 
 
+
+void MainPage::on_searchButton_clicked()
+{
+    ui->holder->setCurrentIndex(3);
+}
+
+
+void MainPage::on_goHomeButton1_clicked()
+{
+    ui->holder->setCurrentIndex(2);
+}
+
+
+
+

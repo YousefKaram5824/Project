@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -294,36 +294,10 @@ QPushButton:pressed {
      </widget>
     </widget>
     <widget class="QWidget" name="customerPage">
-     <widget class="QPushButton" name="logOut_4">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>270</y>
-        <width>83</width>
-        <height>29</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>logout</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>100</y>
-        <width>63</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>customer</string>
-      </property>
-     </widget>
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>0</y>
         <width>1536</width>
         <height>864</height>
@@ -331,7 +305,9 @@ QPushButton:pressed {
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame#frame_2 {
+	
 	background-image: url(:/bg/fitora.png);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -343,10 +319,114 @@ QPushButton:pressed {
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
+      <widget class="QPushButton" name="logOut_4">
+       <property name="geometry">
+        <rect>
+         <x>1390</x>
+         <y>20</y>
+         <width>83</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Book Antiqua</family>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
+       </property>
+       <property name="text">
+        <string>logout</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="searchButton">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>140</y>
+         <width>561</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 20px;                
+    color: white;                       
+    padding: 5px 10px; 
+   
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
+       </property>
+       <property name="text">
+        <string>search for available courts</string>
+       </property>
+      </widget>
      </widget>
-     <zorder>frame_2</zorder>
-     <zorder>logOut_4</zorder>
-     <zorder>label_4</zorder>
+    </widget>
+    <widget class="QWidget" name="search">
+     <widget class="QCommandLinkButton" name="goHomeButton1">
+      <property name="geometry">
+       <rect>
+        <x>1240</x>
+        <y>10</y>
+        <width>91</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Home</string>
+      </property>
+      <property name="icon">
+       <iconset theme="QIcon::ThemeIcon::GoHome"/>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="courtTable">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>30</y>
+        <width>891</width>
+        <height>421</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="search_2">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>450</y>
+        <width>83</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>search</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="coachPage">
      <widget class="QLabel" name="label_3">

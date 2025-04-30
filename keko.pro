@@ -17,6 +17,7 @@ SOURCES += \
     register.cpp
 
 HEADERS += \
+    Court.h \
     User.h \
     filemanager.h \
     mainpage.h \
@@ -35,4 +36,5 @@ RESOURCES += \
     Resources.qrc
 
 DISTFILES += \
+    courts \
     users

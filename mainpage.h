@@ -39,6 +39,14 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_searchButton_clicked();
+
+    void on_goHomeButton1_clicked();
+
+    void on_courtTable_cellActivated(int row, int column);
+
+
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;

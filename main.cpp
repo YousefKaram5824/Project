@@ -3,11 +3,15 @@
 #include "mainpage.h"
 
 QMap<QString, User> usersMap;
+QList<Court> courtsList;
+QMap<QString, QMap<QDate, QMap<QTime, Court>>> courtData;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     FileManager::load(usersMap);
+    FileManager::loadcourt(courtsList);
+
     MainPage mainPage(usersMap);
     User admin;
     admin.id = "admin";
@@ -20,5 +24,7 @@ int main(int argc, char *argv[])
     mainPage.show();
     int result = a.exec();
     FileManager::save(usersMap);
+    FileManager::savecourt(courtsList);
+
     return result;
 }

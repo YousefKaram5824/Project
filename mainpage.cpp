@@ -132,20 +132,47 @@ void MainPage::clearAll()
     ui->password->clear();
 }
 
-
-
-
 void MainPage::on_searchButton_clicked()
 {
     ui->holder->setCurrentIndex(3);
 }
-
 
 void MainPage::on_goHomeButton1_clicked()
 {
     ui->holder->setCurrentIndex(2);
 }
 
+void MainPage::on_backToRes_clicked()
+{
+    ui->holder->setCurrentIndex(5);
+}
 
+void MainPage::on_clientData_clicked()
+{
+    ui->holder->setCurrentIndex(7);
+}
 
+void MainPage::on_getClientData_clicked()
+{
+    QString clientId = ui->clientID->text();
+    
+    if (clientId.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Please enter a client ID");
+        return;
+    }
 
+    if (!usersMap.contains(clientId)) {
+        QMessageBox::warning(this, "Error", "Client ID not found");
+        return;
+    }
+
+    const User &client = usersMap[clientId];
+    if (!client.isClient) {
+        QMessageBox::warning(this, "Error", "The entered ID does not belong to a client");
+        return;
+    }
+
+    ui->getClientName->setText(client.username);
+    ui->getClientDateOfBirth->setText(client.birthDate);
+    ui->getSubscriptionPeriod->setText(client.subscriptionPeriod);
+}

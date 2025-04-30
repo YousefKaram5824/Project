@@ -304,8 +304,7 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QFrame#frame_2 {
-	
+       <string notr="true">QFrame#frame_2 {	
 	background-image: url(:/bg/fitora.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -404,29 +403,56 @@ QPushButton:pressed {
        <iconset theme="QIcon::ThemeIcon::GoHome"/>
       </property>
      </widget>
-     <widget class="QTableWidget" name="courtTable">
+     <widget class="QFrame" name="frame_6">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>30</y>
-        <width>891</width>
-        <height>421</height>
+        <x>0</x>
+        <y>0</y>
+        <width>1536</width>
+        <height>864</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QPushButton" name="search_2">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>450</y>
-        <width>83</width>
-        <height>29</height>
-       </rect>
+      <property name="styleSheet">
+       <string notr="true">QFrame#frame_6 {	
+	background-image: url(:/bg/fitora.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
       </property>
-      <property name="text">
-       <string>search</string>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
       </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QTableWidget" name="courtTable">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>80</y>
+         <width>891</width>
+         <height>421</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="search_2">
+       <property name="geometry">
+        <rect>
+         <x>750</x>
+         <y>520</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>search</string>
+       </property>
+      </widget>
      </widget>
+     <zorder>frame_6</zorder>
+     <zorder>goHomeButton1</zorder>
     </widget>
     <widget class="QWidget" name="coachPage">
      <widget class="QLabel" name="label_3">
@@ -465,8 +491,9 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QFrame#frame {
+       <string notr="true">QFrame#frame {	
 	background-image: url(:/bg/fitora.png);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -484,19 +511,6 @@ QPushButton:pressed {
      <zorder>logOut_3</zorder>
     </widget>
     <widget class="QWidget" name="receptionistPage">
-     <widget class="QPushButton" name="logOut">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>340</y>
-        <width>83</width>
-        <height>29</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>logout</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
@@ -520,8 +534,9 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QFrame#frame_4 {
+       <string notr="true">QFrame#frame_4 {	
 	background-image: url(:/bg/fitora.png);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -533,9 +548,34 @@ QPushButton:pressed {
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
+      <widget class="QPushButton" name="clientData">
+       <property name="geometry">
+        <rect>
+         <x>620</x>
+         <y>320</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Client Data</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="logOut">
+       <property name="geometry">
+        <rect>
+         <x>1290</x>
+         <y>50</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>logout</string>
+       </property>
+      </widget>
      </widget>
      <zorder>frame_4</zorder>
-     <zorder>logOut</zorder>
      <zorder>label_6</zorder>
     </widget>
     <widget class="QWidget" name="managerPage">
@@ -575,8 +615,9 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QFrame#frame_3 {
+       <string notr="true">QFrame#frame_3 {	
 	background-image: url(:/bg/fitora.png);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
@@ -592,6 +633,160 @@ QPushButton:pressed {
      <zorder>frame_3</zorder>
      <zorder>logOut_2</zorder>
      <zorder>label_5</zorder>
+    </widget>
+    <widget class="QWidget" name="clientDataPage">
+     <widget class="QFrame" name="frame_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1536</width>
+        <height>864</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#frame_5 {	
+	background-image: url(:/bg/fitora.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="getClientData">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>250</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Get Data</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="backToRes">
+       <property name="geometry">
+        <rect>
+         <x>1260</x>
+         <y>50</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="clientID">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>190</y>
+         <width>113</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>190</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>330</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>370</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date of Birth</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="getClientName">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>330</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="getClientDateOfBirth">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>370</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>420</y>
+         <width>141</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Subscription Period</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="getSubscriptionPeriod">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>420</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>

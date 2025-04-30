@@ -43,9 +43,11 @@ private slots:
 
     void on_goHomeButton1_clicked();
 
-    void on_courtTable_cellActivated(int row, int column);
+    void on_backToRes_clicked();
 
+    void on_clientData_clicked();
 
+    void on_getClientData_clicked();
 
 private:
     Ui::MainPage *ui;

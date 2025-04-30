@@ -15,7 +15,7 @@
 
 void FileManager::save(const QMap<QString, User> &usersMap)
 {
-    QFile file("E:/Project/users.txt");
+    QFile file("Y:/Final Project/users.txt");
 
     //"E:/Project/users.txt" PATH of Habiba
     //"Y:/Final Project/users.txt" PATH of keko
@@ -36,7 +36,7 @@ void FileManager::save(const QMap<QString, User> &usersMap)
 
 void FileManager::load(QMap<QString, User> &usersMap)
 {
-    QFile file("E:/Project/users.txt");
+    QFile file("Y:/Final Project/users.txt");
 
     //"E:/Project/users.txt" PATH of Habiba
     //"Y:/Final Project/users.txt" PATH of keko

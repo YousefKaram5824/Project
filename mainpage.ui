@@ -384,33 +384,19 @@ QPushButton:pressed {
      </widget>
     </widget>
     <widget class="QWidget" name="search">
-     <widget class="QCommandLinkButton" name="goHomeButton1">
-      <property name="geometry">
-       <rect>
-        <x>1240</x>
-        <y>10</y>
-        <width>91</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Home</string>
-      </property>
-      <property name="icon">
-       <iconset theme="QIcon::ThemeIcon::GoHome"/>
-      </property>
-     </widget>
      <widget class="QFrame" name="frame_6">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>-20</x>
         <y>0</y>
         <width>1536</width>
         <height>864</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame#frame_6 {	
@@ -419,6 +405,13 @@ QPushButton:pressed {
     background-repeat: no-repeat;
     background-size: cover;
     border: none;
+}
+QComboBox, QTimeEdit, QDateEdit {
+    background: transparent;    
+    border: 1px solid  #DC3E22;     
+    border-radius: 5px;         
+    color: white;               
+    padding: 5px;             
 }</string>
       </property>
       <property name="frameShape">
@@ -430,29 +423,281 @@ QPushButton:pressed {
       <widget class="QTableWidget" name="courtTable">
        <property name="geometry">
         <rect>
-         <x>350</x>
-         <y>80</y>
-         <width>891</width>
-         <height>421</height>
+         <x>480</x>
+         <y>390</y>
+         <width>541</width>
+         <height>331</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget, QTableView {
+    background-color: transparent;
+    border: 2px solid #ADABAB;
+    border-radius: 10px;
+    gridline-color: #ADABAB;  
+    selection-background-color: rgba(255, 165, 0, 60); 
+}
+
+
+QHeaderView::section {
+    background-color: #272727;
+    color: #ffffff;
+   border: 0.5px solid #ADABAB;
+    padding: 5px;
+    font-weight: bold;
+}
+
+
+/* رأس الزاوية (اللي بين الأرقام والأعمدة) */
+QTableCornerButton::section {
+    background-color: transparent;
+    border: none;
+}
+
+/* خلايا الجدول */
+QTableView::item, QTableWidget::item {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+}
+
+
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: transparent;
+    border: none;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #DC3E22;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: none;
+    border: none;
+    height: 0px;
+    width: 0px;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="rowCount">
+        <number>15</number>
+       </property>
+       <property name="columnCount">
+        <number>5</number>
+       </property>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <column>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Location</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>date</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>time</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>IsBooked</string>
+        </property>
+       </column>
       </widget>
       <widget class="QPushButton" name="search_2">
        <property name="geometry">
         <rect>
-         <x>750</x>
-         <y>520</y>
-         <width>83</width>
-         <height>29</height>
+         <x>640</x>
+         <y>280</y>
+         <width>181</width>
+         <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Book Antiqua</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
        </property>
        <property name="text">
         <string>search</string>
        </property>
       </widget>
+      <widget class="QComboBox" name="comboBoxcourt">
+       <property name="geometry">
+        <rect>
+         <x>1230</x>
+         <y>180</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Cairo</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QDateEdit" name="datecourt">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>190</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTimeEdit" name="timecourt">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>190</y>
+         <width>161</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>190</y>
+         <width>63</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>590</x>
+         <y>190</y>
+         <width>63</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Time</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_12">
+       <property name="geometry">
+        <rect>
+         <x>1140</x>
+         <y>180</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Location</string>
+       </property>
+      </widget>
+      <widget class="QCommandLinkButton" name="goHomeButton1">
+       <property name="geometry">
+        <rect>
+         <x>1390</x>
+         <y>10</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Home</string>
+       </property>
+       <property name="icon">
+        <iconset theme="QIcon::ThemeIcon::GoHome"/>
+       </property>
+      </widget>
      </widget>
-     <zorder>frame_6</zorder>
-     <zorder>goHomeButton1</zorder>
     </widget>
     <widget class="QWidget" name="coachPage">
      <widget class="QLabel" name="label_3">

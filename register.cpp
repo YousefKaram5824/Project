@@ -29,11 +29,9 @@ void Register::on_userTypeComboBox_currentIndexChanged()
         ui->subscriptionPeriodSpinBox->setEnabled(true);
         isclient = true;
         type = 1;
-    }
-    if (userType == "Coach") {
+    } else if (userType == "Coach") {
         type = 2;
-    }
-    if (userType == "Receptionist") {
+    } else if (userType == "Receptionist") {
         type = 3;
     }
 }

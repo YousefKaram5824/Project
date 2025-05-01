@@ -11,7 +11,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Receptionist.cpp \
     filemanager.cpp \
+    login.cpp \
     main.cpp \
     mainpage.cpp \
     register.cpp \
@@ -19,8 +21,10 @@ SOURCES += \
 
 HEADERS += \
     Court.h \
+    Receptionist.h \
     User.h \
     filemanager.h \
+    login.h \
     mainpage.h \
     register.h \
     SearchManager.h

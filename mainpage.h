@@ -7,14 +7,14 @@
 #include <QWidget>
 #include "register.h"
 #include "SearchManager.h"
+#include "login.h"
+#include "Receptionist.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
 }
 QT_END_NAMESPACE
-
-enum class UserType { Client, Coach, Receptionist, Manager, Invalid };
 
 class MainPage : public QMainWindow
 {
@@ -26,39 +26,36 @@ public:
 
 private slots:
     void on_getStarted_clicked();
-
-
     void on_login_clicked();
-
     void on_logOut_clicked();
-
     void on_logOut_2_clicked();
-
     void on_logOut_4_clicked();
-
     void on_logOut_3_clicked();
-
     void on_pushButton_clicked();
-
     void on_searchButton_clicked();
-
     void on_goHomeButton1_clicked();
-
     void on_backToRes_clicked();
-
     void on_clientData_clicked();
-
     void on_getClientData_clicked();
-
     void on_search_2_clicked();
+
+    // Login slots
+    void handleLoginSuccessful(UserType userType);
+    void handleLoginFailed(const QString &message);
+
+    // Receptionist slots
+    void handleClientNotFound(const QString &message);
+    void handleInvalidClientType(const QString &message);
 
 private:
     Ui::MainPage *ui;
     Register *registerWin;
     SearchManager *searchManager;
-    bool validateLogin(const QString &id, const QString &password);
+    Login *loginManager;
+    Receptionist *receptionistManager;
     void clearAll();
     UserType getUserType(const QString &username);
     QMap<QString, User> &usersMap;
 };
+
 #endif

@@ -10,12 +10,22 @@ MainPage::MainPage(QMap<QString, User> &usersMapRef, QWidget *parent)
     ui->setupUi(this);
     this->setWindowState(Qt::WindowMaximized);
 
-    // Initialize SearchManager
     searchManager = new SearchManager(ui->courtTable,
                                     ui->comboBoxcourt,
                                     ui->datecourt,
                                     ui->timecourt,
                                     this);
+
+    loginManager = new Login(usersMap, this);
+    connect(loginManager, &Login::loginSuccessful, this, &MainPage::handleLoginSuccessful);
+    connect(loginManager, &Login::loginFailed, this, &MainPage::handleLoginFailed);
+
+    receptionistManager = new Receptionist(usersMap, this);
+    connect(receptionistManager, &Receptionist::clientNotFound, this, &MainPage::handleClientNotFound);
+    connect(receptionistManager,
+            &Receptionist::invalidClientType,
+            this,
+            &MainPage::handleInvalidClientType);
 }
 
 MainPage::~MainPage()
@@ -23,27 +33,8 @@ MainPage::~MainPage()
     delete ui;
     delete registerWin;
     delete searchManager;
-}
-
-UserType MainPage::getUserType(const QString &username)
-{
-    if (username.length() < 2) {
-        return UserType::Invalid;
-    }
-
-    QString prefix = username.left(2).toLower();
-
-    if (prefix == "cl") {
-        return UserType::Client;
-    } else if (prefix == "co") {
-        return UserType::Coach;
-    } else if (prefix == "re") {
-        return UserType::Receptionist;
-    } else if (prefix == "ad") {
-        return UserType::Manager;
-    }
-
-    return UserType::Invalid;
+    delete loginManager;
+    delete receptionistManager;
 }
 
 void MainPage::on_getStarted_clicked()
@@ -59,25 +50,21 @@ void MainPage::on_pushButton_clicked()
     registerWin->activateWindow();
 }
 
-bool MainPage::validateLogin(const QString &id, const QString &password)
+void MainPage::on_login_clicked()
 {
-    if (!usersMap.contains(id)) {
-        QMessageBox::warning(this, "Login Failed", "User ID not found.");
-        return false;
+    QString username = ui->id->text();
+    QString password = ui->password->text();
+
+    if (username.isEmpty() || password.isEmpty()) {
+        QMessageBox::warning(this, "Login Error", "Please enter both username and password");
+        return;
     }
 
-    const User &user = usersMap[id];
-    if (user.password != password) {
-        QMessageBox::warning(this, "Login Failed", "Incorrect password.");
-        return false;
-    }
+    loginManager->validateLogin(username, password);
+}
 
-    UserType userType = getUserType(id);
-    if (userType == UserType::Invalid) {
-        QMessageBox::warning(this, "Login Failed", "Invalid user role.");
-        return false;
-    }
-
+void MainPage::handleLoginSuccessful(UserType userType)
+{
     switch (userType) {
     case UserType::Client:
         ui->holder->setCurrentIndex(2);
@@ -92,26 +79,15 @@ bool MainPage::validateLogin(const QString &id, const QString &password)
         ui->holder->setCurrentIndex(5);
         break;
     default:
-        return false;
+        break;
     }
-    clearAll();
-    return true;
+    loginManager->clearLoginFields(ui->id, ui->password);
 }
 
-void MainPage::on_login_clicked()
+void MainPage::handleLoginFailed(const QString &message)
 {
-    QString username = ui->id->text();
-    QString password = ui->password->text();
-
-    if (username.isEmpty() || password.isEmpty()) {
-        QMessageBox::warning(this, "Login Error", "Please enter both username and password");
-        return;
-    }
-
-    if (validateLogin(username, password)) {
-    } else {
-        clearAll();
-    }
+    QMessageBox::warning(this, "Login Failed", message);
+    loginManager->clearLoginFields(ui->id, ui->password);
 }
 
 void MainPage::on_logOut_clicked()
@@ -134,12 +110,6 @@ void MainPage::on_logOut_4_clicked()
     ui->holder->setCurrentIndex(1);
 }
 
-void MainPage::clearAll()
-{
-    ui->id->clear();
-    ui->password->clear();
-}
-
 void MainPage::on_searchButton_clicked()
 {
     ui->holder->setCurrentIndex(3);
@@ -152,7 +122,7 @@ void MainPage::on_goHomeButton1_clicked()
 
 void MainPage::on_backToRes_clicked()
 {
-    ui->holder->setCurrentIndex(5);
+    ui->holder->setCurrentIndex(4);
 }
 
 void MainPage::on_clientData_clicked()
@@ -169,20 +139,13 @@ void MainPage::on_getClientData_clicked()
         return;
     }
 
-    if (!usersMap.contains(clientId)) {
-        QMessageBox::warning(this, "Error", "Client ID not found");
-        return;
+    if (receptionistManager->validateClient(clientId)) {
+        const User &client = usersMap[clientId];
+        receptionistManager->displayClientInfo(client,
+                                               ui->getClientName,
+                                               ui->getClientDateOfBirth,
+                                               ui->getSubscriptionPeriod);
     }
-
-    const User &client = usersMap[clientId];
-    if (!client.isClient) {
-        QMessageBox::warning(this, "Error", "The entered ID does not belong to a client");
-        return;
-    }
-
-    ui->getClientName->setText(client.username);
-    ui->getClientDateOfBirth->setText(client.birthDate);
-    ui->getSubscriptionPeriod->setText(client.subscriptionPeriod);
 }
 
 void MainPage::on_search_2_clicked()
@@ -192,4 +155,14 @@ void MainPage::on_search_2_clicked()
     QTime time = ui->timecourt->time();
 
     searchManager->searchCourts(location, date, time);
+}
+
+void MainPage::handleClientNotFound(const QString &message)
+{
+    QMessageBox::warning(this, "Error", message);
+}
+
+void MainPage::handleInvalidClientType(const QString &message)
+{
+    QMessageBox::warning(this, "Error", message);
 }

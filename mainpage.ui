@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainPage</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/icon/icon.png</normaloff>:/icon/icon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="holder">
     <property name="geometry">
@@ -1072,6 +1076,8 @@ color: rgb(255, 255, 255);</string>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

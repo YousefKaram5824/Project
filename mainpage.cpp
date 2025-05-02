@@ -1,14 +1,20 @@
 #include "mainpage.h"
 #include <QMessageBox>
 #include "ui_mainpage.h"
+#include <QLayout>
 
-MainPage::MainPage(QMap<QString, User> &usersMapRef, QWidget *parent)
+MainPage::MainPage(QMap<QString, User> &usersMapRef, QMap<int, Court> &courtsMapRef, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainPage)
     , usersMap(usersMapRef)
+    , courtsMap(courtsMapRef)
 {
     ui->setupUi(this);
     this->setWindowState(Qt::WindowMaximized);
+
+    searchManager = new SearchManager(courtsMap);
+
+
     /*
     searchManager = new SearchManager(ui->courtTable,
                                     ui->comboBoxcourt,
@@ -32,7 +38,7 @@ MainPage::~MainPage()
 {
     delete ui;
     delete registerWin;
-    // delete searchManager;
+    delete searchManager;
     delete loginManager;
     delete receptionistManager;
 }
@@ -113,6 +119,7 @@ void MainPage::on_logOut_4_clicked()
 void MainPage::on_searchButton_clicked()
 {
     ui->holder->setCurrentIndex(6);
+    //createEmptyTableWidget();
 }
 
 void MainPage::on_goHomeButton1_clicked()
@@ -148,15 +155,6 @@ void MainPage::on_getClientData_clicked()
     }
 }
 
-void MainPage::on_search_2_clicked()
-{
-    QString location = ui->comboBoxcourt->currentText();
-    QDate date = ui->datecourt->date();
-    QTime time = ui->timecourt->time();
-
-    // searchManager->searchCourts(location, date, time);
-}
-
 void MainPage::handleClientNotFound(const QString &message)
 {
     QMessageBox::warning(this, "Error", message);
@@ -166,3 +164,94 @@ void MainPage::handleInvalidClientType(const QString &message)
 {
     QMessageBox::warning(this, "Error", message);
 }
+
+
+void MainPage::displayCourtsInTable(const QList<Court> &courts)
+{
+
+    ui->tableWidget->setRowCount(0);
+
+
+    ui->tableWidget->setRowCount(courts.size());
+    int row = 0;
+    for (const Court &court : courts) {
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(court.id));
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(court.name));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(court.location));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(court.date.toString("yyyy-MM-dd")));
+        ui->tableWidget->setItem(row, 4, new QTableWidgetItem(court.time.toString("HH:mm")));
+        ui->tableWidget->setItem(row, 5, new QTableWidgetItem(court.isBooked ? "Yes" : "No"));
+        ++row;
+    }
+
+
+    ui->tableWidget->resizeRowsToContents();
+    int rowHeight = ui->tableWidget->verticalHeader()->defaultSectionSize();
+    int totalHeight = rowHeight * courts.size() + ui->tableWidget->horizontalHeader()->height();
+    ui->tableWidget->setMinimumHeight(totalHeight);
+}
+
+
+
+
+/*
+void MainPage::createEmptyTableWidget()
+{
+
+    if (ui->tableWidget) {
+        ui->tableWidget->clear();  // مسح محتويات الجدول
+        ui->tableWidget->setRowCount(0);  // إعادة تعيين عدد الصفوف إلى 0
+    }
+
+    // إنشاء جدول جديد فارغ
+    ui->tableWidget = new QTableWidget(this);
+    ui->tableWidget->setRowCount(0);  // جدول فارغ في البداية
+    ui->tableWidget->setColumnCount(6); // عدد الأعمدة
+
+    // إضافة العناوين
+    ui->tableWidget->setHorizontalHeaderLabels({"ID", "Name", "Location", "Date", "Time", "Booked"});
+
+    // إضافة الجدول إلى الـ Layout
+    QLayout *layout = ui->centralwidget->layout(); // الحصول على layout
+    QWidget *oldWidget = layout->itemAt(0)->widget();
+    if (oldWidget) {
+        layout->removeWidget(oldWidget);
+        delete oldWidget;
+    }
+    layout->addWidget(ui->tableWidget);
+
+}
+*/
+
+void MainPage::on_search_2_clicked()
+{
+    QList<Court> courts = searchManager->searchAll();
+   // qDebug() << "Number of courts:" << courts.size();
+    displayCourtsInTable(courts);
+}
+
+
+
+
+
+void MainPage::on_filter_clicked()
+{
+    QString location = ui->comboBoxcourt->currentText();
+    QDate date = ui->datecourt->date();
+    QTime time = ui->timecourt->time();
+
+    QList<Court> filtered = searchManager->filterCourts(location, date, time);
+    if (!filtered.isEmpty()) {
+        displayCourtsInTable(filtered);
+    } else {
+        Court closest = searchManager->findClosestAvailable(location, date, time);
+        if (!closest.id.isEmpty()) {
+            QMessageBox::information(this, "No courts", "No court at requested time. Showing nearest available.");
+            displayCourtsInTable({closest});
+        } else {
+            QMessageBox::warning(this, "No courts", "No available courts found.");
+        }
+    }
+}
+
+

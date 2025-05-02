@@ -15,7 +15,7 @@
 
 void FileManager::save(const QMap<QString, User> &usersMap)
 {
-    QFile file("Y:/Final Project/users.txt");
+    QFile file("E:/Project/users.txt");
 
     //"E:/Project/users.txt" PATH of Habiba
     //"Y:/Final Project/users.txt" PATH of keko
@@ -36,7 +36,7 @@ void FileManager::save(const QMap<QString, User> &usersMap)
 
 void FileManager::load(QMap<QString, User> &usersMap)
 {
-    QFile file("Y:/Final Project/users.txt");
+    QFile file("E:/Project/users.txt");
 
     //"E:/Project/users.txt" PATH of Habiba
     //"Y:/Final Project/users.txt" PATH of keko
@@ -80,62 +80,54 @@ void FileManager::load(QMap<QString, User> &usersMap)
     file.close();
 }
 
-void FileManager::savecourt(const QList<Court> &courtsList)
-{
-    QFile file("courts.txt");
+QMap<int, Court> FileManager::loadCourtsFromFile(const QString& filePath) {
+    QMap<int, Court> courts;
+    QFile file(filePath);
 
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file for writing.";
-        return;
-    }
-
-    QTextStream out(&file);
-
-    for (const auto &court : courtsList) {
-        out << court.location << "," << court.date.toString("yyyy-MM-dd")
-        << "," << court.time.toString("HH:mm") << "," << court.isBooked << "\n";
-    }
-    file.close();
-}
-
-void FileManager::loadcourt(QList<Court> &courtsList)
-{
-    QFile file("courts.txt");
 
     if (!file.exists()) {
-        QFile newFile("courts.txt");
-        newFile.open(QIODevice::WriteOnly);
-        newFile.close();
-        return;
+        qDebug() << "File does not exist:" << filePath;
+        return courts;
     }
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file for reading.";
-        return;
-    }
 
-    QTextStream in(&file);
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream in(&file);
+        while (!in.atEnd()) {
+            QString line = in.readLine();
 
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        if (line.trimmed().isEmpty())
-            continue;
+            QStringList parts = line.split(',', Qt::SkipEmptyParts);
+            for (QString &part : parts) {
+                part = part.trimmed();
+            }
 
-        QStringList fields = line.split(',');
+            if (parts.size() == 6) {
+                int id = parts[0].toInt();
+                QString name = parts[1];
+                QString location = parts[2];
+                QDate date = QDate::fromString(parts[3], "yyyy-MM-dd");
+                QTime time = QTime::fromString(parts[4], "HH:mm");
+                bool isBooked = (parts[5].toLower() == "true");
+                QString idString = QString::number(id);
+                courts[id] = Court(idString, name, location, date, time, isBooked);
 
-        if (fields.size() != 4) {
-            qDebug() << "Invalid line format:" << line;
-            continue;
+            }
         }
-
-        Court court;
-        court.location = fields[0];
-        court.date = QDate::fromString(fields[1], "yyyy-MM-dd");
-        court.time = QTime::fromString(fields[2], "HH:mm");
-        court.isBooked = (fields[3] == "1");
-
-        courtsList.append(court);
+        file.close();
     }
-    file.close();
+     //qDebug() << "Courts loaded:" << courts.size();
+    return courts;
 }
 
+void FileManager::saveCourtsToFile(const QString& filePath, const QMap<int, Court>& courts) {
+    QFile file(filePath);
+    if (file.open(QIODevice::WriteOnly)) {
+        QTextStream out(&file);
+        for (const Court& court : courts) {
+            out << court.id << "," << court.name << "," << court.location << ","
+                << court.date.toString("yyyy-MM-dd") << "," << court.time.toString("HH:mm") << ","
+                << (court.isBooked ? "true" : "false") << "\n";
+        }
+        file.close();
+    }
+}

@@ -28,7 +28,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -587,8 +587,8 @@ QPushButton:pressed {
      <widget class="QFrame" name="frame_6">
       <property name="geometry">
        <rect>
-        <x>-20</x>
-        <y>0</y>
+        <x>10</x>
+        <y>-10</y>
         <width>1536</width>
         <height>864</height>
        </rect>
@@ -620,17 +620,18 @@ QComboBox, QTimeEdit, QDateEdit {
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
-      <widget class="QTableWidget" name="courtTable">
+      <widget class="QTableWidget" name="tableWidget">
        <property name="geometry">
         <rect>
-         <x>480</x>
-         <y>390</y>
-         <width>541</width>
-         <height>331</height>
+         <x>470</x>
+         <y>360</y>
+         <width>611</width>
+         <height>91</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QTableWidget, QTableView {
+	color: rgb(255, 255, 255);
     background-color: transparent;
     border: 2px solid #ADABAB;
     border-radius: 10px;
@@ -696,26 +697,16 @@ QScrollBar::add-page, QScrollBar::sub-page {
         <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
        </property>
        <property name="rowCount">
-        <number>15</number>
+        <number>0</number>
        </property>
        <property name="columnCount">
-        <number>5</number>
+        <number>7</number>
        </property>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
+       <column>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </column>
        <column>
         <property name="text">
          <string>Name</string>
@@ -741,13 +732,14 @@ QScrollBar::add-page, QScrollBar::sub-page {
          <string>IsBooked</string>
         </property>
        </column>
+       <column/>
       </widget>
       <widget class="QPushButton" name="search_2">
        <property name="geometry">
         <rect>
-         <x>640</x>
+         <x>610</x>
          <y>280</y>
-         <width>181</width>
+         <width>311</width>
          <height>41</height>
         </rect>
        </property>
@@ -779,8 +771,8 @@ QPushButton:pressed {
       <widget class="QComboBox" name="comboBoxcourt">
        <property name="geometry">
         <rect>
-         <x>1230</x>
-         <y>180</y>
+         <x>970</x>
+         <y>170</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -793,12 +785,37 @@ QPushButton:pressed {
          <string>Cairo</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>New Cairo</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Alexandria</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Helwan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Zayed</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Maadi</string>
+        </property>
+       </item>
       </widget>
       <widget class="QDateEdit" name="datecourt">
        <property name="geometry">
         <rect>
-         <x>180</x>
-         <y>190</y>
+         <x>430</x>
+         <y>170</y>
          <width>161</width>
          <height>31</height>
         </rect>
@@ -810,7 +827,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>5</month>
-         <day>2</day>
+         <day>1</day>
         </datetime>
        </property>
        <property name="time">
@@ -830,15 +847,15 @@ QPushButton:pressed {
       <widget class="QTimeEdit" name="timecourt">
        <property name="geometry">
         <rect>
-         <x>680</x>
-         <y>190</y>
+         <x>690</x>
+         <y>170</y>
          <width>161</width>
          <height>31</height>
         </rect>
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>6</hour>
+         <hour>3</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
@@ -853,8 +870,8 @@ QPushButton:pressed {
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>190</y>
+         <x>380</x>
+         <y>170</y>
          <width>63</width>
          <height>31</height>
         </rect>
@@ -874,8 +891,8 @@ QPushButton:pressed {
       <widget class="QLabel" name="label_11">
        <property name="geometry">
         <rect>
-         <x>590</x>
-         <y>190</y>
+         <x>640</x>
+         <y>170</y>
          <width>63</width>
          <height>31</height>
         </rect>
@@ -895,8 +912,8 @@ QPushButton:pressed {
       <widget class="QLabel" name="label_12">
        <property name="geometry">
         <rect>
-         <x>1140</x>
-         <y>180</y>
+         <x>890</x>
+         <y>170</y>
          <width>91</width>
          <height>31</height>
         </rect>
@@ -931,6 +948,41 @@ color: rgb(255, 255, 255);</string>
        </property>
        <property name="icon">
         <iconset theme="QIcon::ThemeIcon::GoHome"/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="filter">
+       <property name="geometry">
+        <rect>
+         <x>1270</x>
+         <y>170</y>
+         <width>91</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Book Antiqua</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+   background: transparent;    
+    border: 2px solid  #DC3E22;    
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
+       </property>
+       <property name="text">
+        <string>Filter</string>
        </property>
       </widget>
      </widget>

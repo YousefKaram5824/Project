@@ -1,20 +1,15 @@
-1, El Salam Court, Cairo, 2025-05-01, 14:00, 0
-2, Al Shorouk Arena, Cairo, 2025-05-01, 15:00, 0
-3, Gezira Club Court, Giza, 2025-05-01, 16:00, 0
-4, El Maadi Padel, Cairo, 2025-05-01, 17:00, 0
-5, Heliopolis Court, Cairo, 2025-05-02, 13:00, 0
-6, Padel Park, Giza, 2025-05-02, 14:00, 0
-7, Sporting Club, Alexandria, 2025-05-02, 15:00, 0
-8, Green Hills Court, Cairo, 2025-05-02, 16:00, 0
-9, Elite Padel, New Cairo, 2025-05-03, 12:00, 0
-10, Smash Club Court, Giza, 2025-05-03, 13:30, 0
-11, Future Padel, Cairo, 2025-05-03, 15:00, 0
-12, Dreamland Court, 6 October, 2025-05-03, 16:00, 0
-13, Palm Hills Arena, 6 October, 2025-05-03, 17:00, 0
-14, Platinum Club, New Cairo, 2025-05-04, 14:00, 0
-15, test 1, Cairo, 2025-05-04, 15:00, 0
-16, test 2, Cairo, 2025-05-04, 15:00, 0
-17, test 3, Cairo, 2025-05-04, 15:00, 0
-18, test 4, Cairo, 2025-05-04, 15:00, 0
-19, test 5, Cairo, 2025-05-04, 15:00, 0
-20, test 6, Cairo, 2025-05-04, 15:00, 0
+1,Padel Arena,Cairo,2025-05-02,10:00,false
+2,Padel Club Cairo,Cairo,2025-05-02,11:00,false
+3,Sports City Padel,New Cairo,2025-05-02,12:00,false
+4,Smash Padel,Cairo,2025-05-02,07:00,false
+5,Padel Hub, Alexandria,2025-05-02,09:00,false
+6,Cairo Padel Club, Cairo,2025-05-02,03:00,false
+7,Helwan Padel Center,Helwan,2025-05-02,05:00,false
+8,Padelista, Zayed,2025-05-02,10:00,false
+9,New Cairo Padel, New Cairo,2025-05-02,08:00, false
+10,Downtown Padel, Cairo,2025-05-02,09:00, false
+11,Alexandria Padel Club, Alexandria,2025-05-02,07:00, false
+12,Padel 360, Maadi,2025-05-02,01:00, false
+13,The Padel House, Zayed,2025-05-02,02:00, false
+14,Cairo Padel Hub, Cairo,2025-05-02,04:00, false
+15,Padel Square, Maadi,2025-05-02,11:00, false

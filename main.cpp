@@ -3,16 +3,15 @@
 #include "mainpage.h"
 
 QMap<QString, User> usersMap;
-QList<Court> courtsList;
-QMap<QString, QMap<QDate, QMap<QTime, Court>>> courtData;
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     FileManager::load(usersMap);
-    FileManager::loadcourt(courtsList);
+    QMap<int, Court> courtsMap = FileManager::loadCourtsFromFile("E:/Project/courts.txt");
 
-    MainPage mainPage(usersMap);
+    MainPage w(usersMap, courtsMap);
     User admin;
     admin.id = "admin";
     admin.username = "admin";
@@ -21,10 +20,12 @@ int main(int argc, char *argv[])
     admin.birthDate = "null";
     admin.subscriptionPeriod = "null";
     usersMap.insert(admin.id, admin);
-    mainPage.show();
+    w.show();
     int result = a.exec();
     FileManager::save(usersMap);
-    FileManager::savecourt(courtsList);
+    FileManager::saveCourtsToFile("E:/Project/courts.txt", courtsMap);
+
+
 
     return result;
 }

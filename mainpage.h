@@ -6,9 +6,10 @@
 #include <QMessageBox>
 #include <QWidget>
 #include "register.h"
-// #include "SearchManager.h"
+#include "SearchManager.h"
 #include "login.h"
 #include "Receptionist.h"
+#include "Court.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,7 +22,8 @@ class MainPage : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainPage(QMap<QString, User> &usersMapRef, QWidget *parent = nullptr);
+    explicit MainPage(QMap<QString, User>& usersMapRef, QMap<int, Court>& courtsMapRef, QWidget *parent = nullptr);
+
     ~MainPage();
 
 private slots:
@@ -37,7 +39,7 @@ private slots:
     void on_backToRes_clicked();
     void on_clientData_clicked();
     void on_getClientData_clicked();
-    void on_search_2_clicked();
+   // void on_search_2_clicked();
 
     // Login slots
     void handleLoginSuccessful(UserType userType);
@@ -47,15 +49,25 @@ private slots:
     void handleClientNotFound(const QString &message);
     void handleInvalidClientType(const QString &message);
 
+    void on_search_2_clicked();
+
+
+
+    void on_filter_clicked();
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;
-    // SearchManager *searchManager;
+    SearchManager *searchManager;
     Login *loginManager;
     Receptionist *receptionistManager;
     void clearAll();
     UserType getUserType(const QString &username);
     QMap<QString, User> &usersMap;
+    QMap<int, Court>& courtsMap;
+    void displayCourtsInTable(const QList<Court>& courts);
+
+    void createEmptyTableWidget();
 };
 
 #endif

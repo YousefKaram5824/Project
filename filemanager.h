@@ -13,8 +13,8 @@ class FileManager
 public:
     static void save(const QMap<QString, User> &usersMap);
     static void load(QMap<QString, User> &usersMap);
-    static void savecourt(const QList<Court> &courtsList);
-    static void loadcourt(QList<Court> &courtsList);
+    static QMap<int, Court> loadCourtsFromFile(const QString& filePath);
+    static void saveCourtsToFile(const QString& filePath, const QMap<int, Court>& courts);
 };
 
 #endif

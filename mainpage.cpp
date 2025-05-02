@@ -171,7 +171,14 @@ void MainPage::displayCourtsInTable(const QList<Court> &courts)
         ui->tableWidget->setItem(row, 2, new QTableWidgetItem(court.location));
         ui->tableWidget->setItem(row, 3, new QTableWidgetItem(court.date.toString("yyyy-MM-dd")));
         ui->tableWidget->setItem(row, 4, new QTableWidgetItem(court.time.toString("HH:mm")));
-        ui->tableWidget->setItem(row, 5, new QTableWidgetItem(court.isBooked ? "Yes" : "No"));
+        QTableWidgetItem *statusItem = new QTableWidgetItem(court.isBooked ? "Yes" : "No");
+
+        if (court.isBooked) {
+            statusItem->setForeground(Qt::red);
+            //statusItem->setFont(QFont("", -1, QFont::Bold));
+        }
+
+        ui->tableWidget->setItem(row, 5, statusItem);
         ++row;
     }
 
@@ -181,6 +188,13 @@ void MainPage::displayCourtsInTable(const QList<Court> &courts)
     int totalHeight = rowHeight * courts.size() + ui->tableWidget->horizontalHeader()->height();
     ui->tableWidget->setMinimumHeight(totalHeight);
 
+}
+
+void MainPage::refreshCourtTable()
+{
+    QList<Court> courtList = courtsMap.values();
+
+    displayCourtsInTable(courtList);
 }
 
 void MainPage::on_search_2_clicked()
@@ -212,6 +226,8 @@ void MainPage::on_filter_clicked()
 void MainPage::on_search_3_clicked()
 {
     bookCourt = new BookCourt();
+    bookCourt->setCourtMap(this->courtsMap);
+    connect(bookCourt, &BookCourt::courtBooked, this, &MainPage::refreshCourtTable);
     bookCourt->show();
     bookCourt->raise();
     bookCourt->activateWindow();

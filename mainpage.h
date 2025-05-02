@@ -52,11 +52,10 @@ private slots:
 
     void on_search_2_clicked();
 
-
-
     void on_filter_clicked();
 
     void on_search_3_clicked();
+
 
 private:
     Ui::MainPage *ui;
@@ -72,6 +71,7 @@ private:
     void displayCourtsInTable(const QList<Court>& courts);
 
     void createEmptyTableWidget();
+    void refreshCourtTable();
 };
 
 #endif

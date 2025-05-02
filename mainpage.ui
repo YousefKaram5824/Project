@@ -275,6 +275,9 @@ QPushButton:pressed {
          <pointsize>10</pointsize>
         </font>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
     background: transparent;          
@@ -328,14 +331,17 @@ QPushButton:pressed {
          <x>1390</x>
          <y>20</y>
          <width>83</width>
-         <height>31</height>
+         <height>32</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <family>Book Antiqua</family>
-         <pointsize>8</pointsize>
+         <family>Segoe UI</family>
+         <pointsize>9</pointsize>
         </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
@@ -365,6 +371,9 @@ QPushButton:pressed {
          <height>41</height>
         </rect>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
     background: transparent;          
@@ -388,32 +397,6 @@ QPushButton:pressed {
      </widget>
     </widget>
     <widget class="QWidget" name="coachPage">
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>70</y>
-        <width>63</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>coach</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="logOut_3">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>240</y>
-        <width>83</width>
-        <height>29</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>logout</string>
-      </property>
-     </widget>
      <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
@@ -438,10 +421,38 @@ QPushButton:pressed {
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
+      <widget class="QPushButton" name="logOut_3">
+       <property name="geometry">
+        <rect>
+         <x>1390</x>
+         <y>20</y>
+         <width>83</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
+       </property>
+       <property name="text">
+        <string>logout</string>
+       </property>
+      </widget>
      </widget>
-     <zorder>frame</zorder>
-     <zorder>label_3</zorder>
-     <zorder>logOut_3</zorder>
     </widget>
     <widget class="QWidget" name="receptionistPage">
      <widget class="QFrame" name="frame_4">
@@ -477,6 +488,9 @@ QPushButton:pressed {
          <height>41</height>
         </rect>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
     background: transparent;          
@@ -506,6 +520,9 @@ QPushButton:pressed {
          <height>32</height>
         </rect>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
     background: transparent;          
@@ -531,27 +548,32 @@ QPushButton:pressed {
      <widget class="QPushButton" name="logOut_2">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>270</y>
+        <x>1390</x>
+        <y>20</y>
         <width>83</width>
-        <height>29</height>
+        <height>32</height>
        </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
       </property>
       <property name="text">
        <string>logout</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>100</y>
-        <width>63</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>manager</string>
       </property>
      </widget>
      <widget class="QFrame" name="frame_3">
@@ -581,7 +603,6 @@ QPushButton:pressed {
      </widget>
      <zorder>frame_3</zorder>
      <zorder>logOut_2</zorder>
-     <zorder>label_5</zorder>
     </widget>
     <widget class="QWidget" name="search">
      <widget class="QFrame" name="frame_6">
@@ -750,6 +771,9 @@ QScrollBar::add-page, QScrollBar::sub-page {
          <bold>true</bold>
         </font>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton { 
    background-color: #DC3E22;
@@ -827,7 +851,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>30</day>
+         <day>29</day>
         </datetime>
        </property>
        <property name="time">
@@ -855,12 +879,12 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>0</hour>
+         <hour>21</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
          <month>5</month>
-         <day>4</day>
+         <day>3</day>
         </datetime>
        </property>
        <property name="calendarPopup">
@@ -939,6 +963,9 @@ QPushButton:pressed {
          <height>41</height>
         </rect>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">
 color: rgb(255, 255, 255);</string>
@@ -965,6 +992,9 @@ color: rgb(255, 255, 255);</string>
          <pointsize>10</pointsize>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton { 
@@ -1000,6 +1030,9 @@ QPushButton:pressed {
          <pointsize>10</pointsize>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton { 
@@ -1062,11 +1095,29 @@ QPushButton:pressed {
       <widget class="QPushButton" name="backToRes">
        <property name="geometry">
         <rect>
-         <x>1260</x>
-         <y>50</y>
+         <x>1390</x>
+         <y>20</y>
          <width>83</width>
          <height>29</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
        </property>
        <property name="text">
         <string>Back</string>

@@ -5,11 +5,12 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QWidget>
-#include "register.h"
-#include "SearchManager.h"
-#include "login.h"
 #include "Receptionist.h"
-#include "Court.h"
+#include "SearchManager.h"
+#include "bookcourt.h"
+#include "court.h"
+#include "login.h"
+#include "register.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -55,9 +56,12 @@ private slots:
 
     void on_filter_clicked();
 
+    void on_search_3_clicked();
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;
+    BookCourt *bookCourt;
     SearchManager *searchManager;
     Login *loginManager;
     Receptionist *receptionistManager;

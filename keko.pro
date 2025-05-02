@@ -12,6 +12,7 @@ CONFIG += c++17
 
 SOURCES += \
     Receptionist.cpp \
+    bookcourt.cpp \
     filemanager.cpp \
     login.cpp \
     main.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     Court.h \
     Receptionist.h \
     User.h \
+    bookcourt.h \
     filemanager.h \
     login.h \
     mainpage.h \
@@ -30,6 +32,7 @@ HEADERS += \
     SearchManager.h
 
 FORMS += \
+    bookcourt.ui \
     mainpage.ui \
     register.ui
 

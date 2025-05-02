@@ -38,6 +38,7 @@ MainPage::~MainPage()
 {
     delete ui;
     delete registerWin;
+    delete bookCourt;
     delete searchManager;
     delete loginManager;
     delete receptionistManager;
@@ -256,4 +257,10 @@ void MainPage::on_filter_clicked()
     }
 }
 
-
+void MainPage::on_search_3_clicked()
+{
+    bookCourt = new BookCourt();
+    bookCourt->show();
+    bookCourt->raise();
+    bookCourt->activateWindow();
+}

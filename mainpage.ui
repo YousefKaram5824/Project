@@ -587,7 +587,7 @@ QPushButton:pressed {
      <widget class="QFrame" name="frame_6">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>-20</x>
         <y>-10</y>
         <width>1536</width>
         <height>864</height>
@@ -623,9 +623,9 @@ QComboBox, QTimeEdit, QDateEdit {
       <widget class="QTableWidget" name="tableWidget">
        <property name="geometry">
         <rect>
-         <x>470</x>
-         <y>360</y>
-         <width>611</width>
+         <x>380</x>
+         <y>310</y>
+         <width>751</width>
          <height>91</height>
         </rect>
        </property>
@@ -737,8 +737,8 @@ QScrollBar::add-page, QScrollBar::sub-page {
       <widget class="QPushButton" name="search_2">
        <property name="geometry">
         <rect>
-         <x>610</x>
-         <y>280</y>
+         <x>600</x>
+         <y>240</y>
          <width>311</width>
          <height>41</height>
         </rect>
@@ -826,8 +826,8 @@ QPushButton:pressed {
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
-         <month>5</month>
-         <day>1</day>
+         <month>4</month>
+         <day>30</day>
         </datetime>
        </property>
        <property name="time">
@@ -855,7 +855,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>3</hour>
+         <hour>0</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
@@ -983,6 +983,40 @@ QPushButton:pressed {
        </property>
        <property name="text">
         <string>Filter</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="search_3">
+       <property name="geometry">
+        <rect>
+         <x>1100</x>
+         <y>70</y>
+         <width>311</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Book Antiqua</family>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
+       </property>
+       <property name="text">
+        <string>Book Now</string>
        </property>
       </widget>
      </widget>

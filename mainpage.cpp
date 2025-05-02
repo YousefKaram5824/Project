@@ -186,9 +186,11 @@ void MainPage::displayCourtsInTable(const QList<Court> &courts)
 
 
     ui->tableWidget->resizeRowsToContents();
+    ui->tableWidget->resizeRowsToContents();
     int rowHeight = ui->tableWidget->verticalHeader()->defaultSectionSize();
     int totalHeight = rowHeight * courts.size() + ui->tableWidget->horizontalHeader()->height();
     ui->tableWidget->setMinimumHeight(totalHeight);
+
 }
 
 

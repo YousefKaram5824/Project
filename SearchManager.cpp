@@ -1,4 +1,4 @@
-#include "SearchManager.h"
+/*#include "SearchManager.h"
 #include <QHeaderView>
 #include <QTableWidgetItem>
 #include <QDebug>
@@ -98,3 +98,4 @@ void SearchManager::updateTable(const QList<Court>& courts)
         m_courtTable->setItem(row, 4, new QTableWidgetItem(court.isBooked ? "Booked" : "Available"));
     }
 }
+*/

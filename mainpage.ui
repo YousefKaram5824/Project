@@ -28,7 +28,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -444,19 +444,6 @@ QPushButton:pressed {
      <zorder>logOut_3</zorder>
     </widget>
     <widget class="QWidget" name="receptionistPage">
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>610</x>
-        <y>170</y>
-        <width>101</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>receptionist</string>
-      </property>
-     </widget>
      <widget class="QFrame" name="frame_4">
       <property name="geometry">
        <rect>
@@ -484,11 +471,27 @@ QPushButton:pressed {
       <widget class="QPushButton" name="clientData">
        <property name="geometry">
         <rect>
-         <x>620</x>
-         <y>320</y>
-         <width>83</width>
-         <height>29</height>
+         <x>510</x>
+         <y>140</y>
+         <width>561</width>
+         <height>41</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 20px;                
+    color: white;                       
+    padding: 5px 10px; 
+   
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
        </property>
        <property name="text">
         <string>Client Data</string>
@@ -497,19 +500,32 @@ QPushButton:pressed {
       <widget class="QPushButton" name="logOut">
        <property name="geometry">
         <rect>
-         <x>1290</x>
-         <y>50</y>
+         <x>1390</x>
+         <y>20</y>
          <width>83</width>
-         <height>29</height>
+         <height>32</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
        </property>
        <property name="text">
         <string>logout</string>
        </property>
       </widget>
      </widget>
-     <zorder>frame_4</zorder>
-     <zorder>label_6</zorder>
     </widget>
     <widget class="QWidget" name="managerPage">
      <widget class="QPushButton" name="logOut_2">
@@ -794,7 +810,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>5</month>
-         <day>3</day>
+         <day>2</day>
         </datetime>
        </property>
        <property name="time">
@@ -822,7 +838,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>9</hour>
+         <hour>6</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

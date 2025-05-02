@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QWidget>
 #include "register.h"
-#include "SearchManager.h"
+// #include "SearchManager.h"
 #include "login.h"
 #include "Receptionist.h"
 
@@ -50,7 +50,7 @@ private slots:
 private:
     Ui::MainPage *ui;
     Register *registerWin;
-    SearchManager *searchManager;
+    // SearchManager *searchManager;
     Login *loginManager;
     Receptionist *receptionistManager;
     void clearAll();

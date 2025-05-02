@@ -9,13 +9,13 @@ MainPage::MainPage(QMap<QString, User> &usersMapRef, QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowState(Qt::WindowMaximized);
-
+    /*
     searchManager = new SearchManager(ui->courtTable,
                                     ui->comboBoxcourt,
                                     ui->datecourt,
                                     ui->timecourt,
                                     this);
-
+*/
     loginManager = new Login(usersMap, this);
     connect(loginManager, &Login::loginSuccessful, this, &MainPage::handleLoginSuccessful);
     connect(loginManager, &Login::loginFailed, this, &MainPage::handleLoginFailed);
@@ -32,7 +32,7 @@ MainPage::~MainPage()
 {
     delete ui;
     delete registerWin;
-    delete searchManager;
+    // delete searchManager;
     delete loginManager;
     delete receptionistManager;
 }
@@ -112,7 +112,7 @@ void MainPage::on_logOut_4_clicked()
 
 void MainPage::on_searchButton_clicked()
 {
-    ui->holder->setCurrentIndex(3);
+    ui->holder->setCurrentIndex(6);
 }
 
 void MainPage::on_goHomeButton1_clicked()
@@ -154,7 +154,7 @@ void MainPage::on_search_2_clicked()
     QDate date = ui->datecourt->date();
     QTime time = ui->timecourt->time();
 
-    searchManager->searchCourts(location, date, time);
+    // searchManager->searchCourts(location, date, time);
 }
 
 void MainPage::handleClientNotFound(const QString &message)

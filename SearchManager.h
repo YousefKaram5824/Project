@@ -1,4 +1,4 @@
-#ifndef SEARCHMANAGER_H
+/*#ifndef SEARCHMANAGER_H
 #define SEARCHMANAGER_H
 
 #include <QObject>
@@ -35,3 +35,4 @@ private:
 };
 
 #endif // SEARCHMANAGER_H
+*/

@@ -300,7 +300,7 @@ QPushButton:pressed {
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="customerPage">
+    <widget class="QWidget" name="ClientPage">
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
@@ -851,7 +851,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>29</day>
+         <day>27</day>
         </datetime>
        </property>
        <property name="time">
@@ -879,7 +879,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>21</hour>
+         <hour>15</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

@@ -13,20 +13,32 @@
 #include <QList>
 #include <QTextStream>
 
+bool FileManager::tryOpenFile(QFile &file, const QStringList &paths, QIODevice::OpenMode mode)
+{
+    for (const QString &path : paths) {
+        file.setFileName(path);
+        if (file.open(mode)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void FileManager::save(const QMap<QString, User> &usersMap)
 {
-    QFile file("E:/Project/users.txt");
+    QFile file;
+    QStringList paths = {
+        "E:/Project/users.txt",       // Habiba
+        "Y:/Final Project/users.txt", // Keko
+        "users.txt"                   // Local path as last resort
+    };
 
-    //"E:/Project/users.txt" PATH of Habiba
-    //"Y:/Final Project/users.txt" PATH of keko
-
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file for writing.";
+    if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file for writing in any path.";
         return;
     }
 
     QTextStream out(&file);
-
     for (const auto &user : usersMap) {
         out << user.username << "," << user.id << "," << user.password << "," << user.isClient
             << "," << user.birthDate << "," << user.subscriptionPeriod << "\n";
@@ -36,33 +48,28 @@ void FileManager::save(const QMap<QString, User> &usersMap)
 
 void FileManager::load(QMap<QString, User> &usersMap)
 {
-    QFile file("E:/Project/users.txt");
+    QFile file;
+    QStringList paths = {
+        "E:/Project/users.txt",       // Habiba
+        "Y:/Final Project/users.txt", // Keko
+        "users.txt"                   // Local path as last resort
+    };
 
-    //"E:/Project/users.txt" PATH of Habiba
-    //"Y:/Final Project/users.txt" PATH of keko
-
-    if (!file.exists()) {
+    if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file for reading in any path. Creating new file.";
         QFile newFile("users.txt");
         newFile.open(QIODevice::WriteOnly);
         newFile.close();
         return;
     }
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Failed to open file for reading.";
-        return;
-    }
-
     QTextStream in(&file);
-
     while (!in.atEnd()) {
         QString line = in.readLine();
-
         if (line.trimmed().isEmpty())
             continue;
 
         QStringList fields = line.split(',');
-
         if (fields.size() != 6) {
             qDebug() << "Invalid line format:" << line;
             continue;
@@ -82,52 +89,61 @@ void FileManager::load(QMap<QString, User> &usersMap)
 
 QMap<int, Court> FileManager::loadCourtsFromFile(const QString& filePath) {
     QMap<int, Court> courts;
-    QFile file(filePath);
+    QFile file;
+    QStringList paths = {
+        filePath,                      // Primary path
+        "E:/Project/courts.txt",       // Habiba
+        "Y:/Final Project/courts.txt", // Keko
+        "courts.txt"                   // Local path as last resort
+    };
 
-
-    if (!file.exists()) {
-        qDebug() << "File does not exist:" << filePath;
+    if (!tryOpenFile(file, paths, QIODevice::ReadOnly)) {
+        qDebug() << "Failed to open courts file in any path.";
         return courts;
     }
 
-
-    if (file.open(QIODevice::ReadOnly)) {
-        QTextStream in(&file);
-        while (!in.atEnd()) {
-            QString line = in.readLine();
-
-            QStringList parts = line.split(',', Qt::SkipEmptyParts);
-            for (QString &part : parts) {
-                part = part.trimmed();
-            }
-
-            if (parts.size() == 6) {
-                int id = parts[0].toInt();
-                QString name = parts[1];
-                QString location = parts[2];
-                QDate date = QDate::fromString(parts[3], "yyyy-MM-dd");
-                QTime time = QTime::fromString(parts[4], "HH:mm");
-                bool isBooked = (parts[5].toLower() == "true");
-                QString idString = QString::number(id);
-                courts[id] = Court(idString, name, location, date, time, isBooked);
-
-            }
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList parts = line.split(',', Qt::SkipEmptyParts);
+        for (QString &part : parts) {
+            part = part.trimmed();
         }
-        file.close();
+
+        if (parts.size() == 6) {
+            int id = parts[0].toInt();
+            QString name = parts[1];
+            QString location = parts[2];
+            QDate date = QDate::fromString(parts[3], "yyyy-MM-dd");
+            QTime time = QTime::fromString(parts[4], "HH:mm");
+            bool isBooked = (parts[5].toLower() == "true");
+            QString idString = QString::number(id);
+            courts[id] = Court(idString, name, location, date, time, isBooked);
+        }
     }
-     //qDebug() << "Courts loaded:" << courts.size();
+    file.close();
     return courts;
 }
 
 void FileManager::saveCourtsToFile(const QString& filePath, const QMap<int, Court>& courts) {
-    QFile file(filePath);
-    if (file.open(QIODevice::WriteOnly)) {
-        QTextStream out(&file);
-        for (const Court& court : courts) {
-            out << court.id << "," << court.name << "," << court.location << ","
-                << court.date.toString("yyyy-MM-dd") << "," << court.time.toString("HH:mm") << ","
-                << (court.isBooked ? "true" : "false") << "\n";
-        }
-        file.close();
+    QFile file;
+    QStringList paths = {
+        filePath,                      // Primary path
+        "E:/Project/courts.txt",       // Habiba
+        "Y:/Final Project/courts.txt", // Keko
+        "courts.txt"                   // Local path as last resort
+    };
+
+    if (!tryOpenFile(file, paths, QIODevice::WriteOnly)) {
+        qDebug() << "Failed to open courts file for writing in any path.";
+        return;
     }
+
+    QTextStream out(&file);
+    for (const Court& court : courts) {
+        out << court.id << "," << court.name << "," << court.location << ","
+            << court.date.toString("yyyy-MM-dd") << "," << court.time.toString("HH:mm") << ","
+            << (court.isBooked ? "true" : "false") << "\n";
+    }
+    file.close();
 }

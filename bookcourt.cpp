@@ -56,16 +56,11 @@ void BookCourt::on_Book_clicked()
 
     if (courtMap->contains(id)) {
         (*courtMap)[id].isBooked = true;
+        emit courtBooked();
         QMessageBox::information(this, "Done", "Court booked!");
         this->close();
     } else {
         QMessageBox::warning(this, "Not Found", "Court ID not found.");
-    }
-    if (courtMap->contains(id)) {
-        (*courtMap)[id].isBooked = true;
-        emit courtBooked();
-        QMessageBox::information(this, "Done", "Court booked!");
-        this->close();
     }
 }
 

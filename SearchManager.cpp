@@ -1,7 +1,7 @@
 #include "searchmanager.h"
 #include "court.h"
-SearchManager::SearchManager(const QMap<int, Court>& courts) {
-    this->courtMap = courts;
+
+SearchManager::SearchManager(QMap<int, Court>& courts) : courtMap(courts) {
 }
 
 QList<Court> SearchManager::searchAll() const {
@@ -23,7 +23,6 @@ QList<Court> SearchManager::filterCourts(const QString& location, const QDate& d
     }
     return result;
 }
-
 
 Court SearchManager::findClosestAvailable(const QString& location, const QDate& date, const QTime& time) const {
     Court closest;

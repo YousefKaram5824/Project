@@ -70,7 +70,7 @@ void Register::on_pushButton_clicked()
     QString birthDateString;
     QString subscriptionPeriodString;
 
-    if (isclient == 1) {
+    if (isclient) {
         birthDateString = ui->birthDateEdit->date().toString("yyyy-MM-dd");
         subscriptionPeriodString = QString::number(ui->subscriptionPeriodSpinBox->value());
     } else {

@@ -28,7 +28,6 @@ HEADERS += \
     filemanager.h \
     login.h \
     mainpage.h \
-    program.h \
     register.h \
     SearchManager.h
 

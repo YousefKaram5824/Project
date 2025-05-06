@@ -27,8 +27,11 @@
       <height>864</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -304,7 +307,7 @@ QPushButton:pressed {
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>0</y>
         <width>1536</width>
         <height>864</height>
@@ -394,6 +397,59 @@ QPushButton:pressed {
         <string>search for available courts</string>
        </property>
       </widget>
+      <widget class="QCommandLinkButton" name="profile">
+       <property name="geometry">
+        <rect>
+         <x>1330</x>
+         <y>20</y>
+         <width>31</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QCommandLinkButton {
+    color: white; 
+}
+QCommandLinkButton::icon {
+    color: white; 
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset theme="QIcon::ThemeIcon::ContactNew"/>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="profilepage">
+     <widget class="QCommandLinkButton" name="commandLinkButton">
+      <property name="geometry">
+       <rect>
+        <x>1390</x>
+        <y>0</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QCommandLinkButton {
+    color: white; /* لتغيير لون النص */
+}
+
+QCommandLinkButton::icon {
+    color: white; /* لتغيير لون الأيقونة */
+}
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset theme="QIcon::ThemeIcon::SystemLogOut"/>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="coachPage">
@@ -851,7 +907,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>27</day>
+         <day>25</day>
         </datetime>
        </property>
        <property name="time">
@@ -879,7 +935,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>15</hour>
+         <hour>9</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
@@ -1066,6 +1122,7 @@ QPushButton:pressed {
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame#frame_5 {	
+	color: rgb(255, 255, 255);
 	background-image: url(:/bg/fitora.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -1082,11 +1139,25 @@ QPushButton:pressed {
       <widget class="QPushButton" name="getClientData">
        <property name="geometry">
         <rect>
-         <x>400</x>
-         <y>250</y>
-         <width>83</width>
-         <height>29</height>
+         <x>770</x>
+         <y>240</y>
+         <width>111</width>
+         <height>41</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
        </property>
        <property name="text">
         <string>Get Data</string>
@@ -1126,21 +1197,39 @@ QPushButton:pressed {
       <widget class="QLineEdit" name="clientID">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>190</y>
-         <width>113</width>
+         <x>740</x>
+         <y>170</y>
+         <width>161</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+    border: 1px solid #DC3E22; 
+    border-radius: 5px;        
+    background: transparent;  
+    color: white; 
+ padding: 5px;
+}</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_4">
        <property name="geometry">
         <rect>
-         <x>280</x>
-         <y>190</y>
-         <width>63</width>
+         <x>700</x>
+         <y>170</y>
+         <width>21</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>ID</string>
@@ -1149,11 +1238,20 @@ QPushButton:pressed {
       <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
-         <x>410</x>
+         <x>400</x>
          <y>330</y>
          <width>63</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>Name</string>
@@ -1162,11 +1260,21 @@ QPushButton:pressed {
       <widget class="QLabel" name="label_8">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>370</y>
-         <width>111</width>
-         <height>20</height>
+         <x>400</x>
+         <y>380</y>
+         <width>141</width>
+         <height>31</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
+</string>
        </property>
        <property name="text">
         <string>Date of Birth</string>
@@ -1175,7 +1283,7 @@ QPushButton:pressed {
       <widget class="QLabel" name="getClientName">
        <property name="geometry">
         <rect>
-         <x>570</x>
+         <x>550</x>
          <y>330</y>
          <width>63</width>
          <height>20</height>
@@ -1189,7 +1297,7 @@ QPushButton:pressed {
        <property name="geometry">
         <rect>
          <x>570</x>
-         <y>370</y>
+         <y>380</y>
          <width>63</width>
          <height>20</height>
         </rect>
@@ -1201,11 +1309,20 @@ QPushButton:pressed {
       <widget class="QLabel" name="label_9">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>420</y>
-         <width>141</width>
-         <height>20</height>
+         <x>400</x>
+         <y>430</y>
+         <width>221</width>
+         <height>31</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>Subscription Period</string>
@@ -1214,8 +1331,8 @@ QPushButton:pressed {
       <widget class="QLabel" name="getSubscriptionPeriod">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>420</y>
+         <x>610</x>
+         <y>440</y>
          <width>63</width>
          <height>20</height>
         </rect>

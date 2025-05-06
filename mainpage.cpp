@@ -111,7 +111,7 @@ void MainPage::on_logOut_4_clicked()
 
 void MainPage::on_searchButton_clicked()
 {
-    ui->holder->setCurrentIndex(6);
+    ui->holder->setCurrentIndex(7);
 }
 
 void MainPage::on_goHomeButton1_clicked()
@@ -121,12 +121,12 @@ void MainPage::on_goHomeButton1_clicked()
 
 void MainPage::on_backToRes_clicked()
 {
-    ui->holder->setCurrentIndex(4);
+    ui->holder->setCurrentIndex(5);
 }
 
 void MainPage::on_clientData_clicked()
 {
-    ui->holder->setCurrentIndex(7);
+    ui->holder->setCurrentIndex(8);
 }
 
 void MainPage::on_getClientData_clicked()
@@ -232,3 +232,15 @@ void MainPage::on_search_3_clicked()
     bookCourt->raise();
     bookCourt->activateWindow();
 }
+
+void MainPage::on_profile_clicked()
+{
+    ui->holder->setCurrentIndex(3);
+}
+
+
+void MainPage::on_commandLinkButton_clicked()
+{
+     ui->holder->setCurrentIndex(2);
+}
+

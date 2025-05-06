@@ -17,31 +17,7 @@ void BookCourt::setCourtMap(QMap<int, Court> &map)
 {
     courtMap = &map;
 }
-/*
-void BookCourt::bookSelectedCourt(QMap<int, Court> &courtMap)
-{
-    QString idText = ui->ID->text();
-    bool ok;
-    int id = idText.toInt(&ok);
 
-    if (!ok) {
-        QMessageBox::warning(this, "Invalid ID", "Please enter a valid numeric ID.");
-        return;
-    }
-
-
-    if (courtMap.contains(id)) {
-
-        Court &court = courtMap[id];
-        court.isBooked = true;
-
-        QMessageBox::information(this, "Success", "Court booked successfully.");
-    } else {
-        QMessageBox::warning(this, "Not Found", "Court ID not found.");
-    }
-
-}
- */
 void BookCourt::on_Book_clicked()
 {
     if (!courtMap) return;
@@ -55,6 +31,11 @@ void BookCourt::on_Book_clicked()
     }
 
     if (courtMap->contains(id)) {
+        if ((*courtMap)[id].isBooked) {
+            QMessageBox::warning(this, "Already Booked", "This court is already booked.");
+            return;
+        }
+
         (*courtMap)[id].isBooked = true;
         emit courtBooked();
         QMessageBox::information(this, "Done", "Court booked!");
@@ -63,4 +44,5 @@ void BookCourt::on_Book_clicked()
         QMessageBox::warning(this, "Not Found", "Court ID not found.");
     }
 }
+
 

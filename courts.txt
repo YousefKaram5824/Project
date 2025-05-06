@@ -1,15 +1,15 @@
-1,Padel Arena,Cairo,2025-05-02,10:00,true
-2,Padel Club Cairo,Cairo,2025-05-02,11:00,true
-3,Sports City Padel,New Cairo,2025-05-02,12:00,true
-4,Smash Padel,Cairo,2025-05-02,07:00,true
+1,Padel Arena,Cairo,2025-05-02,10:00,false
+2,Padel Club Cairo,Cairo,2025-05-02,11:00,false
+3,Sports City Padel,New Cairo,2025-05-02,12:00,false
+4,Smash Padel,Cairo,2025-05-02,07:00,false
 5,Padel Hub,Alexandria,2025-05-02,09:00,false
 6,Cairo Padel Club,Cairo,2025-05-02,03:00,false
-7,Helwan Padel Center,Helwan,2025-05-02,05:00,true
+7,Helwan Padel Center,Helwan,2025-05-02,05:00,false
 8,Padelista,Zayed,2025-05-02,10:00,false
 9,New Cairo Padel,New Cairo,2025-05-02,08:00,false
-10,Downtown Padel,Cairo,2025-05-02,09:00,true
-11,Alexandria Padel Club,Alexandria,2025-05-02,07:00,true
-12,Padel 360,Maadi,2025-05-02,01:00,true
+10,Downtown Padel,Cairo,2025-05-02,09:00,false
+11,Alexandria Padel Club,Alexandria,2025-05-02,07:00,false
+12,Padel 360,Maadi,2025-05-02,01:00,false
 13,The Padel House,Zayed,2025-05-02,02:00,false
 14,Cairo Padel Hub,Cairo,2025-05-02,04:00,false
-15,Padel Square,Maadi,2025-05-02,11:00,true
+15,Padel Square,Maadi,2025-05-02,11:00,false

@@ -11,6 +11,7 @@ struct Court {
     QDate date = QDate::currentDate();
     QTime time = QTime::currentTime();
     bool isBooked = false;
+    QString clientId;
 
     Court() = default;
 

@@ -57,6 +57,10 @@ private slots:
     void on_search_3_clicked();
 
 
+    void on_profile_clicked();
+
+    void on_commandLinkButton_clicked();
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;

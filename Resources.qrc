@@ -10,5 +10,6 @@
     <qresource prefix="/files">
         <file>users.txt</file>
         <file>courts.txt</file>
+        <file>notifications.txt</file>
     </qresource>
 </RCC>

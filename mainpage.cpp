@@ -91,25 +91,25 @@ void MainPage::handleLoginFailed(const QString &message)
 
 void MainPage::on_logOut_clicked()
 {
-    Login::clearCurrentUserId();
+    loginManager->clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
 void MainPage::on_logOut_2_clicked()
 {
-    Login::clearCurrentUserId();
+    loginManager->clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
 void MainPage::on_logOut_3_clicked()
 {
-    Login::clearCurrentUserId();
+    loginManager->clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
 void MainPage::on_logOut_4_clicked()
 {
-    Login::clearCurrentUserId();
+    loginManager->clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
@@ -240,7 +240,7 @@ void MainPage::on_search_3_clicked()
 
 void MainPage::on_profile_clicked()
 {
-    QString currentId = Login::getCurrentUserId();
+    QString currentId = loginManager->getCurrentUserId();
     if (!currentId.isEmpty() && usersMap.contains(currentId)) {
         const User &currentUser = usersMap[currentId];
 
@@ -255,9 +255,7 @@ void MainPage::on_profile_clicked()
     }
 }
 
-
 void MainPage::on_commandLinkButton_clicked()
 {
      ui->holder->setCurrentIndex(2);
 }
-

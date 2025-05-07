@@ -65,7 +65,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
             continue;
 
         QStringList fields = line.split(',');
-        if (fields.size() < 8) {  // At least 8 fields for basic user info
+        if (fields.size() < 8) { // At least 8 fields for basic user info
             qDebug() << "Invalid line format:" << line;
             continue;
         }
@@ -124,7 +124,8 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
     return courts;
 }
 
-void FileManager::saveCourtsToFile(const QString& filePath, const QMap<int, Court>& courts) {
+void FileManager::saveCourtsToFile(const QString &filePath, const QMap<int, Court> &courts)
+{
     QFile file;
     QStringList paths = {
         filePath,                      // Primary path
@@ -139,7 +140,7 @@ void FileManager::saveCourtsToFile(const QString& filePath, const QMap<int, Cour
     }
 
     QTextStream out(&file);
-    for (const Court& court : courts) {
+    for (const Court &court : courts) {
         out << court.id << "," << court.name << "," << court.location << ","
             << court.date.toString("yyyy-MM-dd") << "," << court.time.toString("HH:mm") << ","
             << (court.isBooked ? "true" : "false") << "\n";

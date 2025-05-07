@@ -23,10 +23,10 @@ void Register::on_userTypeComboBox_currentIndexChanged()
 {
     QString userType = ui->userTypeComboBox->currentText();
     ui->birthDateEdit->setEnabled(false);
-    ui->subscriptionPeriodSpinBox->setEnabled(false);
+    ui->subscriptionPeriodComboBox->setEnabled(false);
     if (userType == "Client") {
         ui->birthDateEdit->setEnabled(true);
-        ui->subscriptionPeriodSpinBox->setEnabled(true);
+        ui->subscriptionPeriodComboBox->setEnabled(true);
         isclient = true;
         type = 1;
     } else if (userType == "Coach") {
@@ -58,7 +58,7 @@ void Register::clearAll()
     ui->confirmPasswordLineEdit->clear();
     ui->userTypeComboBox->setCurrentIndex(-1);
     ui->birthDateEdit->clear();
-    ui->subscriptionPeriodSpinBox->clear();
+    ui->subscriptionPeriodComboBox->setCurrentIndex(-1);
 }
 
 void Register::on_pushButton_clicked()
@@ -69,10 +69,24 @@ void Register::on_pushButton_clicked()
     QString confirmPassword = ui->confirmPasswordLineEdit->text();
     QString birthDateString;
     QString subscriptionPeriodString;
+    int budget = 0;
 
     if (isclient) {
+        if (ui->subscriptionPeriodComboBox->currentIndex() == -1) {
+            QMessageBox::warning(this, "Error", "Subscription Period not selected!");
+            return;
+        }
         birthDateString = ui->birthDateEdit->date().toString("yyyy-MM-dd");
-        subscriptionPeriodString = QString::number(ui->subscriptionPeriodSpinBox->value());
+        QString selectedPeriod = ui->subscriptionPeriodComboBox->currentText();
+        if (selectedPeriod == "Monthly") {
+            subscriptionPeriodString = "1";
+        } else if (selectedPeriod == "3 Months") {
+            subscriptionPeriodString = "3";
+        } else if (selectedPeriod == "6 Months") {
+            subscriptionPeriodString = "6";
+        } else if (selectedPeriod == "Yearly") {
+            subscriptionPeriodString = "12";
+        }
     } else {
         birthDateString = "null";
         subscriptionPeriodString = "null";
@@ -95,6 +109,7 @@ void Register::on_pushButton_clicked()
     newUser.isClient = isclient;
     newUser.birthDate = birthDateString;
     newUser.subscriptionPeriod = subscriptionPeriodString;
+    newUser.budget = budget;
 
     usersMap.insert(id, newUser);
     clearAll();

@@ -16,7 +16,11 @@ public:
     ~Receptionist();
 
     bool validateClient(const QString &clientId);
-    void displayClientInfo(const User &client, QLabel *nameLabel, QLabel *birthDateLabel, QLabel *subscriptionLabel);
+    void displayClientInfo(const User &client,
+                           QLabel *nameLabel,
+                           QLabel *birthDateLabel,
+                           QLabel *subscriptionLabel,
+                           QLabel *budgetLabel);
     QString getClientInfo(const QString &clientId);
 
 signals:

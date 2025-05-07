@@ -1,6 +1,9 @@
 #include "login.h"
 #include <QLineEdit>
 
+// Initialize static member
+QString Login::currentUserId;
+
 Login::Login(QMap<QString, User> &usersMapRef, QObject *parent)
     : QObject(parent)
     , usersMap(usersMapRef)
@@ -51,6 +54,8 @@ bool Login::validateLogin(const QString &id, const QString &password)
         return false;
     }
 
+    // Set the current user ID upon successful login
+    setCurrentUserId(id);
     emit loginSuccessful(userType);
     return true;
 }

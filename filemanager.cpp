@@ -1,17 +1,9 @@
-/*
 #include "FileManager.h"
-#include <QDebug>
-#include <QTextStream>
-#include <QFile>
-#include <QMap>
-#include "User.h"
-*/
-#include "FileManager.h"
-#include "Court.h"
 #include <QDebug>
 #include <QFile>
 #include <QList>
 #include <QTextStream>
+#include "Court.h"
 
 bool FileManager::tryOpenFile(QFile &file, const QStringList &paths, QIODevice::OpenMode mode)
 {
@@ -24,7 +16,7 @@ bool FileManager::tryOpenFile(QFile &file, const QStringList &paths, QIODevice::
     return false;
 }
 
-void FileManager::save(const QMap<QString, User> &usersMap)
+void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
 {
     QFile file;
     QStringList paths = {
@@ -40,14 +32,17 @@ void FileManager::save(const QMap<QString, User> &usersMap)
 
     QTextStream out(&file);
     for (const auto &user : usersMap) {
+        // Save basic user info
         out << user.username << "," << user.id << "," << user.password << "," << user.isClient
-            << "," << user.birthDate << "," << user.subscriptionPeriod << "\n";
+            << "," << user.birthDate << "," << user.subscriptionPeriod << "," << user.budget << ","
+            << user.isVIP << "\n";
     }
     file.close();
 }
 
-void FileManager::load(QMap<QString, User> &usersMap)
+QMap<QString, User> FileManager::loadUsersFromFile()
 {
+    QMap<QString, User> usersMap;
     QFile file;
     QStringList paths = {
         "E:/Project/users.txt",       // Habiba
@@ -60,7 +55,7 @@ void FileManager::load(QMap<QString, User> &usersMap)
         QFile newFile("users.txt");
         newFile.open(QIODevice::WriteOnly);
         newFile.close();
-        return;
+        return usersMap;
     }
 
     QTextStream in(&file);
@@ -70,7 +65,7 @@ void FileManager::load(QMap<QString, User> &usersMap)
             continue;
 
         QStringList fields = line.split(',');
-        if (fields.size() != 6) {
+        if (fields.size() < 8) {  // At least 8 fields for basic user info
             qDebug() << "Invalid line format:" << line;
             continue;
         }
@@ -82,16 +77,20 @@ void FileManager::load(QMap<QString, User> &usersMap)
         user.isClient = (fields[3] == "1");
         user.birthDate = fields[4];
         user.subscriptionPeriod = fields[5];
+        user.budget = fields[6].toInt();
+        user.isVIP = (fields[7] == "1");
+
         usersMap.insert(user.id, user);
     }
     file.close();
+    return usersMap;
 }
 
-QMap<int, Court> FileManager::loadCourtsFromFile(const QString& filePath) {
+QMap<int, Court> FileManager::loadCourtsFromFile()
+{
     QMap<int, Court> courts;
     QFile file;
     QStringList paths = {
-        filePath,                      // Primary path
         "E:/Project/courts.txt",       // Habiba
         "Y:/Final Project/courts.txt", // Keko
         "courts.txt"                   // Local path as last resort
@@ -146,4 +145,16 @@ void FileManager::saveCourtsToFile(const QString& filePath, const QMap<int, Cour
             << (court.isBooked ? "true" : "false") << "\n";
     }
     file.close();
+}
+
+void FileManager::save(const QMap<QString, User> &usersMap, const QMap<int, Court> &courtsMap)
+{
+    saveUsersToFile(usersMap);
+    saveCourtsToFile("", courtsMap);
+}
+
+void FileManager::load(QMap<QString, User> &usersMap, QMap<int, Court> &courtsMap)
+{
+    usersMap = loadUsersFromFile();
+    courtsMap = loadCourtsFromFile();
 }

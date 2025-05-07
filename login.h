@@ -21,12 +21,18 @@ public:
     UserType getUserType(const QString &username);
     void clearLoginFields(QLineEdit *idField, QLineEdit *passwordField);
 
+    // Static methods to access current user
+    static QString getCurrentUserId() { return currentUserId; }
+    static void setCurrentUserId(const QString &id) { currentUserId = id; }
+    static void clearCurrentUserId() { currentUserId.clear(); }
+
 signals:
     void loginSuccessful(UserType userType);
     void loginFailed(const QString &message);
 
 private:
     QMap<QString, User> &usersMap;
+    static QString currentUserId;  // Static member to store current user's ID
 };
 
 #endif // LOGIN_H 

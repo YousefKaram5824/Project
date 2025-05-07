@@ -27,11 +27,16 @@ bool Receptionist::validateClient(const QString &clientId)
     return true;
 }
 
-void Receptionist::displayClientInfo(const User &client, QLabel *nameLabel, QLabel *birthDateLabel, QLabel *subscriptionLabel)
+void Receptionist::displayClientInfo(const User &client,
+                                     QLabel *nameLabel,
+                                     QLabel *birthDateLabel,
+                                     QLabel *subscriptionLabel,
+                                     QLabel *budgetLabel)
 {
     if (nameLabel) nameLabel->setText(client.username);
     if (birthDateLabel) birthDateLabel->setText(client.birthDate);
     if (subscriptionLabel) subscriptionLabel->setText(client.subscriptionPeriod);
+    if (budgetLabel) budgetLabel->setText(QString::number(client.budget));
 }
 
 QString Receptionist::getClientInfo(const QString &clientId)

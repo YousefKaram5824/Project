@@ -91,21 +91,25 @@ void MainPage::handleLoginFailed(const QString &message)
 
 void MainPage::on_logOut_clicked()
 {
+    Login::clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
 void MainPage::on_logOut_2_clicked()
 {
+    Login::clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
 void MainPage::on_logOut_3_clicked()
 {
+    Login::clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
 void MainPage::on_logOut_4_clicked()
 {
+    Login::clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
 }
 
@@ -143,7 +147,8 @@ void MainPage::on_getClientData_clicked()
         receptionistManager->displayClientInfo(client,
                                                ui->getClientName,
                                                ui->getClientDateOfBirth,
-                                               ui->getSubscriptionPeriod);
+                                               ui->getSubscriptionPeriod,
+                                               ui->getBudget);
     }
 }
 
@@ -235,7 +240,19 @@ void MainPage::on_search_3_clicked()
 
 void MainPage::on_profile_clicked()
 {
-    ui->holder->setCurrentIndex(3);
+    QString currentId = Login::getCurrentUserId();
+    if (!currentId.isEmpty() && usersMap.contains(currentId)) {
+        const User &currentUser = usersMap[currentId];
+
+        ui->getClientName_2->setText(currentUser.username);
+        ui->getClientDateOfBirth_2->setText(currentUser.birthDate);
+        ui->getSubscriptionPeriod_2->setText(currentUser.subscriptionPeriod);
+        ui->getBudget_2->setText(QString::number(currentUser.budget));
+
+        ui->holder->setCurrentIndex(3);
+    } else {
+        QMessageBox::warning(this, "Error", "Could not load user profile data.");
+    }
 }
 
 

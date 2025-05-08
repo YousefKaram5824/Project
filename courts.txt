@@ -2,7 +2,7 @@
 2,Padel Club Cairo,Cairo,2025-05-02,11:00,true
 3,Sports City Padel,New Cairo,2025-05-02,12:00,true
 4,Smash Padel,Cairo,2025-05-02,07:00,false
-5,Padel Hub,Alexandria,2025-05-02,09:00,false
+5,Padel Hub,Alexandria,2025-05-02,09:00,true
 6,Cairo Padel Club,Cairo,2025-05-02,03:00,false
 7,Helwan Padel Center,Helwan,2025-05-02,05:00,false
 8,Padelista,Zayed,2025-05-02,10:00,false

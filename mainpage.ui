@@ -21,8 +21,8 @@
    <widget class="QStackedWidget" name="holder">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>30</x>
+      <y>20</y>
       <width>1536</width>
       <height>864</height>
      </rect>
@@ -31,7 +31,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -912,9 +912,250 @@ QPushButton:pressed {
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
+      <widget class="QPushButton" name="add_training_2">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>410</y>
+         <width>151</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
+       </property>
+       <property name="text">
+        <string>add</string>
+       </property>
+      </widget>
      </widget>
      <zorder>frame_3</zorder>
      <zorder>logOut_2</zorder>
+    </widget>
+    <widget class="QWidget" name="add_training">
+     <widget class="QCommandLinkButton" name="back">
+      <property name="geometry">
+       <rect>
+        <x>1460</x>
+        <y>10</y>
+        <width>31</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset theme="QIcon::ThemeIcon::DocumentRevert"/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>290</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="training_name">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>290</y>
+        <width>113</width>
+        <height>28</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>300</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>capacity</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="capacity_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>300</y>
+        <width>113</width>
+        <height>28</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>370</y>
+        <width>82</width>
+        <height>28</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>370</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>duration_time</string>
+      </property>
+     </widget>
+     <widget class="QTimeEdit" name="timeEdit_training">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>370</y>
+        <width>118</width>
+        <height>29</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>370</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>coach</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>470</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>days</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>470</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>sat</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_2">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>470</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>sun</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_3">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>470</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>mon</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_4">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>470</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>tue</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_5">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>470</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>wed</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_6">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>470</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>thu</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_7">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>470</y>
+        <width>71</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>fri</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="search">
      <widget class="QFrame" name="frame_6">
@@ -1163,7 +1404,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>24</day>
+         <day>22</day>
         </datetime>
        </property>
        <property name="time">
@@ -1191,7 +1432,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>6</hour>
+         <hour>0</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

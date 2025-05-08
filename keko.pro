@@ -30,7 +30,8 @@ HEADERS += \
     login.h \
     mainpage.h \
     register.h \
-    SearchManager.h
+    SearchManager.h \
+    training.h
 
 FORMS += \
     bookcourt.ui \

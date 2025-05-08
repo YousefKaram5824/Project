@@ -7,3 +7,7 @@ test2,cl6156,123,1,2000-01-01,3,0,0
 joe,cl7832,123,1,2000-01-01,6,0,0
 test1,cl8447,123,1,2006-05-03,12,0,0
 test6,co4619,123,0,null,null,0,0
+anosi,co6579,123,0,null,null,0,0
+anosi,co7814,123,0,null,null,0,0
+razan,re1452,123,0,null,null,0,0
+ razan,re9888,123,0,null,null,0,0

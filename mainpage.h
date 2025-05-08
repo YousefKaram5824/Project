@@ -11,7 +11,7 @@
 #include "court.h"
 #include "login.h"
 #include "register.h"
-
+#include "training.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
@@ -23,7 +23,9 @@ class MainPage : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainPage(QMap<QString, User>& usersMapRef, QMap<int, Court>& courtsMapRef, QWidget *parent = nullptr);
+    explicit MainPage(QMap<QString, User> &usersMapRef,
+                      QMap<int, Court> &courtsMapRef,
+                      QWidget *parent = nullptr);
 
     ~MainPage();
 
@@ -40,7 +42,7 @@ private slots:
     void on_backToRes_clicked();
     void on_clientData_clicked();
     void on_getClientData_clicked();
-   // void on_search_2_clicked();
+    // void on_search_2_clicked();
 
     // Login slots
     void handleLoginSuccessful(UserType userType);
@@ -56,10 +58,15 @@ private slots:
 
     void on_search_3_clicked();
 
-
     void on_profile_clicked();
 
     void on_commandLinkButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_add_training_2_clicked();
+
+    void on_back_clicked();
 
 private:
     Ui::MainPage *ui;
@@ -71,8 +78,9 @@ private:
     void clearAll();
     UserType getUserType(const QString &username);
     QMap<QString, User> &usersMap;
-    QMap<int, Court>& courtsMap;
-    void displayCourtsInTable(const QList<Court>& courts);
+    QMap<int, Court> &courtsMap;
+    //QMap<QString, training> &trainingsMap;
+    void displayCourtsInTable(const QList<Court> &courts);
 
     void createEmptyTableWidget();
     void refreshCourtTable();

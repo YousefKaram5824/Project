@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
-#include <QString>
 #include <QList>
+#include <QString>
 #include "WorkoutRecord.h"
 
 struct User

@@ -4,12 +4,9 @@
 Receptionist::Receptionist(QMap<QString, User> &usersMapRef, QObject *parent)
     : QObject(parent)
     , usersMap(usersMapRef)
-{
-}
+{}
 
-Receptionist::~Receptionist()
-{
-}
+Receptionist::~Receptionist() {}
 
 bool Receptionist::validateClient(const QString &clientId)
 {
@@ -33,10 +30,14 @@ void Receptionist::displayClientInfo(const User &client,
                                      QLabel *subscriptionLabel,
                                      QLabel *budgetLabel)
 {
-    if (nameLabel) nameLabel->setText(client.username);
-    if (birthDateLabel) birthDateLabel->setText(client.birthDate);
-    if (subscriptionLabel) subscriptionLabel->setText(client.subscriptionPeriod);
-    if (budgetLabel) budgetLabel->setText(QString::number(client.budget));
+    if (nameLabel)
+        nameLabel->setText(client.username);
+    if (birthDateLabel)
+        birthDateLabel->setText(client.birthDate);
+    if (subscriptionLabel)
+        subscriptionLabel->setText(client.subscriptionPeriod);
+    if (budgetLabel)
+        budgetLabel->setText(QString::number(client.budget));
 }
 
 QString Receptionist::getClientInfo(const QString &clientId)

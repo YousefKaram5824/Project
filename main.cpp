@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "filemanager.h"
 #include "mainpage.h"
+//#include "training.h"
 
 int main(int argc, char *argv[])
 {

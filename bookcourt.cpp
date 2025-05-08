@@ -1,6 +1,6 @@
 #include "bookcourt.h"
-#include "ui_bookcourt.h"
 #include <QMessageBox>
+#include "ui_bookcourt.h"
 BookCourt::BookCourt(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::BookCourt)
@@ -20,7 +20,8 @@ void BookCourt::setCourtMap(QMap<int, Court> &map)
 
 void BookCourt::on_Book_clicked()
 {
-    if (!courtMap) return;
+    if (!courtMap)
+        return;
 
     QString idText = ui->ID->text();
     bool ok;
@@ -44,5 +45,3 @@ void BookCourt::on_Book_clicked()
         QMessageBox::warning(this, "Not Found", "Court ID not found.");
     }
 }
-
-

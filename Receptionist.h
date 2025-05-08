@@ -31,4 +31,4 @@ private:
     QMap<QString, User> &usersMap;
 };
 
-#endif // RECEPTIONIST_H 
+#endif // RECEPTIONIST_H

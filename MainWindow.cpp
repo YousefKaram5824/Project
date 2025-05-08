@@ -24,4 +24,4 @@ void MainWindow::on_notificationbtn_clicked()
     notificationWindow->show();
     notificationWindow->raise();
     notificationWindow->activateWindow();
-} 
+}

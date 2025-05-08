@@ -7,12 +7,9 @@ QString Login::currentUserId;
 Login::Login(QMap<QString, User> &usersMapRef, QObject *parent)
     : QObject(parent)
     , usersMap(usersMapRef)
-{
-}
+{}
 
-Login::~Login()
-{
-}
+Login::~Login() {}
 
 UserType Login::getUserType(const QString &username)
 {
@@ -62,6 +59,8 @@ bool Login::validateLogin(const QString &id, const QString &password)
 
 void Login::clearLoginFields(QLineEdit *idField, QLineEdit *passwordField)
 {
-    if (idField) idField->clear();
-    if (passwordField) passwordField->clear();
-} 
+    if (idField)
+        idField->clear();
+    if (passwordField)
+        passwordField->clear();
+}

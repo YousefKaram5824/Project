@@ -1,10 +1,11 @@
 #ifndef COURT_H
 #define COURT_H
-#include <QString>
 #include <QDate>
+#include <QString>
 #include <QTime>
 
-struct Court {
+struct Court
+{
     QString id;
     QString name;
     QString location;
@@ -16,7 +17,13 @@ struct Court {
     Court() = default;
 
     Court(QString id, QString name, QString location, QDate date, QTime time, bool isBooked)
-        : id(id), name(name), location(location), date(date), time(time), isBooked(isBooked) {}
+        : id(id)
+        , name(name)
+        , location(location)
+        , date(date)
+        , time(time)
+        , isBooked(isBooked)
+    {}
 };
 
 #endif // COURT_H

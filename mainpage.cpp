@@ -1,7 +1,7 @@
 #include "mainpage.h"
+#include <QLayout>
 #include <QMessageBox>
 #include "ui_mainpage.h"
-#include <QLayout>
 
 MainPage::MainPage(QMap<QString, User> &usersMapRef, QMap<int, Court> &courtsMapRef, QWidget *parent)
     : QMainWindow(parent)
@@ -19,7 +19,10 @@ MainPage::MainPage(QMap<QString, User> &usersMapRef, QMap<int, Court> &courtsMap
     connect(loginManager, &Login::loginFailed, this, &MainPage::handleLoginFailed);
 
     receptionistManager = new Receptionist(usersMap, this);
-    connect(receptionistManager, &Receptionist::clientNotFound, this, &MainPage::handleClientNotFound);
+    connect(receptionistManager,
+            &Receptionist::clientNotFound,
+            this,
+            &MainPage::handleClientNotFound);
     connect(receptionistManager,
             &Receptionist::invalidClientType,
             this,
@@ -69,13 +72,13 @@ void MainPage::handleLoginSuccessful(UserType userType)
         ui->holder->setCurrentIndex(2);
         break;
     case UserType::Coach:
-        ui->holder->setCurrentIndex(3);
-        break;
-    case UserType::Receptionist:
         ui->holder->setCurrentIndex(4);
         break;
-    case UserType::Manager:
+    case UserType::Receptionist:
         ui->holder->setCurrentIndex(5);
+        break;
+    case UserType::Manager:
+        ui->holder->setCurrentIndex(6);
         break;
     default:
         break;
@@ -115,7 +118,7 @@ void MainPage::on_logOut_4_clicked()
 
 void MainPage::on_searchButton_clicked()
 {
-    ui->holder->setCurrentIndex(7);
+    ui->holder->setCurrentIndex(8);
 }
 
 void MainPage::on_goHomeButton1_clicked()
@@ -130,13 +133,13 @@ void MainPage::on_backToRes_clicked()
 
 void MainPage::on_clientData_clicked()
 {
-    ui->holder->setCurrentIndex(8);
+    ui->holder->setCurrentIndex(9);
 }
 
 void MainPage::on_getClientData_clicked()
 {
     QString clientId = ui->clientID->text();
-    
+
     if (clientId.isEmpty()) {
         QMessageBox::warning(this, "Error", "Please enter a client ID");
         return;
@@ -162,10 +165,8 @@ void MainPage::handleInvalidClientType(const QString &message)
     QMessageBox::warning(this, "Error", message);
 }
 
-
 void MainPage::displayCourtsInTable(const QList<Court> &courts)
 {
-
     ui->tableWidget->setRowCount(0);
 
     ui->tableWidget->setRowCount(courts.size());
@@ -192,7 +193,6 @@ void MainPage::displayCourtsInTable(const QList<Court> &courts)
     int rowHeight = ui->tableWidget->verticalHeader()->defaultSectionSize();
     int totalHeight = rowHeight * courts.size() + ui->tableWidget->horizontalHeader()->height();
     ui->tableWidget->setMinimumHeight(totalHeight);
-
 }
 
 void MainPage::refreshCourtTable()
@@ -220,7 +220,9 @@ void MainPage::on_filter_clicked()
     } else {
         Court closest = searchManager->findClosestAvailable(location, date, time);
         if (!closest.id.isEmpty()) {
-            QMessageBox::information(this, "No courts", "No court at requested time. Showing nearest available.");
+            QMessageBox::information(this,
+                                     "No courts",
+                                     "No court at requested time. Showing nearest available.");
             displayCourtsInTable({closest});
         } else {
             QMessageBox::warning(this, "No courts", "No available courts found.");
@@ -257,5 +259,22 @@ void MainPage::on_profile_clicked()
 
 void MainPage::on_commandLinkButton_clicked()
 {
-     ui->holder->setCurrentIndex(2);
+    ui->holder->setCurrentIndex(2);
 }
+
+
+
+
+
+
+void MainPage::on_back_clicked()
+{
+    ui->holder->setCurrentIndex(6);
+}
+
+
+void MainPage::on_add_training_2_clicked()
+{
+    ui->holder->setCurrentIndex(7);
+}
+

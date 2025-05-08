@@ -32,7 +32,7 @@ signals:
 
 private:
     QMap<QString, User> &usersMap;
-    static QString currentUserId;  // Static member to store current user's ID
+    static QString currentUserId; // Static member to store current user's ID
 };
 
-#endif // LOGIN_H 
+#endif // LOGIN_H

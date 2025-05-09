@@ -8,6 +8,15 @@ addTraining::addTraining(QMap<QString, training> &trainingsMapRef, QWidget *pare
     , trainingsMap(trainingsMapRef)
 {
     ui->setupUi(this);
+    // Clear old items first (optional but good practice)
+    ui->namecomboBox->clear();
+
+    // Fill with existing training names
+    for (const QString &name : trainingsMap.keys()) {
+        ui->namecomboBox->addItem(name);
+    }
+    connect(ui->namecomboBox, &QComboBox::currentTextChanged,
+            this, &addTraining::loadTrainingData);
 }
 
 addTraining::~addTraining()
@@ -48,6 +57,9 @@ void addTraining::on_pushButton_3_clicked()
     newtraining.days = selectedDays;
     newtraining.assigned_coach = coname;
     trainingsMap.insert(trainingN, newtraining);
+    if (ui->namecomboBox->findText(trainingN) == -1) {
+        ui->namecomboBox->addItem(trainingN);
+    }
 /*
     QMap<QString, training>::iterator it;
     for (it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
@@ -61,3 +73,36 @@ void addTraining::on_pushButton_3_clicked()
 */
     QMessageBox::information(this, "Success", "Success");
 }
+
+void addTraining::loadTrainingData(const QString &trainingName)
+{
+    if (!trainingsMap.contains(trainingName))
+        return; // No data to load for this name
+
+    const training &t = trainingsMap[trainingName];
+
+    ui->capacitylineEdit->setText(QString::number(t.capacity));
+    ui->coachNamelineEdit->setText(t.assigned_coach);
+    ui->DtimlineEdit->setText(QString::number(t.duration_time));
+    ui->StimeEdit->setTime(t.Stime);
+
+    // Clear all checkboxes first
+    QList<QCheckBox*> checkboxes = {
+        ui->checkBox_8, ui->checkBox_11, ui->checkBox_12,
+        ui->checkBox_13, ui->checkBox_14, ui->checkBox_9, ui->checkBox_10
+    };
+    for (QCheckBox *cb : checkboxes) {
+        cb->setChecked(false);
+    }
+
+    // Re-check based on saved days
+    for (const QString &day : t.days) {
+        for (QCheckBox *cb : checkboxes) {
+            if (cb->text() == day) {
+                cb->setChecked(true);
+                break;
+            }
+        }
+    }
+}
+

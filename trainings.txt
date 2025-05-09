@@ -1,3 +1,4 @@
 boxing,5,04:00,3,wed|sun,salma
 habiba,10,00:00,15,mon|fri,razan
+test,11,00:00,2,sat,razan
 zompaaa,10,00:00,2,mon|wed|fri,salma

@@ -24,7 +24,7 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
         "E:/Project1/users.txt",      // Habiba
         "Y:/Final Project/users.txt", // Keko
         "Y:/Project/users.txt",       // Keko
-        "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
+        "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
         "users.txt" // Local path as last resort
     };
 
@@ -50,7 +50,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
     QStringList paths = {
         "E:/Project1/users.txt",      // Habiba
         "Y:/Final Project/users.txt", // Keko
-        "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
+        "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
         "users.txt" // Local path as last resort
     };
 
@@ -98,7 +98,7 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
         "E:/Project1/courts.txt",      // Habiba
         "Y:/Final Project/courts.txt", // Keko
         "Y:/Project/courts.txt",       // Keko
-        "C:\\Users\\ASUS\\Documents\\Project_branchk\\courts.txt",
+        "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
         "courts.txt" // Local path as last resort
     };
 
@@ -137,7 +137,7 @@ void FileManager::saveCourtsToFile(const QString &filePath, const QMap<int, Cour
         filePath,                      // Primary path
         "E:/Project1/courts.txt",      // Habiba
         "Y:/Final Project/courts.txt", // Keko
-        "C:\\Users\\ASUS\\Documents\\Project_branchk\\courts.txt",
+        "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
         "courts.txt" // Local path as last resort
     };
 
@@ -161,7 +161,7 @@ void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMa
     QStringList paths = {"E:/Project1/trainings.txt",
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
-                         "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
+                         "C:/Users/ASUS/Documents/Project_master/trainings.txt",
                          "trainings.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
@@ -184,7 +184,7 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
     QStringList paths = {"E:/Project1/trainings.txt",
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
-                         "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
+                         "C:/Users/ASUS/Documents/Project_master/trainings.txt",
                          "trainings.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {

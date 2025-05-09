@@ -17,6 +17,7 @@ public:
 
 private slots:
     void on_pushButton_3_clicked();
+    void loadTrainingData(const QString &trainingName);
 
 private:
     Ui::addTraining *ui;

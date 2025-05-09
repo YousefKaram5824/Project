@@ -1,12 +1,13 @@
 #ifndef TRAINING_H
 #define TRAINING_H
+#include <QList>
+#include <QMap>
 #include <QQueue>
 #include <QStack>
-#include <QList>
 #include <QString>
-#include <QMap>
 #include "User.h"
-struct training{
+struct training
+{
     QString name;
     int capacity;
     QTime Stime;

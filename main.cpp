@@ -10,12 +10,12 @@ int main(int argc, char *argv[])
     QMap<int, Court> courtsMap;
     QMap<QString, training> trainingsMap;
     FileManager filemanager;
-    filemanager.load(usersMap, courtsMap,trainingsMap);
+    filemanager.load(usersMap, courtsMap, trainingsMap);
 
-    MainPage w(usersMap, courtsMap,trainingsMap);
+    MainPage w(usersMap, courtsMap, trainingsMap);
     w.show();
     int result = a.exec();
-    filemanager.save(usersMap, courtsMap,trainingsMap);
+    filemanager.save(usersMap, courtsMap, trainingsMap);
 
     return result;
 }

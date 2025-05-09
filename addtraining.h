@@ -2,7 +2,7 @@
 #define ADDTRAINING_H
 
 #include <QDialog>
-#include"training.h"
+#include "training.h"
 namespace Ui {
 class addTraining;
 }
@@ -12,7 +12,7 @@ class addTraining : public QDialog
     Q_OBJECT
 
 public:
-    explicit addTraining(QMap<QString, training> &trainingsMapRef,QWidget *parent = nullptr);
+    explicit addTraining(QMap<QString, training> &trainingsMapRef, QWidget *parent = nullptr);
     ~addTraining();
 
 private slots:

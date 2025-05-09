@@ -1,8 +1,8 @@
 #include "addtraining.h"
-#include "ui_addtraining.h"
 #include <QMessageBox>
+#include "ui_addtraining.h"
 
-addTraining::addTraining(QMap<QString, training> &trainingsMapRef,QWidget *parent)
+addTraining::addTraining(QMap<QString, training> &trainingsMapRef, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::addTraining)
     , trainingsMap(trainingsMapRef)
@@ -17,11 +17,11 @@ addTraining::~addTraining()
 
 void addTraining::on_pushButton_3_clicked()
 {
-    QString trainingN = ui->trainingNamelineEdit->text();
+    QString trainingN = ui->namecomboBox->currentText();
     int cap = ui->capacitylineEdit->text().toInt();
-    QString coname=ui->coachNamelineEdit->text();
+    QString coname = ui->coachNamelineEdit->text();
     int Dtime = ui->DtimlineEdit->text().toInt();
-    QTime Sttime=ui->StimeEdit->time();
+    QTime Sttime = ui->StimeEdit->time();
 
     QList<QString> selectedDays;
 
@@ -40,16 +40,15 @@ void addTraining::on_pushButton_3_clicked()
     if (ui->checkBox_10->isChecked())
         selectedDays << ui->checkBox_10->text();
 
-
     training newtraining;
-    newtraining.name=trainingN;
-    newtraining.capacity=cap;
-    newtraining.Stime=Sttime;
-    newtraining.duration_time=Dtime;
-    newtraining.days=selectedDays;
-    newtraining.assigned_coach=coname;
-    trainingsMap.insert(trainingN,newtraining);
-
+    newtraining.name = trainingN;
+    newtraining.capacity = cap;
+    newtraining.Stime = Sttime;
+    newtraining.duration_time = Dtime;
+    newtraining.days = selectedDays;
+    newtraining.assigned_coach = coname;
+    trainingsMap.insert(trainingN, newtraining);
+/*
     QMap<QString, training>::iterator it;
     for (it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
         qDebug() << "Training Name:" << it.key();
@@ -59,9 +58,6 @@ void addTraining::on_pushButton_3_clicked()
         qDebug() << "  Days:" << it.value().days;
         qDebug() << "  Coach:" << it.value().assigned_coach;
     }
-
+*/
     QMessageBox::information(this, "Success", "Success");
-
-
 }
-

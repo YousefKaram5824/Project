@@ -3,12 +3,15 @@
 #include <QMessageBox>
 #include "ui_mainpage.h"
 
-MainPage::MainPage(QMap<QString, User> &usersMapRef, QMap<int, Court> &courtsMapRef,QMap<QString, training> &trainingsMapRef, QWidget *parent)
+MainPage::MainPage(QMap<QString, User> &usersMapRef,
+                   QMap<int, Court> &courtsMapRef,
+                   QMap<QString, training> &trainingsMapRef,
+                   QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainPage)
     , usersMap(usersMapRef)
     , courtsMap(courtsMapRef)
-    ,trainingsMap(trainingsMapRef)
+    , trainingsMap(trainingsMapRef)
 
 {
     ui->setupUi(this);
@@ -272,9 +275,8 @@ void MainPage::on_back_clicked()
 
 void MainPage::on_add_training_2_clicked()
 {
-
-   addtraining = new addTraining(trainingsMap, this);
-   addtraining->show();
-   addtraining->raise();
-   addtraining->activateWindow();
+    addtraining = new addTraining(trainingsMap, this);
+    addtraining->show();
+    addtraining->raise();
+    addtraining->activateWindow();
 }

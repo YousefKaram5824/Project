@@ -4,7 +4,7 @@
 #include <QList>
 #include <QTextStream>
 #include "Court.h"
-#include"training.h"
+#include "training.h"
 
 bool FileManager::tryOpenFile(QFile &file, const QStringList &paths, QIODevice::OpenMode mode)
 {
@@ -48,10 +48,10 @@ QMap<QString, User> FileManager::loadUsersFromFile()
     QMap<QString, User> usersMap;
     QFile file;
     QStringList paths = {
-        "E:/Project1/users.txt",       // Habiba
+        "E:/Project1/users.txt",      // Habiba
         "Y:/Final Project/users.txt", // Keko
-         "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
-        "users.txt"                   // Local path as last resort
+        "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
+        "users.txt" // Local path as last resort
     };
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {
@@ -135,10 +135,10 @@ void FileManager::saveCourtsToFile(const QString &filePath, const QMap<int, Cour
     QFile file;
     QStringList paths = {
         filePath,                      // Primary path
-        "E:/Project1/courts.txt",       // Habiba
+        "E:/Project1/courts.txt",      // Habiba
         "Y:/Final Project/courts.txt", // Keko
-         "C:\\Users\\ASUS\\Documents\\Project_branchk\\courts.txt",
-        "courts.txt"                   // Local path as last resort
+        "C:\\Users\\ASUS\\Documents\\Project_branchk\\courts.txt",
+        "courts.txt" // Local path as last resort
     };
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly)) {
@@ -158,13 +158,11 @@ void FileManager::saveCourtsToFile(const QString &filePath, const QMap<int, Cour
 void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMap)
 {
     QFile file;
-    QStringList paths = {
-        "E:/Project1/trainings.txt",
-        "Y:/Final Project/trainings.txt",
-        "Y:/Project/trainings.txt",
-        "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
-        "trainings.txt"
-    };
+    QStringList paths = {"E:/Project1/trainings.txt",
+                         "Y:/Final Project/trainings.txt",
+                         "Y:/Project/trainings.txt",
+                         "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
+                         "trainings.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file for writing in any path.";
@@ -183,13 +181,11 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
 {
     QMap<QString, training> trainingsMap;
     QFile file;
-    QStringList paths = {
-        "E:/Project1/trainings.txt",
-        "Y:/Final Project/trainings.txt",
-        "Y:/Project/trainings.txt",
-        "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
-        "trainings.txt"
-    };
+    QStringList paths = {"E:/Project1/trainings.txt",
+                         "Y:/Final Project/trainings.txt",
+                         "Y:/Project/trainings.txt",
+                         "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
+                         "trainings.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file for reading in any path. Creating new file.";
@@ -226,18 +222,20 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
     return trainingsMap;
 }
 
-
-
-void FileManager::save(const QMap<QString, User> &usersMap, const QMap<int, Court> &courtsMap ,const QMap<QString, training> &trainingsMap)
+void FileManager::save(const QMap<QString, User> &usersMap,
+                       const QMap<int, Court> &courtsMap,
+                       const QMap<QString, training> &trainingsMap)
 {
     saveUsersToFile(usersMap);
     saveCourtsToFile("", courtsMap);
     saveTrainingsToFile(trainingsMap);
 }
 
-void FileManager::load(QMap<QString, User> &usersMap, QMap<int, Court> &courtsMap,QMap<QString, training> &trainingsMap)
+void FileManager::load(QMap<QString, User> &usersMap,
+                       QMap<int, Court> &courtsMap,
+                       QMap<QString, training> &trainingsMap)
 {
     usersMap = loadUsersFromFile();
     courtsMap = loadCourtsFromFile();
-    trainingsMap=loadTrainingsFromFile();
+    trainingsMap = loadTrainingsFromFile();
 }

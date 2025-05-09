@@ -1417,7 +1417,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>16</day>
+         <day>15</day>
         </datetime>
        </property>
        <property name="time">
@@ -1445,7 +1445,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>6</hour>
+         <hour>3</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

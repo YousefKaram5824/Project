@@ -20,7 +20,7 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
 {
     QFile file;
     QStringList paths = {
-        "E:/Project/users.txt",       // Habiba
+        "E:/Project1/users.txt",       // Habiba
         "Y:/Final Project/users.txt", // Keko
     "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
         "users.txt"                   // Local path as last resort
@@ -46,7 +46,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
     QMap<QString, User> usersMap;
     QFile file;
     QStringList paths = {
-        "E:/Project/users.txt",       // Habiba
+        "E:/Project1/users.txt",       // Habiba
         "Y:/Final Project/users.txt", // Keko
          "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
         "users.txt"                   // Local path as last resort
@@ -93,7 +93,7 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
     QMap<int, Court> courts;
     QFile file;
     QStringList paths = {
-        "E:/Project/courts.txt",       // Habiba
+        "E:/Project1/courts.txt",       // Habiba
         "Y:/Final Project/courts.txt", // Keko
         "C:\\Users\\ASUS\\Documents\\Project_branchk\\courts.txt",
         "courts.txt"                   // Local path as last resort
@@ -132,7 +132,7 @@ void FileManager::saveCourtsToFile(const QString &filePath, const QMap<int, Cour
     QFile file;
     QStringList paths = {
         filePath,                      // Primary path
-        "E:/Project/courts.txt",       // Habiba
+        "E:/Project1/courts.txt",       // Habiba
         "Y:/Final Project/courts.txt", // Keko
          "C:\\Users\\ASUS\\Documents\\Project_branchk\\courts.txt",
         "courts.txt"                   // Local path as last resort

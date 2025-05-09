@@ -31,7 +31,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -1065,12 +1065,12 @@ QPushButton:pressed {
        <string>days</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QCheckBox" name="checkBox">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>240</x>
         <y>470</y>
-        <width>71</width>
+        <width>93</width>
         <height>26</height>
        </rect>
       </property>
@@ -1078,12 +1078,12 @@ QPushButton:pressed {
        <string>sat</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QCheckBox" name="checkBox_2">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>320</x>
         <y>470</y>
-        <width>71</width>
+        <width>93</width>
         <height>26</height>
        </rect>
       </property>
@@ -1091,12 +1091,12 @@ QPushButton:pressed {
        <string>sun</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QCheckBox" name="checkBox_3">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>410</x>
         <y>470</y>
-        <width>71</width>
+        <width>93</width>
         <height>26</height>
        </rect>
       </property>
@@ -1104,12 +1104,12 @@ QPushButton:pressed {
        <string>mon</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QCheckBox" name="checkBox_4">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>520</x>
         <y>470</y>
-        <width>71</width>
+        <width>93</width>
         <height>26</height>
        </rect>
       </property>
@@ -1117,12 +1117,12 @@ QPushButton:pressed {
        <string>tue</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_5">
+     <widget class="QCheckBox" name="checkBox_5">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>620</x>
         <y>470</y>
-        <width>71</width>
+        <width>93</width>
         <height>26</height>
        </rect>
       </property>
@@ -1130,12 +1130,12 @@ QPushButton:pressed {
        <string>wed</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_6">
+     <widget class="QCheckBox" name="checkBox_6">
       <property name="geometry">
        <rect>
-        <x>780</x>
+        <x>700</x>
         <y>470</y>
-        <width>71</width>
+        <width>93</width>
         <height>26</height>
        </rect>
       </property>
@@ -1143,12 +1143,12 @@ QPushButton:pressed {
        <string>thu</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_7">
+     <widget class="QCheckBox" name="checkBox_7">
       <property name="geometry">
        <rect>
-        <x>880</x>
+        <x>770</x>
         <y>470</y>
-        <width>71</width>
+        <width>93</width>
         <height>26</height>
        </rect>
       </property>
@@ -1404,7 +1404,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>21</day>
+         <day>20</day>
         </datetime>
        </property>
        <property name="time">
@@ -1432,7 +1432,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>21</hour>
+         <hour>18</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

@@ -270,4 +270,5 @@ void MainPage::on_back_clicked()
 void MainPage::on_add_training_2_clicked()
 {
     ui->holder->setCurrentIndex(7);
+
 }

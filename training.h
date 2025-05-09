@@ -9,7 +9,8 @@
 struct training{
     QString name;
     int capacity;
-    QTime duration_time;
+    QTime Stime;
+    int duration_time;
     QList<QString> days;
     QString assigned_coach;
     QMap<int, User> users;

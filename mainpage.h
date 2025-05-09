@@ -12,6 +12,7 @@
 #include "login.h"
 #include "register.h"
 #include "training.h"
+#include "addtraining.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
@@ -70,6 +71,7 @@ private:
     Ui::MainPage *ui;
     Register *registerWin;
     BookCourt *bookCourt;
+    addTraining *addTraining;
     SearchManager *searchManager;
     Login *loginManager;
     Receptionist *receptionistManager;

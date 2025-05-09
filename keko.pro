@@ -12,6 +12,7 @@ CONFIG += c++17
 
 SOURCES += \
     Receptionist.cpp \
+    addtraining.cpp \
     bookcourt.cpp \
     filemanager.cpp \
     login.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     Receptionist.h \
     User.h \
     WorkoutRecord.h \
+    addtraining.h \
     bookcourt.h \
     filemanager.h \
     login.h \
@@ -34,6 +36,7 @@ HEADERS += \
     training.h
 
 FORMS += \
+    addtraining.ui \
     bookcourt.ui \
     mainpage.ui \
     register.ui

@@ -1156,6 +1156,19 @@ QPushButton:pressed {
        <string>fri</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>220</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="search">
      <widget class="QFrame" name="frame_6">
@@ -1404,7 +1417,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>20</day>
+         <day>19</day>
         </datetime>
        </property>
        <property name="time">
@@ -1432,7 +1445,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>18</hour>
+         <hour>15</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

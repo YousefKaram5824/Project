@@ -891,8 +891,8 @@ QPushButton:pressed {
      <widget class="QFrame" name="frame_3">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
+        <x>-30</x>
+        <y>-30</y>
         <width>1536</width>
         <height>864</height>
        </rect>
@@ -915,8 +915,8 @@ QPushButton:pressed {
       <widget class="QPushButton" name="add_training_2">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>410</y>
+         <x>710</x>
+         <y>180</y>
          <width>151</width>
          <height>51</height>
         </rect>
@@ -936,7 +936,7 @@ QPushButton:pressed {
 }</string>
        </property>
        <property name="text">
-        <string>add</string>
+        <string> Manage trainig</string>
        </property>
       </widget>
      </widget>
@@ -1417,7 +1417,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>15</day>
+         <day>14</day>
         </datetime>
        </property>
        <property name="time">
@@ -1445,7 +1445,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>3</hour>
+         <hour>0</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

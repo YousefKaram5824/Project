@@ -19,6 +19,8 @@ private slots:
     void on_pushButton_3_clicked();
     void loadTrainingData(const QString &trainingName);
 
+    void on_DeletepushButton_clicked();
+
 private:
     Ui::addTraining *ui;
     QMap<QString, training> &trainingsMap;

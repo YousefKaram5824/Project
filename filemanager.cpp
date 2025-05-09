@@ -232,10 +232,12 @@ void FileManager::save(const QMap<QString, User> &usersMap, const QMap<int, Cour
 {
     saveUsersToFile(usersMap);
     saveCourtsToFile("", courtsMap);
+    saveTrainingsToFile(trainingsMap);
 }
 
 void FileManager::load(QMap<QString, User> &usersMap, QMap<int, Court> &courtsMap,QMap<QString, training> &trainingsMap)
 {
     usersMap = loadUsersFromFile();
     courtsMap = loadCourtsFromFile();
+    trainingsMap=loadTrainingsFromFile();
 }

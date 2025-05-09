@@ -26,6 +26,7 @@ class MainPage : public QMainWindow
 public:
     explicit MainPage(QMap<QString, User> &usersMapRef,
                       QMap<int, Court> &courtsMapRef,
+                      QMap<QString, training> &trainingsMapRef,
                       QWidget *parent = nullptr);
 
     ~MainPage();
@@ -79,7 +80,7 @@ private:
     UserType getUserType(const QString &username);
     QMap<QString, User> &usersMap;
     QMap<int, Court> &courtsMap;
-    //QMap<QString, training> &trainingsMap;
+    QMap<QString, training> &trainingsMap;
     void displayCourtsInTable(const QList<Court> &courts);
 
     void createEmptyTableWidget();

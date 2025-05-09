@@ -12,11 +12,15 @@ class addTraining : public QDialog
     Q_OBJECT
 
 public:
-    explicit addTraining(QWidget *parent = nullptr);
+    explicit addTraining(QMap<QString, training> &trainingsMapRef,QWidget *parent = nullptr);
     ~addTraining();
+
+private slots:
+    void on_pushButton_3_clicked();
 
 private:
     Ui::addTraining *ui;
+    QMap<QString, training> &trainingsMap;
 };
 
 #endif // ADDTRAINING_H

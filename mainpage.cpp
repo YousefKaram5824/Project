@@ -37,6 +37,7 @@ MainPage::~MainPage()
     delete searchManager;
     delete loginManager;
     delete receptionistManager;
+    delete addtraining;
 }
 
 void MainPage::on_getStarted_clicked()
@@ -270,5 +271,5 @@ void MainPage::on_back_clicked()
 void MainPage::on_add_training_2_clicked()
 {
     ui->holder->setCurrentIndex(7);
-
+    addtraining = new addTraining();
 }

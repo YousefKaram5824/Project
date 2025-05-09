@@ -7,12 +7,12 @@
 #include <QWidget>
 #include "Receptionist.h"
 #include "SearchManager.h"
+#include "addtraining.h"
 #include "bookcourt.h"
 #include "court.h"
 #include "login.h"
 #include "register.h"
-#include "training.h"
-#include "addtraining.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
@@ -71,7 +71,7 @@ private:
     Ui::MainPage *ui;
     Register *registerWin;
     BookCourt *bookCourt;
-    addTraining *addTraining;
+    addTraining *addtraining;
     SearchManager *searchManager;
     Login *loginManager;
     Receptionist *receptionistManager;

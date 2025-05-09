@@ -20,10 +20,11 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
 {
     QFile file;
     QStringList paths = {
-        "E:/Project1/users.txt",       // Habiba
+        "E:/Project1/users.txt",      // Habiba
         "Y:/Final Project/users.txt", // Keko
-    "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
-        "users.txt"                   // Local path as last resort
+        "Y:/Project/users.txt",       // Keko
+        "C:\\Users\\ASUS\\Documents\\Project_branchk\\users.txt",
+        "users.txt" // Local path as last resort
     };
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
@@ -93,10 +94,11 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
     QMap<int, Court> courts;
     QFile file;
     QStringList paths = {
-        "E:/Project1/courts.txt",       // Habiba
+        "E:/Project1/courts.txt",      // Habiba
         "Y:/Final Project/courts.txt", // Keko
+        "Y:/Project/courts.txt",       // Keko
         "C:\\Users\\ASUS\\Documents\\Project_branchk\\courts.txt",
-        "courts.txt"                   // Local path as last resort
+        "courts.txt" // Local path as last resort
     };
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly)) {

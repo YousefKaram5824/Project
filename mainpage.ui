@@ -31,7 +31,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -1417,7 +1417,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>19</day>
+         <day>18</day>
         </datetime>
        </property>
        <property name="time">
@@ -1445,7 +1445,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>15</hour>
+         <hour>12</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>

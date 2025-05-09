@@ -4,6 +4,7 @@
 #include <QList>
 #include <QTextStream>
 #include "Court.h"
+#include"training.h"
 
 bool FileManager::tryOpenFile(QFile &file, const QStringList &paths, QIODevice::OpenMode mode)
 {
@@ -154,13 +155,86 @@ void FileManager::saveCourtsToFile(const QString &filePath, const QMap<int, Cour
     file.close();
 }
 
-void FileManager::save(const QMap<QString, User> &usersMap, const QMap<int, Court> &courtsMap)
+void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMap)
+{
+    QFile file;
+    QStringList paths = {
+        "E:/Project1/trainings.txt",
+        "Y:/Final Project/trainings.txt",
+        "Y:/Project/trainings.txt",
+        "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
+        "trainings.txt"
+    };
+
+    if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file for writing in any path.";
+        return;
+    }
+
+    QTextStream out(&file);
+    for (const auto &t : trainingsMap) {
+        out << t.name << "," << t.capacity << "," << t.Stime.toString("HH:mm") << ","
+            << t.duration_time << "," << t.days.join('|') << "," << t.assigned_coach << "\n";
+    }
+
+    file.close();
+}
+QMap<QString, training> FileManager::loadTrainingsFromFile()
+{
+    QMap<QString, training> trainingsMap;
+    QFile file;
+    QStringList paths = {
+        "E:/Project1/trainings.txt",
+        "Y:/Final Project/trainings.txt",
+        "Y:/Project/trainings.txt",
+        "C:/Users/ASUS/Documents/Project_branchk/trainings.txt",
+        "trainings.txt"
+    };
+
+    if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open file for reading in any path. Creating new file.";
+        QFile newFile("trainings.txt");
+        newFile.open(QIODevice::WriteOnly);
+        newFile.close();
+        return trainingsMap;
+    }
+
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        if (line.trimmed().isEmpty())
+            continue;
+
+        QStringList fields = line.split(',');
+        if (fields.size() < 6) {
+            qDebug() << "Invalid training line:" << line;
+            continue;
+        }
+
+        training t;
+        t.name = fields[0];
+        t.capacity = fields[1].toInt();
+        t.Stime = QTime::fromString(fields[2], "HH:mm");
+        t.duration_time = fields[3].toInt();
+        t.days = fields[4].split('|', Qt::SkipEmptyParts);
+        t.assigned_coach = fields[5];
+
+        trainingsMap.insert(t.name, t);
+    }
+
+    file.close();
+    return trainingsMap;
+}
+
+
+
+void FileManager::save(const QMap<QString, User> &usersMap, const QMap<int, Court> &courtsMap ,const QMap<QString, training> &trainingsMap)
 {
     saveUsersToFile(usersMap);
     saveCourtsToFile("", courtsMap);
 }
 
-void FileManager::load(QMap<QString, User> &usersMap, QMap<int, Court> &courtsMap)
+void FileManager::load(QMap<QString, User> &usersMap, QMap<int, Court> &courtsMap,QMap<QString, training> &trainingsMap)
 {
     usersMap = loadUsersFromFile();
     courtsMap = loadCourtsFromFile();

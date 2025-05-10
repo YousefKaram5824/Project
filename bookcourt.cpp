@@ -38,6 +38,7 @@ void BookCourt::on_Book_clicked()
         }
 
         (*courtMap)[id].isBooked = true;
+        (*courtMap)[id].clientId = currentUserId;
         emit courtBooked();
         QMessageBox::information(this, "Done", "Court booked!");
         this->close();

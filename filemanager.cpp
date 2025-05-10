@@ -20,14 +20,12 @@ bool FileManager::tryOpenFile(QFile &file, const QStringList &paths, QIODevice::
 void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
 {
     QFile file;
-    QStringList paths = {
-        ":/files/users.txt",
-        "qrc:/files/users.txt",
-        "Y:/Project/users.txt",
-        "E:/Project1/users.txt", // Habiba
-        "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
-        "users.txt" // Local path as last resort
-    };
+    QStringList paths = {":/files/users.txt",
+                         "qrc:/files/users.txt",
+                         "Y:/Project/users.txt",
+                         "E:/Project1/users.txt",
+                         "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
+                         "users.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file for writing in any path.";
@@ -48,14 +46,12 @@ QMap<QString, User> FileManager::loadUsersFromFile()
 {
     QMap<QString, User> usersMap;
     QFile file;
-    QStringList paths = {
-        ":/files/users.txt",
-        "qrc:/files/users.txt",
-        "Y:/Project/users.txt",
-        "E:/Project1/users.txt", // Habiba
-        "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
-        "users.txt" // Local path as last resort
-    };
+    QStringList paths = {":/files/users.txt",
+                         "qrc:/files/users.txt",
+                         "Y:/Project/users.txt",
+                         "E:/Project1/users.txt",
+                         "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
+                         "users.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Failed to open file for reading in any path. Creating new file.";
@@ -72,7 +68,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
             continue;
 
         QStringList fields = line.split(',');
-        if (fields.size() < 8) { // At least 8 fields for basic user info
+        if (fields.size() < 8) {
             qDebug() << "Invalid line format:" << line;
             continue;
         }
@@ -97,14 +93,12 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
 {
     QMap<int, Court> courts;
     QFile file;
-    QStringList paths = {
-        ":/files/courts.txt",
-        "qrc:/files/courts.txt",
-        "Y:/Project/courts.txt",
-        "E:/Project1/courts.txt", // Habiba
-        "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
-        "courts.txt" // Local path as last resort
-    };
+    QStringList paths = {":/files/courts.txt",
+                         "qrc:/files/courts.txt",
+                         "Y:/Project/courts.txt",
+                         "E:/Project1/courts.txt",
+                         "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
+                         "courts.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly)) {
         qDebug() << "Failed to open courts file in any path.";
@@ -119,7 +113,7 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
             part = part.trimmed();
         }
 
-        if (parts.size() == 6) {
+        if (parts.size() >= 7) {
             int id = parts[0].toInt();
             QString name = parts[1];
             QString location = parts[2];
@@ -127,7 +121,8 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
             QTime time = QTime::fromString(parts[4], "HH:mm");
             bool isBooked = (parts[5].toLower() == "true");
             QString idString = QString::number(id);
-            courts[id] = Court(idString, name, location, date, time, isBooked);
+            QString userId = parts[6];
+            courts[id] = Court(idString, name, location, date, time, isBooked, userId);
         }
     }
     file.close();
@@ -137,14 +132,12 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
 void FileManager::saveCourtsToFile(const QMap<int, Court> &courts)
 {
     QFile file;
-    QStringList paths = {
-        ":/files/courts.txt",
-        "qrc:/files/courts.txt",
-        "Y:/Project/courts.txt",
-        "E:/Project1/courts.txt", // Habiba
-        "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
-        "courts.txt" // Local path as last resort
-    };
+    QStringList paths = {":/files/courts.txt",
+                         "qrc:/files/courts.txt",
+                         "Y:/Project/courts.txt",
+                         "E:/Project1/courts.txt",
+                         "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
+                         "courts.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly)) {
         qDebug() << "Failed to open courts file for writing in any path.";
@@ -155,7 +148,7 @@ void FileManager::saveCourtsToFile(const QMap<int, Court> &courts)
     for (const Court &court : courts) {
         out << court.id << "," << court.name << "," << court.location << ","
             << court.date.toString("yyyy-MM-dd") << "," << court.time.toString("HH:mm") << ","
-            << (court.isBooked ? "true" : "false") << "\n";
+            << (court.isBooked ? "true" : "false") << "," << court.clientId << "\n";
     }
     file.close();
 }

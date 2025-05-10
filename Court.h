@@ -16,13 +16,20 @@ struct Court
 
     Court() = default;
 
-    Court(QString id, QString name, QString location, QDate date, QTime time, bool isBooked)
+    Court(QString id,
+          QString name,
+          QString location,
+          QDate date,
+          QTime time,
+          bool isBooked,
+          QString clientId)
         : id(id)
         , name(name)
         , location(location)
         , date(date)
         , time(time)
         , isBooked(isBooked)
+        , clientId(clientId)
     {}
 };
 

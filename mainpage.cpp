@@ -240,6 +240,7 @@ void MainPage::on_search_3_clicked()
 {
     bookCourt = new BookCourt();
     bookCourt->setCourtMap(this->courtsMap);
+    bookCourt->setCurrentUserId(loginManager->getCurrentUserId());
     connect(bookCourt, &BookCourt::courtBooked, this, &MainPage::refreshCourtTable);
     bookCourt->show();
     bookCourt->raise();

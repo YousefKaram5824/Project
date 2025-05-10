@@ -156,7 +156,9 @@ void FileManager::saveCourtsToFile(const QMap<int, Court> &courts)
 void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMap)
 {
     QFile file;
-    QStringList paths = {"E:/Project1/trainings.txt",
+    QStringList paths = {":/files/trainings.txt",
+                         "qrc:/files/trainings.txt",
+                         "E:/Project1/trainings.txt",
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
                          "C:/Users/ASUS/Documents/Project_master/trainings.txt",
@@ -179,7 +181,9 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
 {
     QMap<QString, training> trainingsMap;
     QFile file;
-    QStringList paths = {"E:/Project1/trainings.txt",
+    QStringList paths = {":/files/trainings.txt",
+                         "qrc:/files/trainings.txt",
+                         "E:/Project1/trainings.txt",
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
                          "C:/Users/ASUS/Documents/Project_master/trainings.txt",

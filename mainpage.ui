@@ -31,7 +31,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -422,6 +422,38 @@ QCommandLinkButton::icon {
         <iconset theme="QIcon::ThemeIcon::ContactNew"/>
        </property>
       </widget>
+      <widget class="QPushButton" name="trainingButton">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>500</y>
+         <width>561</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 20px;                
+    color: white;                       
+    padding: 5px 10px; 
+   
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
+       </property>
+       <property name="text">
+        <string>Order for available trainings</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="profilepage">
@@ -764,6 +796,198 @@ QPushButton:pressed {
         <string>logout</string>
        </property>
       </widget>
+      <widget class="QComboBox" name="trainings">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>150</y>
+         <width>121</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>160</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+      <widget class="QTimeEdit" name="StimeEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>240</y>
+         <width>118</width>
+         <height>29</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="DtimlineEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>240</y>
+         <width>113</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>240</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>start time </string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_24">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>240</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>duration time </string>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tableWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>300</y>
+         <width>254</width>
+         <height>431</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget, QTableView {
+	color: rgb(255, 255, 255);
+    background-color: transparent;
+    border: 2px solid #ADABAB;
+    border-radius: 10px;
+    gridline-color: #ADABAB;  
+    selection-background-color: rgba(255, 165, 0, 60); 
+}
+
+
+QHeaderView::section {
+    background-color: #272727;
+    color: #ffffff;
+   border: 0.5px solid #ADABAB;
+    padding: 5px;
+    font-weight: bold;
+}
+
+
+/* رأس الزاوية (اللي بين الأرقام والأعمدة) */
+QTableCornerButton::section {
+    background-color: transparent;
+    border: none;
+}
+
+/* خلايا الجدول */
+QTableView::item, QTableWidget::item {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+}
+
+
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: transparent;
+    border: none;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #DC3E22;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: none;
+    border: none;
+    height: 0px;
+    width: 0px;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+</string>
+       </property>
+       <column>
+        <property name="text">
+         <string>Client ID</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Progress</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QComboBox" name="clientId">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>160</y>
+         <width>121</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="beattended">
+       <property name="geometry">
+        <rect>
+         <x>770</x>
+         <y>150</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Attend</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>160</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Client ID</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="receptionistPage">
@@ -942,233 +1166,6 @@ QPushButton:pressed {
      </widget>
      <zorder>frame_3</zorder>
      <zorder>logOut_2</zorder>
-    </widget>
-    <widget class="QWidget" name="add_training">
-     <widget class="QCommandLinkButton" name="back">
-      <property name="geometry">
-       <rect>
-        <x>1460</x>
-        <y>10</y>
-        <width>31</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset theme="QIcon::ThemeIcon::DocumentRevert"/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>290</y>
-        <width>51</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="training_name">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>290</y>
-        <width>113</width>
-        <height>28</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>300</y>
-        <width>71</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>capacity</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="capacity_lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>300</y>
-        <width>113</width>
-        <height>28</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>370</y>
-        <width>82</width>
-        <height>28</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>370</y>
-        <width>141</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>duration_time</string>
-      </property>
-     </widget>
-     <widget class="QTimeEdit" name="timeEdit_training">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>370</y>
-        <width>118</width>
-        <height>29</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_18">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>370</y>
-        <width>51</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>coach</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_19">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>470</y>
-        <width>51</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>days</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>470</y>
-        <width>93</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>sat</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_2">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>470</y>
-        <width>93</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>sun</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_3">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>470</y>
-        <width>93</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>mon</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_4">
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>470</y>
-        <width>93</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>tue</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_5">
-      <property name="geometry">
-       <rect>
-        <x>620</x>
-        <y>470</y>
-        <width>93</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>wed</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_6">
-      <property name="geometry">
-       <rect>
-        <x>700</x>
-        <y>470</y>
-        <width>93</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>thu</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_7">
-      <property name="geometry">
-       <rect>
-        <x>770</x>
-        <y>470</y>
-        <width>93</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>fri</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_20">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>220</y>
-        <width>51</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="search">
      <widget class="QFrame" name="frame_6">
@@ -1417,7 +1414,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>11</day>
+         <day>6</day>
         </datetime>
        </property>
        <property name="time">
@@ -1445,7 +1442,7 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>15</hour>
+         <hour>0</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
@@ -1518,29 +1515,6 @@ QPushButton:pressed {
        </property>
        <property name="text">
         <string>Location</string>
-       </property>
-      </widget>
-      <widget class="QCommandLinkButton" name="goHomeButton1">
-       <property name="geometry">
-        <rect>
-         <x>1390</x>
-         <y>10</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">
-color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Home</string>
-       </property>
-       <property name="icon">
-        <iconset theme="QIcon::ThemeIcon::GoHome"/>
        </property>
       </widget>
       <widget class="QPushButton" name="filter">
@@ -1616,6 +1590,95 @@ QPushButton:pressed {
        </property>
        <property name="text">
         <string>Book Now</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="backToClient">
+       <property name="geometry">
+        <rect>
+         <x>1400</x>
+         <y>30</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="order_training">
+     <widget class="QFrame" name="frame_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1536</width>
+        <height>864</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame#frame_8 {	
+	background-image: url(:/bg/fitora.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="backToClientPage">
+       <property name="geometry">
+        <rect>
+         <x>1400</x>
+         <y>10</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
+       </property>
+       <property name="text">
+        <string>Back</string>
        </property>
       </widget>
      </widget>

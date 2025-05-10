@@ -79,6 +79,8 @@ void MainPage::handleLoginSuccessful(UserType userType)
         break;
     case UserType::Coach:
         ui->holder->setCurrentIndex(4);
+        loginManager->getCurrentUserId();
+        populateCoachTrainings();
         break;
     case UserType::Receptionist:
         ui->holder->setCurrentIndex(5);
@@ -124,12 +126,7 @@ void MainPage::on_logOut_4_clicked()
 
 void MainPage::on_searchButton_clicked()
 {
-    ui->holder->setCurrentIndex(8);
-}
-
-void MainPage::on_goHomeButton1_clicked()
-{
-    ui->holder->setCurrentIndex(2);
+    ui->holder->setCurrentIndex(7);
 }
 
 void MainPage::on_backToRes_clicked()
@@ -140,6 +137,31 @@ void MainPage::on_backToRes_clicked()
 void MainPage::on_clientData_clicked()
 {
     ui->holder->setCurrentIndex(9);
+}
+
+void MainPage::on_backToClientPage_clicked()
+{
+    ui->holder->setCurrentIndex(2);
+}
+
+void MainPage::on_trainingButton_clicked()
+{
+    ui->holder->setCurrentIndex(8);
+}
+
+void MainPage::on_commandLinkButton_clicked()
+{
+    ui->holder->setCurrentIndex(2);
+}
+
+void MainPage::on_back_clicked()
+{
+    ui->holder->setCurrentIndex(6);
+}
+
+void MainPage::on_backToClient_clicked()
+{
+    ui->holder->setCurrentIndex(2);
 }
 
 void MainPage::on_getClientData_clicked()
@@ -264,20 +286,36 @@ void MainPage::on_profile_clicked()
     }
 }
 
-void MainPage::on_commandLinkButton_clicked()
-{
-    ui->holder->setCurrentIndex(2);
-}
-
-void MainPage::on_back_clicked()
-{
-    ui->holder->setCurrentIndex(6);
-}
-
 void MainPage::on_add_training_2_clicked()
 {
-    addtraining = new addTraining(trainingsMap, this);
+    addtraining = new addTraining(trainingsMap, usersMap, this);
     addtraining->show();
     addtraining->raise();
     addtraining->activateWindow();
+}
+
+void MainPage::populateCoachTrainings()
+{
+    QString currentCoachId = Login::getCurrentUserId();
+    ui->trainings->clear();
+    
+    for (const auto &training : trainingsMap) {
+        if (training.assigned_coach == currentCoachId) {
+            ui->trainings->addItem(training.name);
+        }
+    }
+    ui->trainings->setCurrentIndex(-1);
+    ui->DtimlineEdit->clear();
+    ui->StimeEdit->clear();
+}
+
+void MainPage::on_trainings_currentTextChanged(const QString &trainingName)
+{
+    if (!trainingsMap.contains(trainingName))
+        return;
+
+    const training &t = trainingsMap[trainingName];
+
+    ui->DtimlineEdit->setText(QString::number(t.duration_time));
+    ui->StimeEdit->setTime(t.Stime);
 }

@@ -40,11 +40,9 @@ private slots:
     void on_logOut_3_clicked();
     void on_pushButton_clicked();
     void on_searchButton_clicked();
-    void on_goHomeButton1_clicked();
     void on_backToRes_clicked();
     void on_clientData_clicked();
     void on_getClientData_clicked();
-    // void on_search_2_clicked();
 
     // Login slots
     void handleLoginSuccessful(UserType userType);
@@ -68,6 +66,14 @@ private slots:
 
     void on_back_clicked();
 
+    void on_trainings_currentTextChanged(const QString &trainingName);
+
+    void on_backToClientPage_clicked();
+
+    void on_trainingButton_clicked();
+
+    void on_backToClient_clicked();
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;
@@ -82,9 +88,9 @@ private:
     QMap<int, Court> &courtsMap;
     QMap<QString, training> &trainingsMap;
     void displayCourtsInTable(const QList<Court> &courts);
-
     void createEmptyTableWidget();
     void refreshCourtTable();
+    void populateCoachTrainings();
 };
 
 #endif

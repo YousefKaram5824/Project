@@ -2,21 +2,35 @@
 #include <QMessageBox>
 #include "ui_addtraining.h"
 
-addTraining::addTraining(QMap<QString, training> &trainingsMapRef, QWidget *parent)
+addTraining::addTraining(QMap<QString, training> &trainingsMapRef,
+                         QMap<QString, User> &usersMapRef,
+                         QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::addTraining)
     , trainingsMap(trainingsMapRef)
+    , usersMap(usersMapRef)
 {
     ui->setupUi(this);
 
-    ui->namecomboBox->clear();
     for (const QString &name : trainingsMap.keys()) {
         ui->namecomboBox->addItem(name);
     }
 
-    connect(ui->namecomboBox, &QComboBox::currentTextChanged, this, &addTraining::loadTrainingData);
+    populateCoachesComboBox();
 
+    connect(ui->namecomboBox, &QComboBox::currentTextChanged, this, &addTraining::loadTrainingData);
     ui->namecomboBox->setCurrentIndex(-1);
+    ui->coaches->setCurrentIndex(-1);
+}
+
+void addTraining::populateCoachesComboBox()
+{
+    ui->coaches->clear();
+    for (const auto &user : std::as_const(usersMap)) {
+        if (user.id.startsWith("co")) { // Only add users with coach IDs
+            ui->coaches->addItem(user.id);
+        }
+    }
 }
 
 addTraining::~addTraining()
@@ -27,7 +41,7 @@ addTraining::~addTraining()
 void addTraining::on_pushButton_3_clicked()
 {
     QString trainingN = ui->namecomboBox->currentText().trimmed();
-    QString coname = ui->coachNamelineEdit->text().trimmed();
+    QString coname = ui->coaches->currentText().trimmed();
     QString capText = ui->capacitylineEdit->text().trimmed();
     QString durationText = ui->DtimlineEdit->text().trimmed();
     QTime Sttime = ui->StimeEdit->time();
@@ -38,13 +52,8 @@ void addTraining::on_pushButton_3_clicked()
     }
 
     QList<QString> selectedDays;
-    QList<QCheckBox *> checkboxes = {ui->checkBox_8,
-                                     ui->checkBox_11,
-                                     ui->checkBox_12,
-                                     ui->checkBox_13,
-                                     ui->checkBox_14,
-                                     ui->checkBox_9,
-                                     ui->checkBox_10};
+    QList<QCheckBox *> checkboxes
+        = {ui->day1, ui->day2, ui->day3, ui->day4, ui->day5, ui->day6, ui->day7};
     for (QCheckBox *cb : checkboxes) {
         if (cb->isChecked())
             selectedDays << cb->text();
@@ -74,7 +83,7 @@ void addTraining::on_pushButton_3_clicked()
 
     ui->namecomboBox->setCurrentIndex(-1);
     ui->capacitylineEdit->clear();
-    ui->coachNamelineEdit->clear();
+    ui->coaches->setCurrentIndex(-1);
     ui->DtimlineEdit->clear();
     ui->StimeEdit->setTime(QTime::currentTime());
     for (QCheckBox *cb : checkboxes)
@@ -94,17 +103,12 @@ void addTraining::loadTrainingData(const QString &trainingName)
     const training &t = trainingsMap[trainingName];
 
     ui->capacitylineEdit->setText(QString::number(t.capacity));
-    ui->coachNamelineEdit->setText(t.assigned_coach);
+    ui->coaches->setCurrentText(t.assigned_coach);
     ui->DtimlineEdit->setText(QString::number(t.duration_time));
     ui->StimeEdit->setTime(t.Stime);
 
-    QList<QCheckBox *> checkboxes = {ui->checkBox_8,
-                                     ui->checkBox_11,
-                                     ui->checkBox_12,
-                                     ui->checkBox_13,
-                                     ui->checkBox_14,
-                                     ui->checkBox_9,
-                                     ui->checkBox_10};
+    QList<QCheckBox *> checkboxes
+        = {ui->day1, ui->day2, ui->day3, ui->day4, ui->day5, ui->day6, ui->day7};
     for (QCheckBox *cb : checkboxes)
         cb->setChecked(false);
 
@@ -143,17 +147,12 @@ void addTraining::on_DeletepushButton_clicked()
         ui->namecomboBox->removeItem(ui->namecomboBox->currentIndex());
 
         ui->capacitylineEdit->clear();
-        ui->coachNamelineEdit->clear();
+        ui->coaches->setCurrentIndex(-1);
         ui->DtimlineEdit->clear();
         ui->StimeEdit->setTime(QTime::currentTime());
 
-        QList<QCheckBox *> checkboxes = {ui->checkBox_8,
-                                         ui->checkBox_11,
-                                         ui->checkBox_12,
-                                         ui->checkBox_13,
-                                         ui->checkBox_14,
-                                         ui->checkBox_9,
-                                         ui->checkBox_10};
+        QList<QCheckBox *> checkboxes
+            = {ui->day1, ui->day2, ui->day3, ui->day4, ui->day5, ui->day6, ui->day7};
         for (QCheckBox *cb : checkboxes)
             cb->setChecked(false);
 

@@ -12,4 +12,4 @@
 12,Padel 360,Maadi,2025-05-02,01:00,false
 13,The Padel House,Zayed,2025-05-02,02:00,false
 14,Cairo Padel Hub,Cairo,2025-05-02,04:00,false
-15,Padel Square,Maadi,2025-05-02,11:00,false
+15,Padel Square,Maadi,2025-05-02,11:00,true

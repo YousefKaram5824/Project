@@ -21,9 +21,10 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
 {
     QFile file;
     QStringList paths = {
-        "E:/Project1/users.txt",      // Habiba
-        "Y:/Final Project/users.txt", // Keko
-        "Y:/Project/users.txt",       // Keko
+        ":/files/users.txt",
+        "qrc:/files/users.txt",
+        "Y:/Project/users.txt",
+        "E:/Project1/users.txt", // Habiba
         "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
         "users.txt" // Local path as last resort
     };
@@ -48,8 +49,10 @@ QMap<QString, User> FileManager::loadUsersFromFile()
     QMap<QString, User> usersMap;
     QFile file;
     QStringList paths = {
-        "E:/Project1/users.txt",      // Habiba
-        "Y:/Final Project/users.txt", // Keko
+        ":/files/users.txt",
+        "qrc:/files/users.txt",
+        "Y:/Project/users.txt",
+        "E:/Project1/users.txt", // Habiba
         "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
         "users.txt" // Local path as last resort
     };
@@ -95,9 +98,10 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
     QMap<int, Court> courts;
     QFile file;
     QStringList paths = {
-        "E:/Project1/courts.txt",      // Habiba
-        "Y:/Final Project/courts.txt", // Keko
-        "Y:/Project/courts.txt",       // Keko
+        ":/files/courts.txt",
+        "qrc:/files/courts.txt",
+        "Y:/Project/courts.txt",
+        "E:/Project1/courts.txt", // Habiba
         "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
         "courts.txt" // Local path as last resort
     };
@@ -130,13 +134,14 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
     return courts;
 }
 
-void FileManager::saveCourtsToFile(const QString &filePath, const QMap<int, Court> &courts)
+void FileManager::saveCourtsToFile(const QMap<int, Court> &courts)
 {
     QFile file;
     QStringList paths = {
-        filePath,                      // Primary path
-        "E:/Project1/courts.txt",      // Habiba
-        "Y:/Final Project/courts.txt", // Keko
+        ":/files/courts.txt",
+        "qrc:/files/courts.txt",
+        "Y:/Project/courts.txt",
+        "E:/Project1/courts.txt", // Habiba
         "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
         "courts.txt" // Local path as last resort
     };
@@ -227,7 +232,7 @@ void FileManager::save(const QMap<QString, User> &usersMap,
                        const QMap<QString, training> &trainingsMap)
 {
     saveUsersToFile(usersMap);
-    saveCourtsToFile("", courtsMap);
+    saveCourtsToFile(courtsMap);
     saveTrainingsToFile(trainingsMap);
 }
 

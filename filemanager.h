@@ -24,7 +24,7 @@ public:
     static void saveUsersToFile(const QMap<QString, User> &usersMap);
     static QMap<QString, User> loadUsersFromFile();
     static QMap<int, Court> loadCourtsFromFile();
-    static void saveCourtsToFile(const QString &filePath, const QMap<int, Court> &courts);
+    static void saveCourtsToFile(const QMap<int, Court> &courts);
     static void saveTrainingsToFile(const QMap<QString, training> &trainingsMap);
     static QMap<QString, training> loadTrainingsFromFile();
 

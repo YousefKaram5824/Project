@@ -11,5 +11,6 @@
         <file>users.txt</file>
         <file>courts.txt</file>
         <file>notifications.txt</file>
+        <file>trainings.txt</file>
     </qresource>
 </RCC>

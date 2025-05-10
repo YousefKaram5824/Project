@@ -14,8 +14,7 @@ addTraining::addTraining(QMap<QString, training> &trainingsMapRef, QWidget *pare
         ui->namecomboBox->addItem(name);
     }
 
-    connect(ui->namecomboBox, &QComboBox::currentTextChanged,
-            this, &addTraining::loadTrainingData);
+    connect(ui->namecomboBox, &QComboBox::currentTextChanged, this, &addTraining::loadTrainingData);
 
     ui->namecomboBox->setCurrentIndex(-1);
 }
@@ -33,17 +32,19 @@ void addTraining::on_pushButton_3_clicked()
     QString durationText = ui->DtimlineEdit->text().trimmed();
     QTime Sttime = ui->StimeEdit->time();
 
-
     if (trainingN.isEmpty() || coname.isEmpty() || capText.isEmpty() || durationText.isEmpty()) {
         QMessageBox::warning(this, "Missing Data", "Please fill in all the fields.");
         return;
     }
 
     QList<QString> selectedDays;
-    QList<QCheckBox*> checkboxes = {
-        ui->checkBox_8, ui->checkBox_11, ui->checkBox_12,
-        ui->checkBox_13, ui->checkBox_14, ui->checkBox_9, ui->checkBox_10
-    };
+    QList<QCheckBox *> checkboxes = {ui->checkBox_8,
+                                     ui->checkBox_11,
+                                     ui->checkBox_12,
+                                     ui->checkBox_13,
+                                     ui->checkBox_14,
+                                     ui->checkBox_9,
+                                     ui->checkBox_10};
     for (QCheckBox *cb : checkboxes) {
         if (cb->isChecked())
             selectedDays << cb->text();
@@ -71,7 +72,6 @@ void addTraining::on_pushButton_3_clicked()
     if (ui->namecomboBox->findText(trainingN) == -1)
         ui->namecomboBox->addItem(trainingN);
 
-
     ui->namecomboBox->setCurrentIndex(-1);
     ui->capacitylineEdit->clear();
     ui->coachNamelineEdit->clear();
@@ -98,10 +98,13 @@ void addTraining::loadTrainingData(const QString &trainingName)
     ui->DtimlineEdit->setText(QString::number(t.duration_time));
     ui->StimeEdit->setTime(t.Stime);
 
-    QList<QCheckBox*> checkboxes = {
-        ui->checkBox_8, ui->checkBox_11, ui->checkBox_12,
-        ui->checkBox_13, ui->checkBox_14, ui->checkBox_9, ui->checkBox_10
-    };
+    QList<QCheckBox *> checkboxes = {ui->checkBox_8,
+                                     ui->checkBox_11,
+                                     ui->checkBox_12,
+                                     ui->checkBox_13,
+                                     ui->checkBox_14,
+                                     ui->checkBox_9,
+                                     ui->checkBox_10};
     for (QCheckBox *cb : checkboxes)
         cb->setChecked(false);
 
@@ -129,27 +132,28 @@ void addTraining::on_DeletepushButton_clicked()
         return;
     }
 
-    QMessageBox::StandardButton reply = QMessageBox::question(
-        this,
-        "Confirm Deletion",
-        "Are you sure you want to delete training: " + trainingName + "?",
-        QMessageBox::Yes | QMessageBox::No
-        );
+    QMessageBox::StandardButton reply
+        = QMessageBox::question(this,
+                                "Confirm Deletion",
+                                "Are you sure you want to delete training: " + trainingName + "?",
+                                QMessageBox::Yes | QMessageBox::No);
 
     if (reply == QMessageBox::Yes) {
         trainingsMap.remove(trainingName);
         ui->namecomboBox->removeItem(ui->namecomboBox->currentIndex());
-
 
         ui->capacitylineEdit->clear();
         ui->coachNamelineEdit->clear();
         ui->DtimlineEdit->clear();
         ui->StimeEdit->setTime(QTime::currentTime());
 
-        QList<QCheckBox*> checkboxes = {
-            ui->checkBox_8, ui->checkBox_11, ui->checkBox_12,
-            ui->checkBox_13, ui->checkBox_14, ui->checkBox_9, ui->checkBox_10
-        };
+        QList<QCheckBox *> checkboxes = {ui->checkBox_8,
+                                         ui->checkBox_11,
+                                         ui->checkBox_12,
+                                         ui->checkBox_13,
+                                         ui->checkBox_14,
+                                         ui->checkBox_9,
+                                         ui->checkBox_10};
         for (QCheckBox *cb : checkboxes)
             cb->setChecked(false);
 

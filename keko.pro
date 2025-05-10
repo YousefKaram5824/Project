@@ -51,5 +51,4 @@ RESOURCES += \
 
 DISTFILES += \
     courts \
-    trainings \
     users

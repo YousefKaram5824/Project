@@ -279,6 +279,4 @@ void MainPage::on_add_training_2_clicked()
     addtraining->show();
     addtraining->raise();
     addtraining->activateWindow();
-
-
 }

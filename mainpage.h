@@ -10,6 +10,7 @@
 #include "addtraining.h"
 #include "bookcourt.h"
 #include "court.h"
+#include "gettraining.h"
 #include "login.h"
 #include "register.h"
 
@@ -74,7 +75,9 @@ private slots:
 
     void on_backToClient_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_search_4_clicked();
+
+    void on_getTrainingbtn_clicked();
 
 private:
     Ui::MainPage *ui;
@@ -83,6 +86,7 @@ private:
     addTraining *addtraining;
     SearchManager *searchManager;
     Login *loginManager;
+    GetTraining *gettraining;
     Receptionist *receptionistManager;
     void clearAll();
     UserType getUserType(const QString &username);

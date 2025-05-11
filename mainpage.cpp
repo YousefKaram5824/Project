@@ -43,6 +43,7 @@ MainPage::~MainPage()
     delete loginManager;
     delete receptionistManager;
     delete addtraining;
+    delete gettraining;
 }
 
 void MainPage::on_pushButton_clicked()
@@ -142,6 +143,7 @@ void MainPage::on_clientData_clicked()
 void MainPage::on_backToClientPage_clicked()
 {
     ui->holder->setCurrentIndex(2);
+    ui->trainingTableWidget->setRowCount(0);
 }
 
 void MainPage::on_trainingButton_clicked()
@@ -162,6 +164,7 @@ void MainPage::on_back_clicked()
 void MainPage::on_backToClient_clicked()
 {
     ui->holder->setCurrentIndex(2);
+    ui->tableWidget->setRowCount(0);
 }
 
 void MainPage::on_getClientData_clicked()
@@ -319,8 +322,31 @@ void MainPage::on_trainings_currentTextChanged(const QString &trainingName)
     ui->StimeEdit->setTime(t.Stime);
 }
 
-void MainPage::on_pushButton_2_clicked()
-{
+void MainPage::on_search_4_clicked() {
+    ui->trainingTableWidget->setRowCount(0);
 
+    for (const auto &training : std::as_const(trainingsMap)) {
+        int row = ui->trainingTableWidget->rowCount();
+        ui->trainingTableWidget->insertRow(row);
+
+        ui->trainingTableWidget->setItem(row, 1, new QTableWidgetItem(training.name));
+        ui->trainingTableWidget->setItem(row,
+                                         2,
+                                         new QTableWidgetItem(training.Stime.toString("HH:mm")));
+        ui->trainingTableWidget
+            ->setItem(row, 3, new QTableWidgetItem(QString::number(training.duration_time)));
+
+        ui->trainingTableWidget->setItem(row,
+                                         4,
+                                         new QTableWidgetItem(QString::number(training.capacity)));
+        ui->trainingTableWidget->setItem(row, 5, new QTableWidgetItem(training.assigned_coach));
+    }
 }
 
+void MainPage::on_getTrainingbtn_clicked()
+{
+    gettraining = new GetTraining(this);
+    gettraining->show();
+    gettraining->raise();
+    gettraining->activateWindow();
+}

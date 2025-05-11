@@ -15,6 +15,7 @@ SOURCES += \
     addtraining.cpp \
     bookcourt.cpp \
     filemanager.cpp \
+    gettraining.cpp \
     login.cpp \
     main.cpp \
     mainpage.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     addtraining.h \
     bookcourt.h \
     filemanager.h \
+    gettraining.h \
     login.h \
     mainpage.h \
     register.h \
@@ -38,6 +40,7 @@ HEADERS += \
 FORMS += \
     addtraining.ui \
     bookcourt.ui \
+    gettraining.ui \
     mainpage.ui \
     register.ui
 

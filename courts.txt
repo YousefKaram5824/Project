@@ -1,6 +1,6 @@
 1,Padel Arena,Cairo,2025-05-02,10:00,false,0
 2,Padel Club Cairo,Cairo,2025-05-02,11:00,false,0
-3,Sports City Padel,New Cairo,2025-05-02,12:00,false,0
+3,Sports City Padel,New Cairo,2025-05-02,12:00,true,cl3121
 4,Smash Padel,Cairo,2025-05-02,07:00,false,0
 5,Padel Hub,Alexandria,2025-05-02,09:00,true,cl2522
 6,Cairo Padel Club,Cairo,2025-05-02,03:00,false,0

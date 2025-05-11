@@ -74,6 +74,8 @@ private slots:
 
     void on_backToClient_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;

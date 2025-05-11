@@ -25,6 +25,7 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
                          "Y:/Project/users.txt",
                          "E:/Project1/users.txt",
                          "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
+                         "D:/Project/users.txt",
                          "users.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
@@ -51,6 +52,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
                          "Y:/Project/users.txt",
                          "E:/Project1/users.txt",
                          "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
+                         "D:/Project/users.txt",
                          "users.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {
@@ -98,6 +100,7 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
                          "Y:/Project/courts.txt",
                          "E:/Project1/courts.txt",
                          "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
+                         "D:/Project/courts.txt",
                          "courts.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly)) {
@@ -137,6 +140,7 @@ void FileManager::saveCourtsToFile(const QMap<int, Court> &courts)
                          "Y:/Project/courts.txt",
                          "E:/Project1/courts.txt",
                          "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
+                         "D:/Project/courts.txt",
                          "courts.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly)) {
@@ -162,6 +166,7 @@ void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMa
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
                          "C:/Users/ASUS/Documents/Project_master/trainings.txt",
+                         "D:/Project/trainings.txt",
                          "trainings.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::WriteOnly | QIODevice::Text)) {
@@ -187,6 +192,7 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
                          "C:/Users/ASUS/Documents/Project_master/trainings.txt",
+                         "D:/Project/trainings.txt",
                          "trainings.txt"};
 
     if (!tryOpenFile(file, paths, QIODevice::ReadOnly | QIODevice::Text)) {

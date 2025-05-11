@@ -31,7 +31,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QFrame" name="frame1">
@@ -1414,7 +1414,7 @@ QPushButton:pressed {
          <second>0</second>
          <year>2025</year>
          <month>4</month>
-         <day>6</day>
+         <day>2</day>
         </datetime>
        </property>
        <property name="time">
@@ -1442,12 +1442,12 @@ QPushButton:pressed {
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>0</hour>
+         <hour>12</hour>
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
-         <month>5</month>
-         <day>1</day>
+         <month>4</month>
+         <day>30</day>
         </datetime>
        </property>
        <property name="calendarPopup">
@@ -1679,6 +1679,133 @@ QPushButton:pressed {
        </property>
        <property name="text">
         <string>Back</string>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="trainingTableWidget">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>210</y>
+         <width>751</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableWidget, QTableView {
+	color: rgb(255, 255, 255);
+    background-color: transparent;
+    border: 2px solid #ADABAB;
+    border-radius: 10px;
+    gridline-color: #ADABAB;  
+    selection-background-color: rgba(255, 165, 0, 60); 
+}
+
+
+QHeaderView::section {
+    background-color: #272727;
+    color: #ffffff;
+   border: 0.5px solid #ADABAB;
+    padding: 5px;
+    font-weight: bold;
+}
+
+
+/* رأس الزاوية (اللي بين الأرقام والأعمدة) */
+QTableCornerButton::section {
+    background-color: transparent;
+    border: none;
+}
+
+/* خلايا الجدول */
+QTableView::item, QTableWidget::item {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+}
+
+
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: transparent;
+    border: none;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #DC3E22;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: none;
+    border: none;
+    height: 0px;
+    width: 0px;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>7</number>
+       </property>
+       <column>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Start Time</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Duration</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Coach</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Capacity</string>
+        </property>
+       </column>
+       <column/>
+      </widget>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>360</y>
+         <width>83</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PushButton</string>
        </property>
       </widget>
      </widget>

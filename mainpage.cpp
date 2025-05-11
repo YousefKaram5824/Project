@@ -45,11 +45,6 @@ MainPage::~MainPage()
     delete addtraining;
 }
 
-void MainPage::on_getStarted_clicked()
-{
-    ui->holder->setCurrentIndex(1);
-}
-
 void MainPage::on_pushButton_clicked()
 {
     registerWin = new Register(usersMap, this);
@@ -98,6 +93,11 @@ void MainPage::handleLoginFailed(const QString &message)
 {
     QMessageBox::warning(this, "Login Failed", message);
     loginManager->clearLoginFields(ui->id, ui->password);
+}
+
+void MainPage::on_getStarted_clicked()
+{
+    ui->holder->setCurrentIndex(1);
 }
 
 void MainPage::on_logOut_clicked()
@@ -209,7 +209,6 @@ void MainPage::displayCourtsInTable(const QList<Court> &courts)
 
         if (court.isBooked) {
             statusItem->setForeground(Qt::red);
-            //statusItem->setFont(QFont("", -1, QFont::Bold));
         }
 
         ui->tableWidget->setItem(row, 5, statusItem);
@@ -298,7 +297,7 @@ void MainPage::populateCoachTrainings()
 {
     QString currentCoachId = Login::getCurrentUserId();
     ui->trainings->clear();
-    
+
     for (const auto &training : trainingsMap) {
         if (training.assigned_coach == currentCoachId) {
             ui->trainings->addItem(training.name);
@@ -319,3 +318,9 @@ void MainPage::on_trainings_currentTextChanged(const QString &trainingName)
     ui->DtimlineEdit->setText(QString::number(t.duration_time));
     ui->StimeEdit->setTime(t.Stime);
 }
+
+void MainPage::on_pushButton_2_clicked()
+{
+
+}
+

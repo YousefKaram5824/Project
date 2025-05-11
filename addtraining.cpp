@@ -9,6 +9,7 @@ addTraining::addTraining(QMap<QString, training> &trainingsMapRef,
     , ui(new Ui::addTraining)
     , trainingsMap(trainingsMapRef)
     , usersMap(usersMapRef)
+//uosef el-koko
 {
     ui->setupUi(this);
 

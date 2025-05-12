@@ -13,7 +13,7 @@
 #include "gettraining.h"
 #include "login.h"
 #include "register.h"
-
+#include<QHBoxLayout>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
@@ -78,6 +78,8 @@ private slots:
     void on_search_4_clicked();
 
     void on_getTrainingbtn_clicked();
+    void populateTrainingButtons();
+    void showTrainingDetails(const QString &trainingName);
 
 private:
     Ui::MainPage *ui;
@@ -97,6 +99,7 @@ private:
     void createEmptyTableWidget();
     void refreshCourtTable();
     void populateCoachTrainings();
+    QHBoxLayout* trainingButtonsLayout;
 };
 
 #endif

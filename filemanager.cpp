@@ -177,11 +177,25 @@ void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMa
     QTextStream out(&file);
     for (const auto &t : trainingsMap) {
         out << t.name << "," << t.capacity << "," << t.Stime.toString("HH:mm") << ","
-            << t.duration_time << "," << t.days.join('|') << "," << t.assigned_coach << "\n";
-    }
+            << t.duration_time << "," << t.days.join('|') << "," << t.assigned_coach;
 
+        QStringList enrolledUserIds;
+        for (auto it = t.users.begin(); it != t.users.end(); ++it) {
+            enrolledUserIds << (it.key());
+        }
+        out << "," << enrolledUserIds.join('|');
+
+        QStringList waitingUserIds;
+        for (const auto &user : t.waiting_list) {
+            waitingUserIds << user.id;
+        }
+        out << "," << waitingUserIds.join('|');
+
+        out << "\n";
+    }
     file.close();
 }
+
 QMap<QString, training> FileManager::loadTrainingsFromFile()
 {
     QMap<QString, training> trainingsMap;
@@ -222,6 +236,24 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
         t.duration_time = fields[3].toInt();
         t.days = fields[4].split('|', Qt::SkipEmptyParts);
         t.assigned_coach = fields[5];
+
+        if (fields.size() >= 7) {
+            QStringList userIds = fields[6].split('|', Qt::SkipEmptyParts);
+            for (const QString &idStr : userIds) {
+                User dummyUser;
+                dummyUser.id = idStr;
+                t.users.insert(idStr, dummyUser);
+
+            }
+        }
+        if (fields.size() >= 8) {
+            QStringList waitIds = fields[7].split('|', Qt::SkipEmptyParts);
+            for (const QString &uid : waitIds) {
+                User dummyUser;
+                dummyUser.id = uid; // Placeholder
+                t.waiting_list.append(dummyUser);
+            }
+        }
 
         trainingsMap.insert(t.name, t);
     }

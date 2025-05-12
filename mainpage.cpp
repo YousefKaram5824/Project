@@ -72,6 +72,7 @@ void MainPage::handleLoginSuccessful(UserType userType)
     switch (userType) {
     case UserType::Client:
         ui->holder->setCurrentIndex(2);
+
         break;
     case UserType::Coach:
         ui->holder->setCurrentIndex(4);
@@ -345,7 +346,8 @@ void MainPage::on_search_4_clicked() {
 
 void MainPage::on_getTrainingbtn_clicked()
 {
-    gettraining = new GetTraining(this);
+    QString currentUserId = loginManager->getCurrentUserId();
+    gettraining = new GetTraining(trainingsMap, usersMap, currentUserId, this);
     gettraining->show();
     gettraining->raise();
     gettraining->activateWindow();

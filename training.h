@@ -14,8 +14,9 @@ struct training
     int duration_time;
     QList<QString> days;
     QString assigned_coach;
-    QMap<int, User> users;
+    QMap<QString, User> users;
     QList<User> waiting_list;
+
 };
 
 #endif // TRAINING_H

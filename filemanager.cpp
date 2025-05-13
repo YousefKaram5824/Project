@@ -219,6 +219,13 @@ void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMa
         }
         out << "," << waitingUserIds.join('|');
 
+        QStringList vipWaitingUserIds;
+        for (const auto &vipUser : t.VIP_waiting_list) {
+            vipWaitingUserIds << vipUser.id;
+        }
+        out << "," << vipWaitingUserIds.join('|');
+
+
         out << "\n";
     }
     file.close();
@@ -277,8 +284,17 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
             QStringList waitIds = fields[7].split('|', Qt::SkipEmptyParts);
             for (const QString &uid : waitIds) {
                 User dummyUser;
-                dummyUser.id = uid; // Placeholder
+                dummyUser.id = uid;
                 t.waiting_list.append(dummyUser);
+            }
+        }
+        if (fields.size() >= 9) {
+            QStringList vipIds = fields[8].split('|', Qt::SkipEmptyParts);
+            for (const QString &vipId : vipIds) {
+                User dummyVIP;
+                dummyVIP.id = vipId;
+                dummyVIP.isVIP = true; // 🟡 Optional hint that they're VIPs
+                t.VIP_waiting_list.append(dummyVIP);
             }
         }
 

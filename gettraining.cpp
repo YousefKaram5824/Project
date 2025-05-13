@@ -64,20 +64,28 @@ void GetTraining::on_pushButton_clicked()
             QMessageBox::critical(this, "Error", "Current user data not found.");
         }
     } else {
-        QMessageBox::warning(
-            this,
-            "Full",
-            "This training session is currently full. You will be added to the waiting list.");
         if (usersMap.contains(currentLoggedInUserId)) {
-            currentTraining.waiting_list.append(usersMap[currentLoggedInUserId]);
+            User user = usersMap[currentLoggedInUserId];
+            // ⭐ VIP Check
+            if (user.isVIP) {
+                currentTraining.VIP_waiting_list.enqueue(user);
+                QMessageBox::information(this, "Added to VIP Waiting List",
+                                         "This training is full. As a VIP, you've been added to the VIP waiting list.");
+            } else {
+                currentTraining.waiting_list.enqueue(user);
+                QMessageBox::information(this, "Added to Waiting List",
+                                         "This training is full. You've been added to the waiting list.");
+            }
         } else {
             QMessageBox::critical(this, "Error", "Current user data not found.");
         }
     }
-    qDebug() << "Current Trainings Map:";
+
+    qDebug() << "Updated Trainings Map:";
     for (auto it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
-        qDebug() << "Training ID:" << it.key() << "Capacity:" << it.value().capacity
-                 << "Current Users:" << it.value().users.keys();
+        qDebug() << "Training ID:" << it.key()
+        << "Capacity:" << it.value().capacity
+        << "Current Users:" << it.value().users.keys();
     }
 
     close();

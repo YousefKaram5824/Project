@@ -23,7 +23,7 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
     QStringList paths = {":/files/users.txt",
                          "qrc:/files/users.txt",
                          "Y:/Project/users.txt",
-                         "E:/Project1/users.txt",
+                         "E:/Project/users.txt",
                          "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
                          "D:/Project/users.txt",
                          "users.txt"};
@@ -50,7 +50,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
     QStringList paths = {":/files/users.txt",
                          "qrc:/files/users.txt",
                          "Y:/Project/users.txt",
-                         "E:/Project1/users.txt",
+                         "E:/Project/users.txt",
                          "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
                          "D:/Project/users.txt",
                          "users.txt"};
@@ -90,79 +90,107 @@ QMap<QString, User> FileManager::loadUsersFromFile()
     file.close();
     return usersMap;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////
 QMap<int, Court> FileManager::loadCourtsFromFile()
 {
-    QMap<int, Court> courts;
+    QMap<int, Court> courtsMap;
     QFile file;
-    QStringList paths = {":/files/courts.txt",
-                         "qrc:/files/courts.txt",
-                         "Y:/Project/courts.txt",
-                         "E:/Project1/courts.txt",
-                         "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
-                         "D:/Project/courts.txt",
-                         "courts.txt"};
-
-    if (!tryOpenFile(file, paths, QIODevice::ReadOnly)) {
-        qDebug() << "Failed to open courts file in any path.";
-        return courts;
-    }
+    QStringList paths = {"E:/Project1/users.txt",
+                         ":/files/users.txt",
+                         "qrc:/files/users.txt",
+                         "Y:/Project/users.txt",
+                         "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
+                         "D:/Project/users.txt",
+                         "users.txt"};
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return courtsMap;
 
     QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        QStringList parts = line.split(',', Qt::SkipEmptyParts);
-        for (QString &part : parts) {
-            part = part.trimmed();
-        }
+    int lineNumber = 0;
 
-        if (parts.size() >= 7) {
-            int id = parts[0].toInt();
+    while (!in.atEnd())
+    {
+        QString line = in.readLine();
+        QStringList parts = line.split(",");
+        if (parts.size() >= 7)
+        {
+            QString id = parts[0];
             QString name = parts[1];
             QString location = parts[2];
             QDate date = QDate::fromString(parts[3], "yyyy-MM-dd");
             QTime time = QTime::fromString(parts[4], "HH:mm");
-            bool isBooked = (parts[5].toLower() == "true");
-            QString idString = QString::number(id);
-            QString userId = parts[6];
-            courts[id] = Court(idString, name, location, date, time, isBooked, userId);
+            bool isBooked = parts[5].toInt();
+            QString clientId = parts[6];
+
+            QDate bookingDate = QDate::fromString(parts[7], "yyyy-MM-dd");  // Added field
+            QTime bookingTime = QTime::fromString(parts[8], "HH:mm");  // Added field
+            QStringList vipQueue = parts[9].split(";");  // Assuming semicolon-separated
+            QStringList normalQueue = parts[10].split(";");  // Assuming semicolon-separated
+
+            Court court(id, name, location, date, time, isBooked, clientId);
+            court.bookingDate = bookingDate;
+            court.bookingTime = bookingTime;
+
+            for (const QString &vip : vipQueue)
+                court.waitingListVIP.enqueue(vip);
+
+            for (const QString &normal : normalQueue)
+                court.waitingListNormal.enqueue(normal);
+
+            courtsMap.insert(lineNumber, court);
+            ++lineNumber;
         }
     }
+
     file.close();
-    return courts;
+    return courtsMap;
 }
 
-void FileManager::saveCourtsToFile(const QMap<int, Court> &courts)
+
+
+
+void FileManager::saveCourtsToFile(const QMap<int, Court> &courtsMap)
 {
     QFile file;
-    QStringList paths = {":/files/courts.txt",
-                         "qrc:/files/courts.txt",
-                         "Y:/Project/courts.txt",
-                         "E:/Project1/courts.txt",
-                         "C:\\Users\\ASUS\\Documents\\Project_master\\courts.txt",
-                         "D:/Project/courts.txt",
-                         "courts.txt"};
-
-    if (!tryOpenFile(file, paths, QIODevice::WriteOnly)) {
-        qDebug() << "Failed to open courts file for writing in any path.";
-        return;
-    }
+    QStringList paths = {":/files/users.txt",
+                         "qrc:/files/users.txt",
+                         "Y:/Project/users.txt",
+                         "E:/Project1/users.txt",
+                         "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
+                         "D:/Project/users.txt",
+                         "users.txt"};
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;  // Return if the file couldn't be opened
 
     QTextStream out(&file);
-    for (const Court &court : courts) {
-        out << court.id << "," << court.name << "," << court.location << ","
-            << court.date.toString("yyyy-MM-dd") << "," << court.time.toString("HH:mm") << ","
-            << (court.isBooked ? "true" : "false") << "," << court.clientId << "\n";
+    for (auto it = courtsMap.begin(); it != courtsMap.end(); ++it)
+    {
+        const Court& court = it.value();
+        QString vipQueue = court.waitingListVIP.join(";");
+        QString normalQueue = court.waitingListNormal.join(";");
+
+        out << court.id << ","
+            << court.name << ","
+            << court.location << ","
+            << court.date.toString("yyyy-MM-dd") << ","
+            << court.time.toString("HH:mm") << ","
+            << court.isBooked << ","
+            << court.clientId << ","
+            << court.bookingDate.toString("yyyy-MM-dd") << ","
+            << court.bookingTime.toString("HH:mm") << ","
+            << vipQueue << ","
+            << normalQueue << "\n";
     }
     file.close();
 }
+/////////////////////////////////////////////////////////////////////////
 
 void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMap)
 {
     QFile file;
     QStringList paths = {":/files/trainings.txt",
                          "qrc:/files/trainings.txt",
-                         "E:/Project1/trainings.txt",
+                         "E:/Project/trainings.txt",
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
                          "C:/Users/ASUS/Documents/Project_master/trainings.txt",
@@ -202,7 +230,7 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
     QFile file;
     QStringList paths = {":/files/trainings.txt",
                          "qrc:/files/trainings.txt",
-                         "E:/Project1/trainings.txt",
+                         "E:/Project/trainings.txt",
                          "Y:/Final Project/trainings.txt",
                          "Y:/Project/trainings.txt",
                          "C:/Users/ASUS/Documents/Project_master/trainings.txt",
@@ -243,7 +271,6 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
                 User dummyUser;
                 dummyUser.id = idStr;
                 t.users.insert(idStr, dummyUser);
-
             }
         }
         if (fields.size() >= 8) {

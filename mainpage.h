@@ -2,6 +2,7 @@
 #define MAINPAGE_H
 
 #include <QDialog>
+#include <QHBoxLayout>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QWidget>
@@ -13,7 +14,6 @@
 #include "gettraining.h"
 #include "login.h"
 #include "register.h"
-#include<QHBoxLayout>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
@@ -99,7 +99,7 @@ private:
     void createEmptyTableWidget();
     void refreshCourtTable();
     void populateCoachTrainings();
-    QHBoxLayout* trainingButtonsLayout;
+    QHBoxLayout *trainingButtonsLayout;
 };
 
 #endif

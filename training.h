@@ -16,7 +16,6 @@ struct training
     QString assigned_coach;
     QMap<QString, User> users;
     QList<User> waiting_list;
-
 };
 
 #endif // TRAINING_H

@@ -18,15 +18,19 @@ public:
     ~BookCourt();
     void setCourtMap(QMap<int, Court> &map);
     void setCurrentUserId(const QString &userId) { currentUserId = userId; }
+    void setUserVIPStatus(bool isVIP) { isCurrentUserVIP = isVIP; }
 
 private slots:
     void on_Book_clicked();
+    void on_cancel_clicked();
 
 private:
     Ui::BookCourt *ui;
     void bookSelectedCourt(QMap<int, Court> &courtMap);
     QMap<int, Court> *courtMap;
     QString currentUserId;
+    bool isCurrentUserVIP = false;
+
 signals:
     void courtBooked();
 };

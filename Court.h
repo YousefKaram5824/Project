@@ -3,6 +3,7 @@
 #include <QDate>
 #include <QString>
 #include <QTime>
+#include <QQueue>
 
 struct Court
 {
@@ -13,6 +14,10 @@ struct Court
     QTime time = QTime::currentTime();
     bool isBooked = false;
     QString clientId;
+    QDate bookingDate;
+    QTime bookingTime;
+    QQueue<QString> waitingListVIP;
+    QQueue<QString> waitingListNormal;
 
     Court() = default;
 
@@ -30,6 +35,7 @@ struct Court
         , time(time)
         , isBooked(isBooked)
         , clientId(clientId)
+
     {}
 };
 

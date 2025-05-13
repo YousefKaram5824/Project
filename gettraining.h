@@ -20,7 +20,6 @@ public:
     ~GetTraining();
 
 public:
-
     Ui::GetTraining *ui;
     QMap<QString, training> &trainingsMap;
     QMap<QString, User> &usersMap;

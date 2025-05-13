@@ -323,7 +323,8 @@ void MainPage::on_trainings_currentTextChanged(const QString &trainingName)
     ui->StimeEdit->setTime(t.Stime);
 }
 
-void MainPage::on_search_4_clicked() {
+void MainPage::on_search_4_clicked()
+{
     ui->trainingTableWidget->setRowCount(0);
 
     for (const auto &training : std::as_const(trainingsMap)) {

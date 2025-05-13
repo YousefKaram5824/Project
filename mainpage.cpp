@@ -157,11 +157,6 @@ void MainPage::on_commandLinkButton_clicked()
     ui->holder->setCurrentIndex(2);
 }
 
-void MainPage::on_back_clicked()
-{
-    ui->holder->setCurrentIndex(6);
-}
-
 void MainPage::on_backToClient_clicked()
 {
     ui->holder->setCurrentIndex(2);

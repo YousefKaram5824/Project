@@ -27,7 +27,9 @@ struct Court
           QDate date,
           QTime time,
           bool isBooked,
-          QString clientId)
+          QString clientId,
+          QDate bookingDate,
+          QTime bookingTime)
         : id(id)
         , name(name)
         , location(location)
@@ -35,6 +37,8 @@ struct Court
         , time(time)
         , isBooked(isBooked)
         , clientId(clientId)
+        , bookingDate(bookingDate)
+        , bookingTime(bookingTime)
 
     {}
 };

@@ -6,6 +6,7 @@
 #include <QIODevice>
 #include <QList>
 #include <QMap>
+#include <QQueue>
 #include <QString>
 #include <QTime>
 #include "Court.h"

@@ -65,8 +65,6 @@ private slots:
 
     void on_add_training_2_clicked();
 
-    void on_back_clicked();
-
     void on_trainings_currentTextChanged(const QString &trainingName);
 
     void on_backToClientPage_clicked();
@@ -78,8 +76,6 @@ private slots:
     void on_search_4_clicked();
 
     void on_getTrainingbtn_clicked();
-    void populateTrainingButtons();
-    void showTrainingDetails(const QString &trainingName);
 
 private:
     Ui::MainPage *ui;
@@ -96,7 +92,6 @@ private:
     QMap<int, Court> &courtsMap;
     QMap<QString, training> &trainingsMap;
     void displayCourtsInTable(const QList<Court> &courts);
-    void createEmptyTableWidget();
     void refreshCourtTable();
     void populateCoachTrainings();
     QHBoxLayout *trainingButtonsLayout;

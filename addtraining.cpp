@@ -9,16 +9,13 @@ addTraining::addTraining(QMap<QString, training> &trainingsMapRef,
     , ui(new Ui::addTraining)
     , trainingsMap(trainingsMapRef)
     , usersMap(usersMapRef)
-//uosef el-koko
 {
     ui->setupUi(this);
 
     for (const QString &name : trainingsMap.keys()) {
         ui->namecomboBox->addItem(name);
     }
-
     populateCoachesComboBox();
-
     connect(ui->namecomboBox, &QComboBox::currentTextChanged, this, &addTraining::loadTrainingData);
     ui->namecomboBox->setCurrentIndex(-1);
     ui->coaches->setCurrentIndex(-1);
@@ -28,7 +25,7 @@ void addTraining::populateCoachesComboBox()
 {
     ui->coaches->clear();
     for (const auto &user : std::as_const(usersMap)) {
-        if (user.id.startsWith("co")) { // Only add users with coach IDs
+        if (user.id.startsWith("co")) {
             ui->coaches->addItem(user.id);
         }
     }
@@ -65,14 +62,11 @@ void addTraining::on_pushButton_3_clicked()
         return;
     }
 
-    int cap = capText.toInt();
-    int Dtime = durationText.toInt();
-
     training newtraining;
     newtraining.name = trainingN;
-    newtraining.capacity = cap;
+    newtraining.capacity = capText.toInt();
     newtraining.Stime = Sttime;
-    newtraining.duration_time = Dtime;
+    newtraining.duration_time = durationText.toInt();
     newtraining.days = selectedDays;
     newtraining.assigned_coach = coname;
 

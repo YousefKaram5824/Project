@@ -60,6 +60,7 @@ void Register::clearAll()
 
 void Register::on_pushButton_clicked()
 {
+    QString type = ui->userTypeComboBox->currentText();
     QString username = ui->usernameLineEdit->text();
     QString id = generateUniqueID();
     QString password = ui->passwordLineEdit->text();
@@ -73,6 +74,11 @@ void Register::on_pushButton_clicked()
     } else {
         birthDateString = "null";
         subscriptionPeriodString = "null";
+    }
+
+    if (type.isEmpty()) {
+        QMessageBox::warning(this, "Error", "You didn't choose your role!");
+        return;
     }
 
     if (password != confirmPassword) {

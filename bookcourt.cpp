@@ -20,7 +20,6 @@ void BookCourt::setCourtMap(QMap<int, Court> &map)
 
 void BookCourt::on_Book_clicked()
 {
-
     if (!courtMap)
         return;
 
@@ -39,7 +38,6 @@ void BookCourt::on_Book_clicked()
 
     Court &court = (*courtMap)[id];
 
-
     if (court.clientId == currentUserId) {
         QMessageBox::information(this, "Already Booked", "You have already booked this court.");
         return;
@@ -52,7 +50,6 @@ void BookCourt::on_Book_clicked()
         court.bookingTime = QTime::currentTime();
         QMessageBox::information(this, "Done", "Court booked successfully.");
     } else {
-
         if (isCurrentUserVIP) {
             court.waitingListVIP.enqueue(currentUserId);
             QMessageBox::information(this, "Added to Waiting List", "You are added to the VIP waiting list.");
@@ -61,14 +58,8 @@ void BookCourt::on_Book_clicked()
             QMessageBox::information(this, "Added to Waiting List", "You are added to the regular waiting list.");
         }
     }
-
     emit courtBooked();
-    //  this->close();
-
-
 }
-
-
 
 void BookCourt::on_cancel_clicked()
 {
@@ -90,36 +81,29 @@ void BookCourt::on_cancel_clicked()
         return;
     }
 
-
     QDateTime now = QDateTime::currentDateTime();
     QDateTime courtTime(court.bookingDate, court.bookingTime);
+
     if (now.secsTo(courtTime) < 3 * 3600) {
         QMessageBox::warning(this, "Too Late", "You can only cancel bookings at least 3 hours before the time.");
         return;
     }
-
-
-    QString courtId = court.id;
 
     if (!court.waitingListVIP.isEmpty()) {
         QString nextVIP = court.waitingListVIP.dequeue();
         court.clientId = nextVIP;
         court.isBooked = true;
         QMessageBox::information(this, "Reassigned", "Court assigned to VIP user: " + nextVIP);
-    }
-    else if (!court.waitingListNormal.isEmpty()) {
+    }else if (!court.waitingListNormal.isEmpty()) {
         QString nextNormal = court.waitingListNormal.dequeue();
         court.clientId = nextNormal;
         court.isBooked = true;
         QMessageBox::information(this, "Reassigned", "Court assigned to user: " + nextNormal);
-    }
-    else {
+    }else {
         court.clientId = "";
         court.isBooked = false;
         QMessageBox::information(this, "Canceled", "Booking canceled. Court is now available.");
     }
 
     emit courtBooked();
-    // this->close();
-
 }

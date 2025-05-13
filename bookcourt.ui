@@ -103,6 +103,33 @@ QPushButton:pressed {
      <string>Court ID</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="cancel">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>330</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
+    </property>
+    <property name="text">
+     <string>Cancle</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -33,6 +33,7 @@ HEADERS += \
     gettraining.h \
     login.h \
     mainpage.h \
+    notification.h \
     register.h \
     SearchManager.h \
     training.h

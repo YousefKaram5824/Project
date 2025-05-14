@@ -6,12 +6,14 @@
 MainPage::MainPage(QMap<QString, User> &usersMapRef,
                    QMap<int, Court> &courtsMapRef,
                    QMap<QString, training> &trainingsMapRef,
+                   QMap<QString, QStringList> &notificationsMapRef,
                    QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainPage)
     , usersMap(usersMapRef)
     , courtsMap(courtsMapRef)
     , trainingsMap(trainingsMapRef)
+    , notificationsMap(notificationsMapRef)
 
 {
     ui->setupUi(this);
@@ -213,13 +215,87 @@ void MainPage::on_getClientData_clicked()
         return;
     }
 
+    if (clientId.length() < 2 || clientId.left(2).toLower() != "cl") {
+        QMessageBox::warning(this, "Invalid Client ID", "You have to search for clients only!");
+        return;
+    }
+
     if (receptionistManager->validateClient(clientId)) {
         const User &client = usersMap[clientId];
         receptionistManager->displayClientInfo(client,
                                                ui->getClientName,
                                                ui->getClientDateOfBirth,
-                                               ui->getSubscriptionPeriod);
+                                               ui->getSubPeriod);
+        QString vipStatus = client.isVIP ? "Yes" : "No";
+        ui->getIsVIPData->setText(vipStatus);
+        on_periods_currentTextChanged(ui->periods->currentText());
     }
+}
+
+void MainPage::on_periods_currentTextChanged(const QString &period)
+{
+    int basePrice = 0;
+
+    if (period == "Monthly") {
+        basePrice = 200;
+    } else if (period == "3 Months") {
+        basePrice = 600;
+    } else if (period == "6 Months") {
+        basePrice = 1200;
+    } else if (period == "Yearly") {
+        basePrice = 2400;
+    }
+
+    QString clientId = ui->clientID->text();
+    bool isVIP = false;
+
+    if (!clientId.isEmpty() && usersMap.contains(clientId)) {
+        isVIP = usersMap[clientId].isVIP;
+    }
+
+    double finalPrice = basePrice;
+    if (isVIP) {
+        finalPrice = basePrice * 1.10;
+    }
+
+    ui->getPriceData->setText(QString::number(finalPrice, 'f', 0) + " L.E.");
+}
+
+void MainPage::on_changeVIP_clicked()
+{
+    QString clientId = ui->clientID->text();
+
+    User &client = usersMap[clientId];
+    client.isVIP = !client.isVIP;
+
+    QString statusChange = client.isVIP ? "VIP" : "Regular";
+    QMessageBox::information(this,
+                             "VIP Status Changed",
+                             QString("Client %1 is now a %2 member").arg(clientId).arg(statusChange));
+    on_getClientData_clicked();
+}
+
+void MainPage::on_setSubPeriod_clicked()
+{
+    QString clientId = ui->clientID->text();
+
+    QString selectedPeriod = ui->periods->currentText();
+
+    if (selectedPeriod.isEmpty()) {
+        QMessageBox::warning(this, "Error", "Please select a subscription period first");
+        return;
+    }
+
+    User &client = usersMap[clientId];
+    client.subscriptionPeriod = selectedPeriod;
+
+    QMessageBox::information(this,
+                             "Subscription Period Updated",
+                             QString("Client %1's subscription period has been set to %2")
+                                 .arg(clientId)
+                                 .arg(selectedPeriod));
+    ui->periods->setCurrentIndex(-1);
+    on_getClientData_clicked();
 }
 
 void MainPage::displayCourtsInTable(const QList<Court> &courts)
@@ -277,6 +353,7 @@ void MainPage::on_profile_clicked()
 {
     QString currentId = loginManager->getCurrentUserId();
     ui->workoutTable->setRowCount(0);
+    ui->notificationList->clear();
 
     if (!currentId.isEmpty() && usersMap.contains(currentId)) {
         const User &currentUser = usersMap[currentId];
@@ -301,6 +378,13 @@ void MainPage::on_profile_clicked()
                 row++;
             }
             ui->holder->setCurrentIndex(6);
+        }
+        if (notificationsMap.contains(currentId)) {
+            const QStringList &userNotifications = notificationsMap[currentId];
+
+            for (const QString &notification : userNotifications) {
+                ui->notificationList->addItem(notification);
+            }
         }
     } else {
         QMessageBox::warning(this, "Error", "Could not load user profile data.");

@@ -25,7 +25,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="MainWindow">
        <widget class="QFrame" name="frame1">
@@ -619,7 +619,7 @@ QPushButton:pressed {
         <widget class="QLabel" name="getClientName">
          <property name="geometry">
           <rect>
-           <x>550</x>
+           <x>620</x>
            <y>330</y>
            <width>63</width>
            <height>20</height>
@@ -632,7 +632,7 @@ QPushButton:pressed {
         <widget class="QLabel" name="getClientDateOfBirth">
          <property name="geometry">
           <rect>
-           <x>570</x>
+           <x>620</x>
            <y>380</y>
            <width>63</width>
            <height>20</height>
@@ -664,11 +664,168 @@ QPushButton:pressed {
           <string>Subscription Period</string>
          </property>
         </widget>
-        <widget class="QLabel" name="getSubscriptionPeriod">
+        <widget class="QComboBox" name="periods">
          <property name="geometry">
           <rect>
-           <x>610</x>
-           <y>440</y>
+           <x>950</x>
+           <y>430</y>
+           <width>100</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>Monthly</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>3 Months</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>6 Months</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Yearly</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLabel" name="label_13">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>520</y>
+           <width>61</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>VIP?</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="getIsVIPData">
+         <property name="geometry">
+          <rect>
+           <x>620</x>
+           <y>520</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>480</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>Price</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="getPriceData">
+         <property name="geometry">
+          <rect>
+           <x>620</x>
+           <y>480</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="changeVIP">
+         <property name="geometry">
+          <rect>
+           <x>820</x>
+           <y>520</y>
+           <width>111</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
+         </property>
+         <property name="text">
+          <string>Change</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="setSubPeriod">
+         <property name="geometry">
+          <rect>
+           <x>790</x>
+           <y>430</y>
+           <width>111</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: #b33b1b; 
+}
+QPushButton:pressed {
+    background: #992f15; 
+}</string>
+         </property>
+         <property name="text">
+          <string>Set </string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="getSubPeriod">
+         <property name="geometry">
+          <rect>
+           <x>640</x>
+           <y>430</y>
            <width>63</width>
            <height>20</height>
           </rect>
@@ -1374,7 +1531,7 @@ QScrollBar::add-page, QScrollBar::sub-page {
           <string/>
          </property>
         </widget>
-        <widget class="QListWidget" name="listWidget">
+        <widget class="QListWidget" name="notificationList">
          <property name="geometry">
           <rect>
            <x>970</x>
@@ -1635,7 +1792,7 @@ QPushButton:pressed {
            <second>0</second>
            <year>2025</year>
            <month>3</month>
-           <day>24</day>
+           <day>20</day>
           </datetime>
          </property>
          <property name="time">
@@ -1663,12 +1820,12 @@ QPushButton:pressed {
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>9</hour>
+           <hour>21</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2025</year>
            <month>4</month>
-           <day>29</day>
+           <day>28</day>
           </datetime>
          </property>
          <property name="calendarPopup">

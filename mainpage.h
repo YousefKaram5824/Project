@@ -14,6 +14,7 @@
 #include "court.h"
 #include "gettraining.h"
 #include "login.h"
+#include "notification.h"
 #include "register.h"
 
 QT_BEGIN_NAMESPACE
@@ -30,6 +31,7 @@ public:
     explicit MainPage(QMap<QString, User> &usersMapRef,
                       QMap<int, Court> &courtsMapRef,
                       QMap<QString, training> &trainingsMapRef,
+                      QMap<QString, QStringList> &notificationsMapRef,
                       QWidget *parent = nullptr);
 
     ~MainPage();
@@ -62,6 +64,12 @@ private slots:
     void on_beattended_clicked();
     void on_logoutFromRes_clicked();
 
+    void on_periods_currentTextChanged(const QString &arg1);
+
+    void on_changeVIP_clicked();
+
+    void on_setSubPeriod_clicked();
+
 private:
     Ui::MainPage *ui;
     Register *registerWin;
@@ -76,6 +84,7 @@ private:
     QMap<QString, User> &usersMap;
     QMap<int, Court> &courtsMap;
     QMap<QString, training> &trainingsMap;
+    QMap<QString, QStringList> &notificationsMap;
     void displayCourtsInTable(const QList<Court> &courts);
     void createEmptyTableWidget();
     void refreshCourtTable();

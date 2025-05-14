@@ -17,16 +17,21 @@ class FileManager
 public:
     static void save(const QMap<QString, User> &usersMap,
                      const QMap<int, Court> &courtsMap,
-                     const QMap<QString, training> &trainingsMap);
+                     const QMap<QString, training> &trainingsMap,
+                     const QMap<QString, QStringList> &notificationsMap);
+
     static void load(QMap<QString, User> &usersMap,
                      QMap<int, Court> &courtsMap,
-                     QMap<QString, training> &trainingsMap);
+                     QMap<QString, training> &trainingsMap,
+                     QMap<QString, QStringList> &notificationsMap);
     static void saveUsersToFile(const QMap<QString, User> &usersMap);
-    static QMap<QString, User> loadUsersFromFile();
-    static QMap<int, Court> loadCourtsFromFile();
     static void saveCourtsToFile(const QMap<int, Court> &courts);
     static void saveTrainingsToFile(const QMap<QString, training> &trainingsMap);
+    static void saveNotificationsToFile(const QMap<QString, QStringList> &notificationsMap);
+    static QMap<QString, User> loadUsersFromFile();
+    static QMap<int, Court> loadCourtsFromFile();
     static QMap<QString, training> loadTrainingsFromFile();
+    static QMap<QString, QStringList> loadNotificationsFromFile();
 
 private:
     static bool tryOpenFile(QFile &file, const QStringList &paths, QIODevice::OpenMode mode);

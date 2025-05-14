@@ -19,7 +19,7 @@ public:
     void displayClientInfo(const User &client,
                            QLabel *nameLabel,
                            QLabel *birthDateLabel,
-                           QLabel *subscriptionLabel);
+                           QLabel *subPeriodLabel);
     QString getClientInfo(const QString &clientId);
 
 signals:

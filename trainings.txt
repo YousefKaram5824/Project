@@ -1,4 +1,4 @@
-boxing,2,16:00,7,sat|sun|mon|tue|wed|thu|fri,co2715,cl2502|cl9364|cl9462,cl1830|cl2112,cl8224,cl2502:20|cl9364:23|cl9462:18,cl2502:3|cl9364:4|cl9462:2
+Training2,2,09:00,2,sat|mon|wed|fri,co2715,cl9462,,,,
+boxing,2,16:00,7,sat|sun|mon|tue|wed|thu|fri,co2715,cl2502|cl9364|cl9462,cl1830|cl2112,cl8224,cl2502:20|cl9364:23|cl9462:26,cl2502:3|cl9364:4|cl9462:6
 galaxi,12,18:00,3,sat|sun|mon,co2715,,,,,
-training1,9,12:00,2,sat|sun,co2715,cl2522,,,,
 zompaaa,8,00:00,2,sun|mon|wed|fri,co2715,cl2502|cl9364,,,,

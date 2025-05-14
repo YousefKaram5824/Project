@@ -27,14 +27,14 @@ bool Receptionist::validateClient(const QString &clientId)
 void Receptionist::displayClientInfo(const User &client,
                                      QLabel *nameLabel,
                                      QLabel *birthDateLabel,
-                                     QLabel *subscriptionLabel)
+                                     QLabel *subPeriodLabel)
 {
     if (nameLabel)
         nameLabel->setText(client.username);
     if (birthDateLabel)
         birthDateLabel->setText(client.birthDate);
-    if (subscriptionLabel)
-        subscriptionLabel->setText(client.subscriptionPeriod);
+    if (subPeriodLabel)
+        subPeriodLabel->setText(client.subscriptionPeriod);
 }
 
 QString Receptionist::getClientInfo(const QString &clientId)

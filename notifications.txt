@@ -1,1 +1,2 @@
-cl9462,you have been converted to VIP successfully!|your subscription period is changed successfully
+cl9364,Congratulations! You have been upgraded to VIP status. Enjoy your premium benefits!
+cl9462,you have been converted to VIP successfully!|your subscription period is changed successfully|Congratulations! You have been upgraded to VIP status. Enjoy your premium benefits!|Your VIP status has been changed to Regular membership.

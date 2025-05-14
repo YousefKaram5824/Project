@@ -5,11 +5,13 @@
 GetTraining::GetTraining(QMap<QString, training> &trainingsRef,
                          QMap<QString, User> &usersRef,
                          QString currentUserId,
+                         QMap<QString, QStringList> &notificationsMapRef,
                          QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::GetTraining)
     , trainingsMap(trainingsRef)
     , usersMap(usersRef)
+    , notificationsMap(notificationsMapRef)
     , currentLoggedInUserId(currentUserId)
 {
     ui->setupUi(this);

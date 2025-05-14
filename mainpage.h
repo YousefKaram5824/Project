@@ -14,7 +14,6 @@
 #include "court.h"
 #include "gettraining.h"
 #include "login.h"
-#include "notification.h"
 #include "register.h"
 
 QT_BEGIN_NAMESPACE

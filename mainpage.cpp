@@ -78,7 +78,7 @@ void MainPage::on_add_training_2_clicked()
 void MainPage::on_getTrainingbtn_clicked()
 {
     QString currentUserId = loginManager->getCurrentUserId();
-    gettraining = new GetTraining(trainingsMap, usersMap, currentUserId, this);
+    gettraining = new GetTraining(trainingsMap, usersMap, currentUserId, notificationsMap, this);
     gettraining->show();
     gettraining->raise();
     gettraining->activateWindow();
@@ -145,6 +145,12 @@ void MainPage::on_getStarted_clicked()
 void MainPage::on_logoutFromRes_clicked()
 {
     loginManager->clearCurrentUserId();
+    ui->clientID->clear();
+    ui->getClientDateOfBirth->clear();
+    ui->getClientName->clear();
+    ui->getIsVIPData->clear();
+    ui->getSubPeriod->clear();
+    ui->getPriceData->clear();
     ui->holder->setCurrentIndex(1);
 }
 
@@ -267,6 +273,16 @@ void MainPage::on_changeVIP_clicked()
 
     User &client = usersMap[clientId];
     client.isVIP = !client.isVIP;
+
+    QString notificationMessage;
+    if (client.isVIP) {
+        notificationMessage
+            = "Congratulations! You have been upgraded to VIP status. Enjoy your premium benefits!";
+    } else {
+        notificationMessage = "Your VIP status has been changed to Regular membership.";
+    }
+
+    notificationsMap[clientId].append(notificationMessage);
 
     QString statusChange = client.isVIP ? "VIP" : "Regular";
     QMessageBox::information(this,

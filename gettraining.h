@@ -16,6 +16,7 @@ public:
     explicit GetTraining(QMap<QString, training> &trainingsRef,
                          QMap<QString, User> &usersRef,
                          QString currentUserId,
+                         QMap<QString, QStringList> &notificationsMapRef,
                          QWidget *parent = nullptr);
     ~GetTraining();
 
@@ -23,6 +24,7 @@ public:
     Ui::GetTraining *ui;
     QMap<QString, training> &trainingsMap;
     QMap<QString, User> &usersMap;
+    QMap<QString, QStringList> &notificationsMap;
     QString currentLoggedInUserId;
 private slots:
     void on_pushButton_clicked();

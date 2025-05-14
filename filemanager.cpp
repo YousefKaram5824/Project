@@ -37,8 +37,7 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
     for (const auto &user : usersMap) {
         // Save basic user info
         out << user.username << "," << user.id << "," << user.password << "," << user.isClient
-            << "," << user.birthDate << "," << user.subscriptionPeriod << "," << user.budget << ","
-            << user.isVIP << "\n";
+            << "," << user.birthDate << "," << user.subscriptionPeriod << "," << user.isVIP << "\n";
     }
     file.close();
 }
@@ -70,7 +69,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
             continue;
 
         QStringList fields = line.split(',');
-        if (fields.size() < 8) {
+        if (fields.size() < 7) {
             qDebug() << "Invalid line format:" << line;
             continue;
         }
@@ -82,15 +81,14 @@ QMap<QString, User> FileManager::loadUsersFromFile()
         user.isClient = (fields[3] == "1");
         user.birthDate = fields[4];
         user.subscriptionPeriod = fields[5];
-        user.budget = fields[6].toInt();
-        user.isVIP = (fields[7] == "1");
+        user.isVIP = (fields[6] == "1");
 
         usersMap.insert(user.id, user);
     }
     file.close();
     return usersMap;
 }
-/////////////////////////////////////////////////////////////////////////////////////
+
 QMap<int, Court> FileManager::loadCourtsFromFile()
 {
     QMap<int, Court> courtsMap;
@@ -146,9 +144,6 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
     return courtsMap;
 }
 
-
-
-
 void FileManager::saveCourtsToFile(const QMap<int, Court> &courtsMap)
 {
     QFile file;
@@ -183,7 +178,6 @@ void FileManager::saveCourtsToFile(const QMap<int, Court> &courtsMap)
     }
     file.close();
 }
-/////////////////////////////////////////////////////////////////////////
 
 void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMap)
 {
@@ -225,6 +219,17 @@ void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMa
         }
         out << "," << vipWaitingUserIds.join('|');
 
+        QStringList progressData;
+        for (auto it = t.userProgress.begin(); it != t.userProgress.end(); ++it) {
+            progressData << (it.key() + ":" + QString::number(it.value()));
+        }
+        out << "," << progressData.join('|');
+
+        QStringList attendedData;
+        for (auto it = t.attended.begin(); it != t.attended.end(); ++it) {
+            attendedData << (it.key() + ":" + QString::number(it.value()));
+        }
+        out << "," << attendedData.join('|');
 
         out << "\n";
     }
@@ -274,7 +279,7 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
 
         if (fields.size() >= 7) {
             QStringList userIds = fields[6].split('|', Qt::SkipEmptyParts);
-            for (const QString &idStr : userIds) {
+            for (const QString &idStr : std::as_const(userIds)) {
                 User dummyUser;
                 dummyUser.id = idStr;
                 t.users.insert(idStr, dummyUser);
@@ -282,7 +287,7 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
         }
         if (fields.size() >= 8) {
             QStringList waitIds = fields[7].split('|', Qt::SkipEmptyParts);
-            for (const QString &uid : waitIds) {
+            for (const QString &uid : std::as_const(waitIds)) {
                 User dummyUser;
                 dummyUser.id = uid;
                 t.waiting_list.append(dummyUser);
@@ -290,11 +295,31 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
         }
         if (fields.size() >= 9) {
             QStringList vipIds = fields[8].split('|', Qt::SkipEmptyParts);
-            for (const QString &vipId : vipIds) {
+            for (const QString &vipId : std::as_const(vipIds)) {
                 User dummyVIP;
                 dummyVIP.id = vipId;
                 dummyVIP.isVIP = true; // 🟡 Optional hint that they're VIPs
                 t.VIP_waiting_list.append(dummyVIP);
+            }
+        }
+
+        if (fields.size() >= 10) {
+            QStringList progressItems = fields[9].split('|', Qt::SkipEmptyParts);
+            for (const QString &item : std::as_const(progressItems)) {
+                QStringList parts = item.split(':');
+                if (parts.size() == 2) {
+                    t.userProgress.insert(parts[0], parts[1].toInt());
+                }
+            }
+        }
+
+        if (fields.size() >= 11) {
+            QStringList attendedItems = fields[10].split('|', Qt::SkipEmptyParts);
+            for (const QString &item : std::as_const(attendedItems)) {
+                QStringList parts = item.split(':');
+                if (parts.size() == 2) {
+                    t.attended.insert(parts[0], parts[1].toInt());
+                }
             }
         }
 

@@ -54,6 +54,34 @@ void MainPage::on_pushButton_clicked()
     registerWin->activateWindow();
 }
 
+void MainPage::on_search_3_clicked()
+{
+    bookCourt = new BookCourt();
+    bookCourt->setCourtMap(this->courtsMap);
+    bookCourt->setCurrentUserId(loginManager->getCurrentUserId());
+    connect(bookCourt, &BookCourt::courtBooked, this, &MainPage::refreshCourtTable);
+    bookCourt->show();
+    bookCourt->raise();
+    bookCourt->activateWindow();
+}
+
+void MainPage::on_add_training_2_clicked()
+{
+    addtraining = new addTraining(trainingsMap, usersMap, this);
+    addtraining->show();
+    addtraining->raise();
+    addtraining->activateWindow();
+}
+
+void MainPage::on_getTrainingbtn_clicked()
+{
+    QString currentUserId = loginManager->getCurrentUserId();
+    gettraining = new GetTraining(trainingsMap, usersMap, currentUserId, this);
+    gettraining->show();
+    gettraining->raise();
+    gettraining->activateWindow();
+}
+
 void MainPage::on_login_clicked()
 {
     QString username = ui->id->text();
@@ -80,10 +108,10 @@ void MainPage::handleLoginSuccessful(UserType userType)
         populateCoachTrainings();
         break;
     case UserType::Receptionist:
-        ui->holder->setCurrentIndex(5);
+        ui->holder->setCurrentIndex(3);
         break;
     case UserType::Manager:
-        ui->holder->setCurrentIndex(6);
+        ui->holder->setCurrentIndex(5);
         break;
     default:
         break;
@@ -97,12 +125,22 @@ void MainPage::handleLoginFailed(const QString &message)
     loginManager->clearLoginFields(ui->id, ui->password);
 }
 
+void MainPage::handleClientNotFound(const QString &message)
+{
+    QMessageBox::warning(this, "Error", message);
+}
+
+void MainPage::handleInvalidClientType(const QString &message)
+{
+    QMessageBox::warning(this, "Error", message);
+}
+
 void MainPage::on_getStarted_clicked()
 {
     ui->holder->setCurrentIndex(1);
 }
 
-void MainPage::on_logOut_clicked()
+void MainPage::on_logoutFromRes_clicked()
 {
     loginManager->clearCurrentUserId();
     ui->holder->setCurrentIndex(1);
@@ -131,16 +169,6 @@ void MainPage::on_searchButton_clicked()
     ui->holder->setCurrentIndex(7);
 }
 
-void MainPage::on_backToRes_clicked()
-{
-    ui->holder->setCurrentIndex(5);
-}
-
-void MainPage::on_clientData_clicked()
-{
-    ui->holder->setCurrentIndex(9);
-}
-
 void MainPage::on_backToClientPage_clicked()
 {
     ui->holder->setCurrentIndex(2);
@@ -157,15 +185,23 @@ void MainPage::on_commandLinkButton_clicked()
     ui->holder->setCurrentIndex(2);
 }
 
-void MainPage::on_back_clicked()
-{
-    ui->holder->setCurrentIndex(6);
-}
-
 void MainPage::on_backToClient_clicked()
 {
     ui->holder->setCurrentIndex(2);
     ui->tableWidget->setRowCount(0);
+}
+
+void MainPage::refreshCourtTable()
+{
+    QList<Court> courtList = courtsMap.values();
+
+    displayCourtsInTable(courtList);
+}
+
+void MainPage::on_search_2_clicked()
+{
+    QList<Court> courts = searchManager->searchAll();
+    displayCourtsInTable(courts);
 }
 
 void MainPage::on_getClientData_clicked()
@@ -182,19 +218,8 @@ void MainPage::on_getClientData_clicked()
         receptionistManager->displayClientInfo(client,
                                                ui->getClientName,
                                                ui->getClientDateOfBirth,
-                                               ui->getSubscriptionPeriod,
-                                               ui->getBudget);
+                                               ui->getSubscriptionPeriod);
     }
-}
-
-void MainPage::handleClientNotFound(const QString &message)
-{
-    QMessageBox::warning(this, "Error", message);
-}
-
-void MainPage::handleInvalidClientType(const QString &message)
-{
-    QMessageBox::warning(this, "Error", message);
 }
 
 void MainPage::displayCourtsInTable(const QList<Court> &courts)
@@ -226,19 +251,6 @@ void MainPage::displayCourtsInTable(const QList<Court> &courts)
     ui->tableWidget->setMinimumHeight(totalHeight);
 }
 
-void MainPage::refreshCourtTable()
-{
-    QList<Court> courtList = courtsMap.values();
-
-    displayCourtsInTable(courtList);
-}
-
-void MainPage::on_search_2_clicked()
-{
-    QList<Court> courts = searchManager->searchAll();
-    displayCourtsInTable(courts);
-}
-
 void MainPage::on_filter_clicked()
 {
     QString location = ui->comboBoxcourt->currentText();
@@ -261,48 +273,46 @@ void MainPage::on_filter_clicked()
     }
 }
 
-void MainPage::on_search_3_clicked()
-{
-    bookCourt = new BookCourt();
-    bookCourt->setCourtMap(this->courtsMap);
-    bookCourt->setCurrentUserId(loginManager->getCurrentUserId());
-    connect(bookCourt, &BookCourt::courtBooked, this, &MainPage::refreshCourtTable);
-    bookCourt->show();
-    bookCourt->raise();
-    bookCourt->activateWindow();
-}
-
 void MainPage::on_profile_clicked()
 {
     QString currentId = loginManager->getCurrentUserId();
+    ui->workoutTable->setRowCount(0);
+
     if (!currentId.isEmpty() && usersMap.contains(currentId)) {
         const User &currentUser = usersMap[currentId];
 
         ui->getClientName_2->setText(currentUser.username);
         ui->getClientDateOfBirth_2->setText(currentUser.birthDate);
         ui->getSubscriptionPeriod_2->setText(currentUser.subscriptionPeriod);
-        ui->getBudget_2->setText(QString::number(currentUser.budget));
 
-        ui->holder->setCurrentIndex(3);
+        int row = 0;
+        for (auto it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
+            const training &t = it.value();
+            if (t.users.contains(currentId)) {
+                ui->workoutTable->setRowCount(row + 1);
+                ui->workoutTable->setItem(row, 0, new QTableWidgetItem(t.name));
+                QProgressBar *progressBar = new QProgressBar();
+                int progress = t.userProgress.value(currentId, 0);
+                progressBar->setMinimum(0);
+                progressBar->setMaximum(100);
+                progressBar->setValue(progress);
+                progressBar->setFormat(QString::number(progress) + "%");
+                ui->workoutTable->setCellWidget(row, 1, progressBar);
+                row++;
+            }
+            ui->holder->setCurrentIndex(6);
+        }
     } else {
         QMessageBox::warning(this, "Error", "Could not load user profile data.");
     }
 }
 
-void MainPage::on_add_training_2_clicked()
-{
-    addtraining = new addTraining(trainingsMap, usersMap, this);
-    addtraining->show();
-    addtraining->raise();
-    addtraining->activateWindow();
-}
-
 void MainPage::populateCoachTrainings()
 {
-    QString currentCoachId = Login::getCurrentUserId();
+    QString currentCoachId = loginManager->getCurrentUserId();
     ui->trainings->clear();
 
-    for (const auto &training : trainingsMap) {
+    for (const auto &training : std::as_const(trainingsMap)) {
         if (training.assigned_coach == currentCoachId) {
             ui->trainings->addItem(training.name);
         }
@@ -314,13 +324,56 @@ void MainPage::populateCoachTrainings()
 
 void MainPage::on_trainings_currentTextChanged(const QString &trainingName)
 {
+    ui->clientId->clear();
+    ui->clientsTable->setRowCount(0);
+    ui->attendTable->setRowCount(0);
     if (!trainingsMap.contains(trainingName))
         return;
 
     const training &t = trainingsMap[trainingName];
 
+    for (auto it = t.users.begin(); it != t.users.end(); ++it) {
+        ui->clientId->addItem(it.key());
+    }
+    ui->clientId->setCurrentIndex(-1);
     ui->DtimlineEdit->setText(QString::number(t.duration_time));
     ui->StimeEdit->setTime(t.Stime);
+    ui->clientsTable->setRowCount(t.users.size());
+    int row1 = 0;
+    for (auto it = t.users.begin(); it != t.users.end(); ++it) {
+        const User &user = usersMap[it.key()];
+        ui->clientsTable->setItem(row1, 0, new QTableWidgetItem(user.id));
+        QProgressBar *progressBar = new QProgressBar();
+        int progress = t.userProgress.value(user.id, 0);
+        progressBar->setMinimum(0);
+        progressBar->setMaximum(100);
+        progressBar->setValue(progress);
+        progressBar->setFormat(QString::number(progress) + "%");
+        ui->clientsTable->setCellWidget(row1, 1, progressBar);
+        row1++;
+    }
+
+    QList<QPair<QString, int>> clientAttendance;
+    for (auto it = t.users.begin(); it != t.users.end(); ++it) {
+        const QString &userId = it.key();
+        int attendanceCount = t.attended.value(userId, 0);
+        clientAttendance.append(qMakePair(userId, attendanceCount));
+    }
+
+    std::sort(clientAttendance.begin(),
+              clientAttendance.end(),
+              [](const QPair<QString, int> &a, const QPair<QString, int> &b) {
+                  return a.second > b.second;
+              });
+
+    ui->attendTable->setRowCount(clientAttendance.size());
+    for (int row2 = 0; row2 < clientAttendance.size(); ++row2) {
+        const QString &userId = clientAttendance[row2].first;
+        int attendanceCount = clientAttendance[row2].second;
+
+        ui->attendTable->setItem(row2, 0, new QTableWidgetItem(userId));
+        ui->attendTable->setItem(row2, 1, new QTableWidgetItem(QString::number(attendanceCount)));
+    }
 }
 
 void MainPage::on_search_4_clicked()
@@ -345,11 +398,39 @@ void MainPage::on_search_4_clicked()
     }
 }
 
-void MainPage::on_getTrainingbtn_clicked()
+void MainPage::on_beattended_clicked()
 {
-    QString currentUserId = loginManager->getCurrentUserId();
-    gettraining = new GetTraining(trainingsMap, usersMap, currentUserId, this);
-    gettraining->show();
-    gettraining->raise();
-    gettraining->activateWindow();
+    QString currentTraining = ui->trainings->currentText();
+    if (currentTraining.isEmpty()) {
+        QMessageBox::warning(this, "Error", "No Training Selected");
+        return;
+    }
+
+    QString clientSelected = ui->clientId->currentText();
+    if (clientSelected.isEmpty()) {
+        QMessageBox::warning(this, "Error", "No Clients Selected");
+        return;
+    }
+
+    if (!trainingsMap.contains(currentTraining)) {
+        QMessageBox::warning(this, "Error", "Training not found");
+        return;
+    }
+
+    training &t = trainingsMap[currentTraining];
+
+    int currentAttendance = t.attended.value(clientSelected, 0);
+    t.attended[clientSelected] = currentAttendance + 1;
+
+    int currentProgress = t.userProgress.value(clientSelected, 0);
+    int newProgress = qMin(100, currentProgress + 2);
+    t.userProgress[clientSelected] = newProgress;
+
+    on_trainings_currentTextChanged(currentTraining);
+    QMessageBox::information(this,
+                             "Success",
+                             QString("Attendance recorded. %1 has attended %2 times. Progress: %3%")
+                                 .arg(usersMap[clientSelected].username)
+                                 .arg(t.attended[clientSelected])
+                                 .arg(newProgress));
 }

@@ -41,17 +41,11 @@ void GetTraining::on_pushButton_clicked()
 
     training &currentTraining = trainingsMap[trainingName];
 
-    //int userIdInt = currentLoggedInUserId.toInt(); // Convert to int
-
     if (currentTraining.users.contains(currentLoggedInUserId)) {
         QMessageBox::warning(this, "Error", "You are already enrolled in this training.");
         return;
     }
-    qDebug() << "Current Trainings Map:";
-    for (auto it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
-        qDebug() << "Training ID:" << it.key() << "Capacity:" << it.value().capacity
-                 << "Current Users:" << it.value().users.keys();
-    }
+
     if (currentTraining.capacity > currentTraining.users.size()) {
         if (usersMap.contains(currentLoggedInUserId)) {
             User user = usersMap[currentLoggedInUserId];
@@ -79,13 +73,6 @@ void GetTraining::on_pushButton_clicked()
         } else {
             QMessageBox::critical(this, "Error", "Current user data not found.");
         }
-    }
-
-    qDebug() << "Updated Trainings Map:";
-    for (auto it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
-        qDebug() << "Training ID:" << it.key()
-        << "Capacity:" << it.value().capacity
-        << "Current Users:" << it.value().users.keys();
     }
 
     close();

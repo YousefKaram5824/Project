@@ -25,9 +25,9 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>6</number>
       </property>
-      <widget class="QWidget" name="mainWindow">
+      <widget class="QWidget" name="MainWindow">
        <widget class="QFrame" name="frame1">
         <property name="geometry">
          <rect>
@@ -110,7 +110,7 @@ QPushButton#getStarted:pressed {
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="loginPage">
+      <widget class="QWidget" name="LoginPage">
        <widget class="QFrame" name="frame2">
         <property name="geometry">
          <rect>
@@ -446,34 +446,8 @@ QPushButton:pressed {
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="profilepage">
-       <widget class="QCommandLinkButton" name="commandLinkButton">
-        <property name="geometry">
-         <rect>
-          <x>1390</x>
-          <y>0</y>
-          <width>41</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QCommandLinkButton {
-    color: white; /* لتغيير لون النص */
-}
-
-QCommandLinkButton::icon {
-    color: white; /* لتغيير لون الأيقونة */
-}
-</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset theme="QIcon::ThemeIcon::SystemLogOut"/>
-        </property>
-       </widget>
-       <widget class="QFrame" name="frame_7">
+      <widget class="QWidget" name="ResPage">
+       <widget class="QFrame" name="frame_5">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -483,7 +457,8 @@ QCommandLinkButton::icon {
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">QFrame#frame_7 {	
+         <string notr="true">QFrame#frame_5 {	
+	color: rgb(255, 255, 255);
 	background-image: url(:/bg/fitora.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -497,89 +472,132 @@ QCommandLinkButton::icon {
         <property name="frameShadow">
          <enum>QFrame::Shadow::Raised</enum>
         </property>
-        <widget class="QTableWidget" name="tableWidget_2">
+        <widget class="QPushButton" name="getClientData">
          <property name="geometry">
           <rect>
-           <x>90</x>
-           <y>330</y>
-           <width>404</width>
-           <height>381</height>
+           <x>770</x>
+           <y>240</y>
+           <width>111</width>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">QTableWidget, QTableView {
-	color: rgb(255, 255, 255);
-    background-color: transparent;
-    border: 2px solid #ADABAB;
-    border-radius: 10px;
-    gridline-color: #ADABAB;  
-    selection-background-color: rgba(255, 165, 0, 60); 
-}
-
-QHeaderView::section {
-    background-color: #272727;
-    color: #ffffff;
-   border: 0.5px solid #ADABAB;
-    padding: 5px;
+          <string notr="true">QPushButton { 
+   background-color: #DC3E22;
+    color: white;
+    border-radius: 10px; 
     font-weight: bold;
 }
-/* رأس الزاوية (اللي بين الأرقام والأعمدة) */
-QTableCornerButton::section {
-    background-color: transparent;
-    border: none;
+QPushButton:hover {
+    background: #b33b1b; 
 }
-/* خلايا الجدول */
-QTableView::item, QTableWidget::item {
-    background-color: transparent;
-    border: none;
-    padding: 4px;
-}
-
-QScrollBar:vertical, QScrollBar:horizontal {
-    background: transparent;
-    border: none;
-    width: 10px;
-    height: 10px;
-    margin: 0px;
-}
-
-QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
-    background: #DC3E22;
-    border-radius: 5px;
-    min-height: 20px;
-    min-width: 20px;
-}
-
-QScrollBar::add-line, QScrollBar::sub-line {
-    background: none;
-    border: none;
-    height: 0px;
-    width: 0px;
-}
-
-QScrollBar::add-page, QScrollBar::sub-page {
-    background: none;
+QPushButton:pressed {
+    background: #992f15; 
 }</string>
          </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>200</number>
-         </attribute>
-         <column>
-          <property name="text">
-           <string>WorkOut</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Progress</string>
-          </property>
-         </column>
+         <property name="text">
+          <string>Get Data</string>
+         </property>
         </widget>
-        <widget class="QLabel" name="label_14">
+        <widget class="QPushButton" name="logoutFromRes">
          <property name="geometry">
           <rect>
-           <x>390</x>
-           <y>130</y>
+           <x>1390</x>
+           <y>20</y>
+           <width>83</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: transparent;          
+    border: 2px solid #DC3E22;         
+    border-radius: 5px;                
+    color: white;                       
+    padding: 5px 10px;                 
+}
+QPushButton:hover {
+    background: rgba(220, 62, 34, 0.1);  
+}
+QPushButton:pressed {
+    background: rgba(220, 62, 34, 0.2); 
+}</string>
+         </property>
+         <property name="text">
+          <string>Logout</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="clientID">
+         <property name="geometry">
+          <rect>
+           <x>740</x>
+           <y>170</y>
+           <width>161</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+    border: 1px solid #DC3E22; 
+    border-radius: 5px;        
+    background: transparent;  
+    color: white; 
+ padding: 5px;
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>700</x>
+           <y>170</y>
+           <width>21</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>330</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>380</y>
            <width>141</width>
            <height>31</height>
           </rect>
@@ -598,11 +616,37 @@ QScrollBar::add-page, QScrollBar::sub-page {
           <string>Date of Birth</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_15">
+        <widget class="QLabel" name="getClientName">
          <property name="geometry">
           <rect>
-           <x>390</x>
-           <y>180</y>
+           <x>550</x>
+           <y>330</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="getClientDateOfBirth">
+         <property name="geometry">
+          <rect>
+           <x>570</x>
+           <y>380</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>430</y>
            <width>221</width>
            <height>31</height>
           </rect>
@@ -620,117 +664,22 @@ QScrollBar::add-page, QScrollBar::sub-page {
           <string>Subscription Period</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_16">
+        <widget class="QLabel" name="getSubscriptionPeriod">
          <property name="geometry">
           <rect>
-           <x>390</x>
-           <y>240</y>
-           <width>81</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="text">
-          <string>Budget</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_17">
-         <property name="geometry">
-          <rect>
-           <x>390</x>
-           <y>80</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getClientName_2">
-         <property name="geometry">
-          <rect>
-           <x>510</x>
-           <y>80</y>
-           <width>63</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getBudget_2">
-         <property name="geometry">
-          <rect>
-           <x>500</x>
-           <y>240</y>
+           <x>610</x>
+           <y>440</y>
            <width>63</width>
            <height>20</height>
           </rect>
          </property>
          <property name="text">
           <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getClientDateOfBirth_2">
-         <property name="geometry">
-          <rect>
-           <x>540</x>
-           <y>130</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getSubscriptionPeriod_2">
-         <property name="geometry">
-          <rect>
-           <x>590</x>
-           <y>180</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QListWidget" name="listWidget">
-         <property name="geometry">
-          <rect>
-           <x>970</x>
-           <y>330</y>
-           <width>404</width>
-           <height>381</height>
-          </rect>
          </property>
         </widget>
        </widget>
-       <zorder>frame_7</zorder>
-       <zorder>commandLinkButton</zorder>
       </widget>
-      <widget class="QWidget" name="coachPage">
+      <widget class="QWidget" name="CoachPage">
        <widget class="QFrame" name="frame">
         <property name="geometry">
          <rect>
@@ -758,7 +707,7 @@ QScrollBar::add-page, QScrollBar::sub-page {
         <widget class="QPushButton" name="logOut_3">
          <property name="geometry">
           <rect>
-           <x>1390</x>
+           <x>1350</x>
            <y>20</y>
            <width>83</width>
            <height>32</height>
@@ -861,12 +810,12 @@ QPushButton:pressed {
           <string>duration time </string>
          </property>
         </widget>
-        <widget class="QTableWidget" name="tableWidget_3">
+        <widget class="QTableWidget" name="clientsTable">
          <property name="geometry">
           <rect>
            <x>100</x>
            <y>300</y>
-           <width>254</width>
+           <width>400</width>
            <height>431</height>
           </rect>
          </property>
@@ -931,6 +880,27 @@ QScrollBar::add-page, QScrollBar::sub-page {
 }
 </string>
          </property>
+         <property name="autoScrollMargin">
+          <number>0</number>
+         </property>
+         <property name="tabKeyNavigation">
+          <bool>false</bool>
+         </property>
+         <property name="showDropIndicator" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="dragDropOverwriteMode">
+          <bool>false</bool>
+         </property>
+         <attribute name="horizontalHeaderVisible">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>200</number>
+         </attribute>
          <column>
           <property name="text">
            <string>Client ID</string>
@@ -978,99 +948,111 @@ QScrollBar::add-page, QScrollBar::sub-page {
           <string>Client ID</string>
          </property>
         </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="receptionistPage">
-       <widget class="QFrame" name="frame_4">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>1536</width>
-          <height>864</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QFrame#frame_4 {	
-	background-image: url(:/bg/fitora.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+        <widget class="QTableWidget" name="attendTable">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>300</y>
+           <width>400</width>
+           <height>431</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableWidget, QTableView {
+	color: rgb(255, 255, 255);
+    background-color: transparent;
+    border: 2px solid #ADABAB;
+    border-radius: 10px;
+    gridline-color: #ADABAB;  
+    selection-background-color: rgba(255, 165, 0, 60); 
+}
+
+
+QHeaderView::section {
+    background-color: #272727;
+    color: #ffffff;
+   border: 0.5px solid #ADABAB;
+    padding: 5px;
+    font-weight: bold;
+}
+
+
+/* رأس الزاوية (اللي بين الأرقام والأعمدة) */
+QTableCornerButton::section {
+    background-color: transparent;
     border: none;
-}</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <widget class="QPushButton" name="clientData">
-         <property name="geometry">
-          <rect>
-           <x>510</x>
-           <y>140</y>
-           <width>561</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-    background: transparent;          
-    border: 2px solid #DC3E22;         
-    border-radius: 20px;                
-    color: white;                       
-    padding: 5px 10px; 
-   
 }
-QPushButton:hover {
-    background: rgba(220, 62, 34, 0.1);  
+
+/* خلايا الجدول */
+QTableView::item, QTableWidget::item {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
 }
-QPushButton:pressed {
-    background: rgba(220, 62, 34, 0.2); 
-}</string>
-         </property>
-         <property name="text">
-          <string>Client Data</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="logOut">
-         <property name="geometry">
-          <rect>
-           <x>1390</x>
-           <y>20</y>
-           <width>83</width>
-           <height>32</height>
-          </rect>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-    background: transparent;          
-    border: 2px solid #DC3E22;         
-    border-radius: 5px;                
-    color: white;                       
-    padding: 5px 10px;                 
+
+
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: transparent;
+    border: none;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
 }
-QPushButton:hover {
-    background: rgba(220, 62, 34, 0.1);  
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #DC3E22;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
 }
-QPushButton:pressed {
-    background: rgba(220, 62, 34, 0.2); 
-}</string>
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: none;
+    border: none;
+    height: 0px;
+    width: 0px;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+</string>
          </property>
-         <property name="text">
-          <string>logout</string>
+         <property name="autoScrollMargin">
+          <number>0</number>
          </property>
+         <property name="tabKeyNavigation">
+          <bool>false</bool>
+         </property>
+         <property name="showDropIndicator" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="dragDropOverwriteMode">
+          <bool>false</bool>
+         </property>
+         <attribute name="horizontalHeaderVisible">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>200</number>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Client ID</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Attend</string>
+          </property>
+         </column>
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="managerPage">
+      <widget class="QWidget" name="ManagerPage">
        <widget class="QPushButton" name="logOut_2">
         <property name="geometry">
          <rect>
@@ -1156,6 +1138,255 @@ QPushButton:pressed {
        </widget>
        <zorder>frame_3</zorder>
        <zorder>logOut_2</zorder>
+      </widget>
+      <widget class="QWidget" name="Profilepage">
+       <widget class="QCommandLinkButton" name="commandLinkButton">
+        <property name="geometry">
+         <rect>
+          <x>1390</x>
+          <y>0</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCommandLinkButton {
+    color: white; /* لتغيير لون النص */
+}
+
+QCommandLinkButton::icon {
+    color: white; /* لتغيير لون الأيقونة */
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::SystemLogOut"/>
+        </property>
+       </widget>
+       <widget class="QFrame" name="frame_7">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1536</width>
+          <height>864</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QFrame#frame_7 {	
+	background-image: url(:/bg/fitora.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <widget class="QTableWidget" name="workoutTable">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>330</y>
+           <width>484</width>
+           <height>381</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableWidget, QTableView {
+	color: rgb(255, 255, 255);
+    background-color: transparent;
+    border: 2px solid #ADABAB;
+    border-radius: 10px;
+    gridline-color: #ADABAB;  
+    selection-background-color: rgba(255, 165, 0, 60); 
+}
+
+QHeaderView::section {
+    background-color: #272727;
+    color: #ffffff;
+   border: 0.5px solid #ADABAB;
+    padding: 5px;
+    font-weight: bold;
+}
+/* رأس الزاوية (اللي بين الأرقام والأعمدة) */
+QTableCornerButton::section {
+    background-color: transparent;
+    border: none;
+}
+/* خلايا الجدول */
+QTableView::item, QTableWidget::item {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+}
+
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: transparent;
+    border: none;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #DC3E22;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: none;
+    border: none;
+    height: 0px;
+    width: 0px;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}</string>
+         </property>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>240</number>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>WorkOut</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Progress</string>
+          </property>
+         </column>
+        </widget>
+        <widget class="QLabel" name="label_14">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>130</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+</string>
+         </property>
+         <property name="text">
+          <string>Date of Birth</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>180</y>
+           <width>221</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>Subscription Period</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_17">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>80</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="getClientName_2">
+         <property name="geometry">
+          <rect>
+           <x>510</x>
+           <y>80</y>
+           <width>63</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="getClientDateOfBirth_2">
+         <property name="geometry">
+          <rect>
+           <x>540</x>
+           <y>130</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="getSubscriptionPeriod_2">
+         <property name="geometry">
+          <rect>
+           <x>590</x>
+           <y>180</y>
+           <width>63</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QListWidget" name="listWidget">
+         <property name="geometry">
+          <rect>
+           <x>970</x>
+           <y>330</y>
+           <width>404</width>
+           <height>381</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <zorder>frame_7</zorder>
+       <zorder>commandLinkButton</zorder>
       </widget>
       <widget class="QWidget" name="search">
        <widget class="QFrame" name="frame_6">
@@ -1404,7 +1635,7 @@ QPushButton:pressed {
            <second>0</second>
            <year>2025</year>
            <month>3</month>
-           <day>30</day>
+           <day>24</day>
           </datetime>
          </property>
          <property name="time">
@@ -1432,12 +1663,12 @@ QPushButton:pressed {
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>3</hour>
+           <hour>9</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2025</year>
            <month>4</month>
-           <day>30</day>
+           <day>29</day>
           </datetime>
          </property>
          <property name="calendarPopup">
@@ -1847,274 +2078,6 @@ QPushButton:pressed {
          </property>
          <property name="text">
           <string>Get Training</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="clientDataPage">
-       <widget class="QFrame" name="frame_5">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>1536</width>
-          <height>864</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QFrame#frame_5 {	
-	color: rgb(255, 255, 255);
-	background-image: url(:/bg/fitora.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: none;
-}</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <widget class="QPushButton" name="getClientData">
-         <property name="geometry">
-          <rect>
-           <x>770</x>
-           <y>240</y>
-           <width>111</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton { 
-   background-color: #DC3E22;
-    color: white;
-    border-radius: 10px; 
-    font-weight: bold;
-}
-QPushButton:hover {
-    background: #b33b1b; 
-}
-QPushButton:pressed {
-    background: #992f15; 
-}</string>
-         </property>
-         <property name="text">
-          <string>Get Data</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="backToRes">
-         <property name="geometry">
-          <rect>
-           <x>1390</x>
-           <y>20</y>
-           <width>83</width>
-           <height>29</height>
-          </rect>
-         </property>
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-    background: transparent;          
-    border: 2px solid #DC3E22;         
-    border-radius: 5px;                
-    color: white;                       
-    padding: 5px 10px;                 
-}
-QPushButton:hover {
-    background: rgba(220, 62, 34, 0.1);  
-}
-QPushButton:pressed {
-    background: rgba(220, 62, 34, 0.2); 
-}</string>
-         </property>
-         <property name="text">
-          <string>Back</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="clientID">
-         <property name="geometry">
-          <rect>
-           <x>740</x>
-           <y>170</y>
-           <width>161</width>
-           <height>28</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QLineEdit {
-    border: 1px solid #DC3E22; 
-    border-radius: 5px;        
-    background: transparent;  
-    color: white; 
- padding: 5px;
-}</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_4">
-         <property name="geometry">
-          <rect>
-           <x>700</x>
-           <y>170</y>
-           <width>21</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="text">
-          <string>ID</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_7">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>330</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_8">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>380</y>
-           <width>141</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
-</string>
-         </property>
-         <property name="text">
-          <string>Date of Birth</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getClientName">
-         <property name="geometry">
-          <rect>
-           <x>550</x>
-           <y>330</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getClientDateOfBirth">
-         <property name="geometry">
-          <rect>
-           <x>570</x>
-           <y>380</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_9">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>430</y>
-           <width>221</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="text">
-          <string>Subscription Period</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getSubscriptionPeriod">
-         <property name="geometry">
-          <rect>
-           <x>610</x>
-           <y>440</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_13">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>490</y>
-           <width>81</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);</string>
-         </property>
-         <property name="text">
-          <string>Budget</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="getBudget">
-         <property name="geometry">
-          <rect>
-           <x>520</x>
-           <y>500</y>
-           <width>63</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
          </property>
         </widget>
        </widget>

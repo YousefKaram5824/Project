@@ -27,8 +27,7 @@ bool Receptionist::validateClient(const QString &clientId)
 void Receptionist::displayClientInfo(const User &client,
                                      QLabel *nameLabel,
                                      QLabel *birthDateLabel,
-                                     QLabel *subscriptionLabel,
-                                     QLabel *budgetLabel)
+                                     QLabel *subscriptionLabel)
 {
     if (nameLabel)
         nameLabel->setText(client.username);
@@ -36,8 +35,6 @@ void Receptionist::displayClientInfo(const User &client,
         birthDateLabel->setText(client.birthDate);
     if (subscriptionLabel)
         subscriptionLabel->setText(client.subscriptionPeriod);
-    if (budgetLabel)
-        budgetLabel->setText(QString::number(client.budget));
 }
 
 QString Receptionist::getClientInfo(const QString &clientId)

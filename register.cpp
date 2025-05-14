@@ -66,7 +66,6 @@ void Register::on_pushButton_clicked()
     QString confirmPassword = ui->confirmPasswordLineEdit->text();
     QString birthDateString;
     QString subscriptionPeriodString;
-    int budget = 0;
 
     if (isclient) {
         birthDateString = ui->birthDateEdit->date().toString("yyyy-MM-dd");
@@ -92,7 +91,6 @@ void Register::on_pushButton_clicked()
     newUser.isClient = isclient;
     newUser.birthDate = birthDateString;
     newUser.subscriptionPeriod = subscriptionPeriodString;
-    newUser.budget = budget;
 
     usersMap.insert(id, newUser);
     clearAll();

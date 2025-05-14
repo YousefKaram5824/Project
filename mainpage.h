@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QProgressBar>
 #include <QWidget>
 #include "Receptionist.h"
 #include "SearchManager.h"
@@ -14,6 +15,7 @@
 #include "gettraining.h"
 #include "login.h"
 #include "register.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainPage;
@@ -35,49 +37,30 @@ public:
 private slots:
     void on_getStarted_clicked();
     void on_login_clicked();
-    void on_logOut_clicked();
     void on_logOut_2_clicked();
     void on_logOut_4_clicked();
     void on_logOut_3_clicked();
     void on_pushButton_clicked();
     void on_searchButton_clicked();
-    void on_backToRes_clicked();
-    void on_clientData_clicked();
     void on_getClientData_clicked();
-
-    // Login slots
     void handleLoginSuccessful(UserType userType);
     void handleLoginFailed(const QString &message);
-
-    // Receptionist slots
     void handleClientNotFound(const QString &message);
     void handleInvalidClientType(const QString &message);
-
     void on_search_2_clicked();
-
     void on_filter_clicked();
-
     void on_search_3_clicked();
-
     void on_profile_clicked();
-
     void on_commandLinkButton_clicked();
-
     void on_add_training_2_clicked();
-
-    void on_back_clicked();
-
     void on_trainings_currentTextChanged(const QString &trainingName);
-
     void on_backToClientPage_clicked();
-
     void on_trainingButton_clicked();
-
     void on_backToClient_clicked();
-
     void on_search_4_clicked();
-
     void on_getTrainingbtn_clicked();
+    void on_beattended_clicked();
+    void on_logoutFromRes_clicked();
 
 private:
     Ui::MainPage *ui;

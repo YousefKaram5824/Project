@@ -6,6 +6,7 @@
 #include <QStack>
 #include <QString>
 #include "User.h"
+#include "qdatetime.h"
 struct training
 {
     QString name;
@@ -17,6 +18,8 @@ struct training
     QMap<QString, User> users;
     QQueue<User> waiting_list;
     QQueue<User> VIP_waiting_list;
+    QMap<QString, int> userProgress;
+    QMap<QString, int> attended;
 };
 
 #endif // TRAINING_H

@@ -17,7 +17,7 @@ public:
     explicit BookCourt(QWidget *parent = nullptr);
     ~BookCourt();
     void setCourtMap(QMap<int, Court> &map);
-    void setCurrentUserId(const QString &userId) { currentUserId = userId; }
+    void setCurrentUserId(const QString &userId);
     void setUserVIPStatus(bool isVIP) { isCurrentUserVIP = isVIP; }
 
 private slots:

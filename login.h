@@ -25,6 +25,8 @@ public:
     static QString getCurrentUserId() { return currentUserId; }
     static void setCurrentUserId(const QString &id) { currentUserId = id; }
     static void clearCurrentUserId() { currentUserId.clear(); }
+    bool isCurrentUserVIP() const;
+
 
 signals:
     void loginSuccessful(UserType userType);

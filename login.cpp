@@ -64,3 +64,13 @@ void Login::clearLoginFields(QLineEdit *idField, QLineEdit *passwordField)
     if (passwordField)
         passwordField->clear();
 }
+
+bool Login::isCurrentUserVIP() const
+{
+    if (!usersMap.contains(currentUserId))
+    {
+        return false;
+    }
+    const User &user = usersMap[currentUserId];
+    return user.isVIP;
+}

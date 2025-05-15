@@ -25,7 +25,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="MainWindow">
        <widget class="QFrame" name="frame1">
@@ -1326,8 +1326,8 @@ QCommandLinkButton::icon {
        <widget class="QFrame" name="frame_7">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>0</y>
+          <x>30</x>
+          <y>-20</y>
           <width>1536</width>
           <height>864</height>
          </rect>
@@ -1428,8 +1428,8 @@ QScrollBar::add-page, QScrollBar::sub-page {
         <widget class="QLabel" name="label_14">
          <property name="geometry">
           <rect>
-           <x>390</x>
-           <y>130</y>
+           <x>360</x>
+           <y>190</y>
            <width>141</width>
            <height>31</height>
           </rect>
@@ -1445,15 +1445,15 @@ QScrollBar::add-page, QScrollBar::sub-page {
 </string>
          </property>
          <property name="text">
-          <string>Date of Birth</string>
+          <string>Date of Birth :</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_15">
          <property name="geometry">
           <rect>
-           <x>390</x>
-           <y>180</y>
-           <width>221</width>
+           <x>360</x>
+           <y>240</y>
+           <width>201</width>
            <height>31</height>
           </rect>
          </property>
@@ -1467,15 +1467,15 @@ QScrollBar::add-page, QScrollBar::sub-page {
           <string notr="true">color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Subscription Period</string>
+          <string>Subscription Period :</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_17">
          <property name="geometry">
           <rect>
-           <x>390</x>
-           <y>80</y>
-           <width>63</width>
+           <x>370</x>
+           <y>140</y>
+           <width>81</width>
            <height>20</height>
           </rect>
          </property>
@@ -1489,17 +1489,22 @@ QScrollBar::add-page, QScrollBar::sub-page {
           <string notr="true">color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>Name</string>
+          <string>Name :</string>
          </property>
         </widget>
         <widget class="QLabel" name="getClientName_2">
          <property name="geometry">
           <rect>
-           <x>510</x>
-           <y>80</y>
+           <x>450</x>
+           <y>140</y>
            <width>63</width>
            <height>21</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white;
+font-size: 12px;
+font-weight: bold;</string>
          </property>
          <property name="text">
           <string/>
@@ -1508,11 +1513,16 @@ QScrollBar::add-page, QScrollBar::sub-page {
         <widget class="QLabel" name="getClientDateOfBirth_2">
          <property name="geometry">
           <rect>
-           <x>540</x>
-           <y>130</y>
-           <width>63</width>
+           <x>510</x>
+           <y>200</y>
+           <width>71</width>
            <height>20</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white;
+font-size: 12px;
+font-weight: bold;</string>
          </property>
          <property name="text">
           <string/>
@@ -1521,11 +1531,17 @@ QScrollBar::add-page, QScrollBar::sub-page {
         <widget class="QLabel" name="getSubscriptionPeriod_2">
          <property name="geometry">
           <rect>
-           <x>590</x>
-           <y>180</y>
+           <x>560</x>
+           <y>250</y>
            <width>63</width>
            <height>20</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white;
+font-size: 12px;
+font-weight: bold;
+</string>
          </property>
          <property name="text">
           <string/>
@@ -1539,6 +1555,66 @@ QScrollBar::add-page, QScrollBar::sub-page {
            <width>404</width>
            <height>381</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QListWidget {
+    color: white;
+    background-color: transparent;
+    border: 2px solid #ADABAB;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+/* عنصر داخل القائمة */
+QListWidget::item {
+    background-color: transparent;
+    border: none;
+    padding: 6px 5px;
+    margin-bottom: 2px;
+}
+
+/* تأثير Hover */
+QListWidget::item:hover {
+    background-color: rgba(255, 165, 0, 30);
+    border-radius: 5px;
+}
+
+/* عند التحديد */
+QListWidget::item:selected {
+    background-color: rgba(255, 165, 0, 60);
+    border-radius: 5px;
+}
+
+/* ScrollBar - عمودي وأفقي */
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: transparent;
+    border: none;
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+}
+
+/* الـ handle (المقبض) */
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #DC3E22;
+    border-radius: 5px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+/* إخفاء أسهم التمرير */
+QScrollBar::add-line, QScrollBar::sub-line {
+    background: none;
+    border: none;
+    height: 0px;
+    width: 0px;
+}
+
+/* تعطيل المساحات بين المقاطع */
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+}
+</string>
          </property>
         </widget>
        </widget>
@@ -1792,7 +1868,7 @@ QPushButton:pressed {
            <second>0</second>
            <year>2025</year>
            <month>3</month>
-           <day>17</day>
+           <day>16</day>
           </datetime>
          </property>
          <property name="time">
@@ -1820,7 +1896,7 @@ QPushButton:pressed {
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>12</hour>
+           <hour>9</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2025</year>

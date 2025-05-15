@@ -21,6 +21,8 @@ public:
                            QLabel *birthDateLabel,
                            QLabel *subPeriodLabel);
     QString getClientInfo(const QString &clientId);
+    void checkSubscriptionStatusForUser(const QString &userId);
+
 
 signals:
     void clientNotFound(const QString &message);

@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="contextMenuPolicy">
    <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
   </property>
@@ -42,11 +48,20 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>260</y>
-      <width>101</width>
-      <height>71</height>
+      <x>210</x>
+      <y>270</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Training ID</string>
@@ -57,8 +72,8 @@
      <rect>
       <x>180</x>
       <y>400</y>
-      <width>131</width>
-      <height>61</height>
+      <width>121</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -68,9 +83,9 @@
    <widget class="QLineEdit" name="trainingId">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>290</y>
-      <width>113</width>
+      <x>340</x>
+      <y>280</y>
+      <width>181</width>
       <height>28</height>
      </rect>
     </property>
@@ -78,10 +93,10 @@
    <widget class="QPushButton" name="canel">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>460</x>
       <y>400</y>
-      <width>131</width>
-      <height>61</height>
+      <width>111</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">

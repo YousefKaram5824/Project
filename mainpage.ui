@@ -115,7 +115,7 @@ QPushButton#getStarted:pressed {
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>40</y>
           <width>1536</width>
           <height>864</height>
          </rect>
@@ -1792,7 +1792,7 @@ QPushButton:pressed {
            <second>0</second>
            <year>2025</year>
            <month>3</month>
-           <day>18</day>
+           <day>17</day>
           </datetime>
          </property>
          <property name="time">
@@ -1820,7 +1820,7 @@ QPushButton:pressed {
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>15</hour>
+           <hour>12</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2025</year>
@@ -2062,10 +2062,10 @@ QPushButton:pressed {
         <widget class="QTableWidget" name="trainingTableWidget">
          <property name="geometry">
           <rect>
-           <x>440</x>
-           <y>230</y>
+           <x>460</x>
+           <y>370</y>
            <width>541</width>
-           <height>192</height>
+           <height>181</height>
           </rect>
          </property>
          <property name="focusPolicy">
@@ -2166,8 +2166,8 @@ QScrollBar::add-page, QScrollBar::sub-page {
         <widget class="QPushButton" name="search_4">
          <property name="geometry">
           <rect>
-           <x>610</x>
-           <y>160</y>
+           <x>570</x>
+           <y>310</y>
            <width>311</width>
            <height>41</height>
           </rect>
@@ -2203,8 +2203,8 @@ QPushButton:pressed {
         <widget class="QPushButton" name="getTrainingbtn">
          <property name="geometry">
           <rect>
-           <x>580</x>
-           <y>500</y>
+           <x>570</x>
+           <y>210</y>
            <width>311</width>
            <height>41</height>
           </rect>

@@ -187,6 +187,21 @@ void MainPage::on_backToClientPage_clicked()
 void MainPage::on_trainingButton_clicked()
 {
     ui->holder->setCurrentIndex(8);
+    QString currentId = Login::getCurrentUserId();
+
+    if (usersMap.contains(currentId)) {
+        const User &currentUser = usersMap[currentId];
+
+        if (currentUser.isSubscriptionExpired) {
+            ui->getTrainingbtn->setDisabled(true);
+        } else {
+            ui->getTrainingbtn->setEnabled(true);
+        }
+    } else {
+
+        ui->getTrainingbtn->setDisabled(true);
+    }
+
 }
 
 void MainPage::on_commandLinkButton_clicked()
@@ -305,7 +320,7 @@ void MainPage::on_setSubPeriod_clicked()
 
     User &client = usersMap[clientId];
     client.subscriptionPeriod = selectedPeriod;
-
+    client.subscriptionStartDate = QDate::currentDate();
     QMessageBox::information(this,
                              "Subscription Period Updated",
                              QString("Client %1's subscription period has been set to %2")

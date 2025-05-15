@@ -1,6 +1,6 @@
 #include "login.h"
 #include <QLineEdit>
-
+#include"Receptionist.h"
 // Initialize static member
 QString Login::currentUserId;
 
@@ -46,10 +46,17 @@ bool Login::validateLogin(const QString &id, const QString &password)
     }
 
     UserType userType = getUserType(id);
+
     if (userType == UserType::Invalid) {
         emit loginFailed("Invalid user role.");
         return false;
     }
+
+    if (userType == UserType::Client) {
+        Receptionist rec(usersMap);
+        rec.checkSubscriptionStatusForUser(id);
+    }
+
 
     // Set the current user ID upon successful login
     setCurrentUserId(id);

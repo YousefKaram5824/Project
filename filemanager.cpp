@@ -42,10 +42,11 @@ QMap<QString, User> FileManager::loadUsersFromFile()
             continue;
 
         QStringList fields = line.split(',');
-        if (fields.size() < 7) {
+        if (fields.size() < 8) {
             qDebug() << "Invalid line format:" << line;
             continue;
         }
+
 
         User user;
         user.username = fields[0];
@@ -55,6 +56,16 @@ QMap<QString, User> FileManager::loadUsersFromFile()
         user.birthDate = fields[4];
         user.subscriptionPeriod = fields[5];
         user.isVIP = (fields[6] == "1");
+        QString startDateStr = fields[7].trimmed();
+        if (startDateStr.isEmpty() || startDateStr.toLower() == "null") {
+            user.subscriptionStartDate = QDate();
+        } else {
+            user.subscriptionStartDate = QDate::fromString(startDateStr, Qt::ISODate);
+        }
+        user.isSubscriptionExpired = (fields.size() >= 9 && fields[8].trimmed() == "1");
+        user.isSubscriptionExpired = (fields.size() >= 10 && fields[9].trimmed() == "1");
+
+
 
         usersMap.insert(user.id, user);
     }
@@ -82,7 +93,11 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
     for (const auto &user : usersMap) {
         // Save basic user info
         out << user.username << "," << user.id << "," << user.password << "," << user.isClient
-            << "," << user.birthDate << "," << user.subscriptionPeriod << "," << user.isVIP << "\n";
+            << "," << user.birthDate << "," << user.subscriptionPeriod << "," << user.isVIP  << ","
+            << (user.subscriptionStartDate.isValid() ? user.subscriptionStartDate.toString(Qt::ISODate) : "null")
+            << "," << (user.isSubscriptionExpired ? "1" : "0")
+            << "," << (user.isSubscriptionExpiringSoon ? "1" : "0") << "\n";
+
     }
     file.close();
 }

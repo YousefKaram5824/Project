@@ -61,7 +61,10 @@ void BookCourt::on_Book_clicked()
             QMessageBox::warning(this, "Error", "User ID is missing.");
             return;
         }
- qDebug() << "Before booking2: currentUserId=" << currentUserId;
+        if (court.waitingListVIP.contains(currentUserId) || court.waitingListNormal.contains(currentUserId)) {
+            QMessageBox::information(this, "Already in Waiting List", "You are already in the waiting list.");
+            return;
+        }
         if (isCurrentUserVIP) {
             court.waitingListVIP.push_back(currentUserId);
             QMessageBox::information(this, "Added to Waiting List", "You are added to the VIP waiting list.");

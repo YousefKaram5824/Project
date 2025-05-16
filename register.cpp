@@ -3,10 +3,13 @@
 #include "User.h"
 #include "ui_register.h"
 
-Register::Register(QMap<QString, User> &usersMapRef, QWidget *parent)
+Register::Register(QMap<QString, User> &usersMapRef,
+                   QMap<QString, QStringList> &NotificationsMapRef,
+                   QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Register)
     , usersMap(usersMapRef)
+    , NotificationsMap(NotificationsMapRef)
 {
     ui->setupUi(this);
 }
@@ -97,4 +100,6 @@ void Register::on_pushButton_clicked()
 
     QString message = QString("User registered successfully!\nYour ID is: %1").arg(id);
     QMessageBox::information(this, "Success", message);
+    QString welcomeMessage = "Welcome to our system! Your registration is complete.";
+    NotificationsMap[id].append(welcomeMessage);
 }

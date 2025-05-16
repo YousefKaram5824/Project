@@ -21,11 +21,11 @@ MainPage::MainPage(QMap<QString, User> &usersMapRef,
 
     searchManager = new SearchManager(courtsMap);
 
-    loginManager = new Login(usersMap, this);
+    loginManager = new Login(usersMap, notificationsMap, this);
     connect(loginManager, &Login::loginSuccessful, this, &MainPage::handleLoginSuccessful);
     connect(loginManager, &Login::loginFailed, this, &MainPage::handleLoginFailed);
 
-    receptionistManager = new Receptionist(usersMap, this);
+    receptionistManager = new Receptionist(usersMap, notificationsMap, this);
     connect(receptionistManager,
             &Receptionist::clientNotFound,
             this,
@@ -50,7 +50,7 @@ MainPage::~MainPage()
 
 void MainPage::on_pushButton_clicked()
 {
-    registerWin = new Register(usersMap, this);
+    registerWin = new Register(usersMap, notificationsMap, this);
     registerWin->show();
     registerWin->raise();
     registerWin->activateWindow();
@@ -187,6 +187,19 @@ void MainPage::on_backToClientPage_clicked()
 void MainPage::on_trainingButton_clicked()
 {
     ui->holder->setCurrentIndex(8);
+    QString currentId = Login::getCurrentUserId();
+
+    if (usersMap.contains(currentId)) {
+        const User &currentUser = usersMap[currentId];
+
+        if (currentUser.isSubscriptionExpired) {
+            ui->getTrainingbtn->setDisabled(true);
+        } else {
+            ui->getTrainingbtn->setEnabled(true);
+        }
+    } else {
+        ui->getTrainingbtn->setDisabled(true);
+    }
 }
 
 void MainPage::on_commandLinkButton_clicked()
@@ -305,7 +318,7 @@ void MainPage::on_setSubPeriod_clicked()
 
     User &client = usersMap[clientId];
     client.subscriptionPeriod = selectedPeriod;
-
+    client.subscriptionStartDate = QDate::currentDate();
     QMessageBox::information(this,
                              "Subscription Period Updated",
                              QString("Client %1's subscription period has been set to %2")
@@ -384,7 +397,7 @@ void MainPage::on_profile_clicked()
         ui->workoutTable->setHorizontalHeaderLabels(headers);
         ui->workoutTable->setColumnWidth(0, 110); // Workout column
         ui->workoutTable->setColumnWidth(1, 200); // Progress column
-        ui->workoutTable->setColumnWidth(2, 144);  // Cancel button column
+        ui->workoutTable->setColumnWidth(2, 144); // Cancel button column
 
         int row = 0;
         for (auto it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
@@ -424,7 +437,6 @@ void MainPage::on_profile_clicked()
     }
 }
 
-
 void MainPage::onCancelTraining(const QString &trainingName)
 {
     QString currentId = loginManager->getCurrentUserId();
@@ -433,32 +445,36 @@ void MainPage::onCancelTraining(const QString &trainingName)
         training &t = trainingsMap[trainingName];
         t.users.remove(currentId);
         t.userProgress.remove(currentId);
-         t.attended.remove(currentId);
+        t.attended.remove(currentId);
 
         t.capacity++;
-
         // Attempt to fill the slot with a user from waiting lists
         if (!t.VIP_waiting_list.isEmpty()) {
             User vipUser = t.VIP_waiting_list.dequeue();
             t.users[vipUser.id] = vipUser;
             t.userProgress[vipUser.id] = 0;
-            t.capacity--;  // Occupied by VIP user now
+            t.capacity--; // Occupied by VIP user now
+            QString waitingListMessage = "You have just enterd the requested training.";
 
+            notificationsMap[vipUser.id].append(waitingListMessage);
 
         } else if (!t.waiting_list.isEmpty()) {
             User normalUser = t.waiting_list.dequeue();
             t.users[normalUser.id] = normalUser;
             t.userProgress[normalUser.id] = 0;
-            t.capacity--;  // Occupied by normal user now
+            t.capacity--; // Occupied by normal user now
+            QString waitingListMessage = "You have just enterd the requested training.";
+
+            notificationsMap[normalUser.id].append(waitingListMessage);
         }
     }
 
     QMessageBox::information(this, "Cancelled", "You have been removed from the training.");
+    QString notificationMessage = "You have been signed out from a Training.";
+    notificationsMap[currentId].append(notificationMessage);
 
-    // Refresh UI
     on_profile_clicked();
 }
-
 
 void MainPage::populateCoachTrainings()
 {

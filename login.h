@@ -14,7 +14,9 @@ class Login : public QObject
     Q_OBJECT
 
 public:
-    explicit Login(QMap<QString, User> &usersMapRef, QObject *parent = nullptr);
+    explicit Login(QMap<QString, User> &usersMapRef,
+                   QMap<QString, QStringList> &NotificationsMapRef,
+                   QObject *parent = nullptr);
     ~Login();
 
     bool validateLogin(const QString &id, const QString &password);
@@ -27,7 +29,6 @@ public:
     static void clearCurrentUserId() { currentUserId.clear(); }
     bool isCurrentUserVIP() const;
 
-
 signals:
     void loginSuccessful(UserType userType);
     void loginFailed(const QString &message);
@@ -35,6 +36,7 @@ signals:
 private:
     QMap<QString, User> &usersMap;
     static QString currentUserId; // Static member to store current user's ID
+    QMap<QString, QStringList> &NotificationsMap;
 };
 
 #endif // LOGIN_H

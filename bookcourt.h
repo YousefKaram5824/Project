@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include "Court.h"
-#include "login.h"
 
 namespace Ui {
 class BookCourt;
@@ -28,6 +27,7 @@ private:
     Ui::BookCourt *ui;
     void bookSelectedCourt(QMap<int, Court> &courtMap);
     QMap<int, Court> *courtMap;
+    QMap<QString, QStringList> *NotificationsMap;
     QString currentUserId;
     bool isCurrentUserVIP = false;
 

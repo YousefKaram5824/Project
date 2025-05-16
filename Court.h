@@ -1,9 +1,9 @@
 #ifndef COURT_H
 #define COURT_H
 #include <QDate>
+#include <QQueue>
 #include <QString>
 #include <QTime>
-#include <QQueue>
 
 struct Court
 {

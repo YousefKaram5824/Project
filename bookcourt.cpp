@@ -25,7 +25,6 @@ void BookCourt::setCurrentUserId(const QString &userId)
 
 void BookCourt::on_Book_clicked()
 {
-
     if (!courtMap)
         return;
 
@@ -44,14 +43,13 @@ void BookCourt::on_Book_clicked()
 
     Court &court = (*courtMap)[id];
 
-
     if (court.clientId == currentUserId) {
         QMessageBox::information(this, "Already Booked", "You have already booked this court.");
         return;
     }
     if (!court.isBooked) {
         court.isBooked = true;
-         qDebug() << "Before booking1: currentUserId=" << currentUserId;
+        qDebug() << "Before booking1: currentUserId=" << currentUserId;
         court.clientId = currentUserId;
         court.bookingDate = QDate::currentDate();
         court.bookingTime = QTime::currentTime();
@@ -61,24 +59,28 @@ void BookCourt::on_Book_clicked()
             QMessageBox::warning(this, "Error", "User ID is missing.");
             return;
         }
- qDebug() << "Before booking2: currentUserId=" << currentUserId;
+        if (court.waitingListVIP.contains(currentUserId)
+            || court.waitingListNormal.contains(currentUserId)) {
+            QMessageBox::information(this,
+                                     "Already in Waiting List",
+                                     "You are already in the waiting list.");
+            return;
+        }
         if (isCurrentUserVIP) {
             court.waitingListVIP.push_back(currentUserId);
-            QMessageBox::information(this, "Added to Waiting List", "You are added to the VIP waiting list.");
+            QMessageBox::information(this,
+                                     "Added to Waiting List",
+                                     "You are added to the VIP waiting list.");
         } else {
             court.waitingListNormal.push_back(currentUserId);
-            QMessageBox::information(this, "Added to Waiting List", "You are added to the regular waiting list.");
+            QMessageBox::information(this,
+                                     "Added to Waiting List",
+                                     "You are added to the regular waiting list.");
         }
     }
 
-
     emit courtBooked();
-    //  this->close();
-
-
 }
-
-
 
 void BookCourt::on_cancel_clicked()
 {
@@ -100,7 +102,6 @@ void BookCourt::on_cancel_clicked()
         return;
     }
 
-
     QDateTime now = QDateTime::currentDateTime();
     QDateTime courtTime(court.date, court.time);
 
@@ -111,23 +112,20 @@ void BookCourt::on_cancel_clicked()
 
     qint64 secondsToCourt = now.secsTo(courtTime);
 
-
     if (secondsToCourt <= 0 || secondsToCourt < 3 * 3600) {
-        QMessageBox::warning(this, "Too Late", "You can only cancel bookings at least 3 hours before the time.");
+        QMessageBox::warning(this,
+                             "Too Late",
+                             "You can only cancel bookings at least 3 hours before the time.");
         return;
     }
-
-
-
-    QString courtId = court.id;
 
     while (!court.waitingListVIP.isEmpty() && court.waitingListVIP.front().isEmpty()) {
         court.waitingListVIP.pop_front();
     }
+
     while (!court.waitingListNormal.isEmpty() && court.waitingListNormal.front().isEmpty()) {
         court.waitingListNormal.pop_front();
     }
-
 
     if (!court.waitingListVIP.isEmpty()) {
         QString nextVIP = court.waitingListVIP.dequeue();
@@ -135,23 +133,19 @@ void BookCourt::on_cancel_clicked()
         court.clientId = nextVIP;
         court.isBooked = true;
         QMessageBox::information(this, "Reassigned", "Court assigned to VIP user: " + nextVIP);
-    }
-    else if (!court.waitingListNormal.isEmpty()) {
+    } else if (!court.waitingListNormal.isEmpty()) {
         QString nextNormal = court.waitingListNormal.dequeue();
         qDebug() << "Normal assigned: " << nextNormal;
         court.clientId = nextNormal;
         court.isBooked = true;
         QMessageBox::information(this, "Reassigned", "Court assigned to user: " + nextNormal);
-    }
-    else {
+    } else {
         court.clientId = "";
         court.isBooked = false;
         QMessageBox::information(this, "Canceled", "Booking canceled. Court is now available.");
         qDebug() << "No one in waiting list. clientId cleared.";
     }
 
-       qDebug() << "After cancel: clientId=" << court.clientId;
+    qDebug() << "After cancel: clientId=" << court.clientId;
     emit courtBooked();
-    // this->close();
-
 }

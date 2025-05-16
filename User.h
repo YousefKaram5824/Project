@@ -2,6 +2,7 @@
 #define USER_H
 #include <QList>
 #include <QString>
+#include "qdatetime.h"
 
 struct User
 {
@@ -12,6 +13,9 @@ struct User
     QString birthDate;
     QString subscriptionPeriod;
     bool isVIP = false;
+    QDate subscriptionStartDate;
+    bool isSubscriptionExpired = false;
+    bool isSubscriptionExpiringSoon = false;
 };
 
 #endif

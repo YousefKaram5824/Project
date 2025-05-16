@@ -1,12 +1,15 @@
 #include "login.h"
 #include <QLineEdit>
-
+#include "Receptionist.h"
 // Initialize static member
 QString Login::currentUserId;
 
-Login::Login(QMap<QString, User> &usersMapRef, QObject *parent)
+Login::Login(QMap<QString, User> &usersMapRef,
+             QMap<QString, QStringList> &NotificationsMapRef,
+             QObject *parent)
     : QObject(parent)
     , usersMap(usersMapRef)
+    , NotificationsMap(NotificationsMapRef)
 {}
 
 Login::~Login() {}
@@ -46,12 +49,16 @@ bool Login::validateLogin(const QString &id, const QString &password)
     }
 
     UserType userType = getUserType(id);
+
     if (userType == UserType::Invalid) {
         emit loginFailed("Invalid user role.");
         return false;
     }
 
-    // Set the current user ID upon successful login
+    if (userType == UserType::Client) {
+        Receptionist rec(usersMap, NotificationsMap);
+        rec.checkSubscriptionStatusForUser(id);
+    }
     setCurrentUserId(id);
     emit loginSuccessful(userType);
     return true;
@@ -67,8 +74,7 @@ void Login::clearLoginFields(QLineEdit *idField, QLineEdit *passwordField)
 
 bool Login::isCurrentUserVIP() const
 {
-    if (!usersMap.contains(currentUserId))
-    {
+    if (!usersMap.contains(currentUserId)) {
         return false;
     }
     const User &user = usersMap[currentUserId];

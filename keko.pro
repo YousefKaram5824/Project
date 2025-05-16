@@ -26,7 +26,6 @@ HEADERS += \
     Court.h \
     Receptionist.h \
     User.h \
-    WorkoutRecord.h \
     addtraining.h \
     bookcourt.h \
     filemanager.h \

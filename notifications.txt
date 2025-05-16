@@ -1,2 +1,5 @@
-cl9364,Congratulations! You have been upgraded to VIP status. Enjoy your premium benefits!
-cl9462,you have been converted to VIP successfully!|your subscription period is changed successfully|Congratulations! You have been upgraded to VIP status. Enjoy your premium benefits!|Your VIP status has been changed to Regular membership.
+cl1830,You have been signed out from a Training.|You have been signed out from a Training.
+cl2112,You have been signed out from a Training.
+cl2227,You have been signed out from a Training.
+cl2374,You have been signed out from a Training.|You have been signed out from a Training.|You have been signed out from a Training.
+cl251,You have been signed out from a Training.

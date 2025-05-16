@@ -75,19 +75,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="canel">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>400</y>
-      <width>131</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cancel</string>
-    </property>
-   </widget>
   </widget>
  </widget>
  <resources/>

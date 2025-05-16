@@ -12,7 +12,9 @@ class Receptionist : public QObject
     Q_OBJECT
 
 public:
-    explicit Receptionist(QMap<QString, User> &usersMapRef, QObject *parent = nullptr);
+    explicit Receptionist(QMap<QString, User> &usersMapRef,
+                          QMap<QString, QStringList> &NotificationsMapRef,
+                          QObject *parent = nullptr);
     ~Receptionist();
 
     bool validateClient(const QString &clientId);
@@ -21,6 +23,7 @@ public:
                            QLabel *birthDateLabel,
                            QLabel *subPeriodLabel);
     QString getClientInfo(const QString &clientId);
+    void checkSubscriptionStatusForUser(const QString &userId);
 
 signals:
     void clientNotFound(const QString &message);
@@ -28,6 +31,7 @@ signals:
 
 private:
     QMap<QString, User> &usersMap;
+    QMap<QString, QStringList> &NotificationsMap;
 };
 
 #endif // RECEPTIONIST_H

@@ -1,9 +1,12 @@
 #include "Receptionist.h"
 #include <QLabel>
 
-Receptionist::Receptionist(QMap<QString, User> &usersMapRef, QObject *parent)
+Receptionist::Receptionist(QMap<QString, User> &usersMapRef,
+                           QMap<QString, QStringList> &NotificationsMapRef,
+                           QObject *parent)
     : QObject(parent)
     , usersMap(usersMapRef)
+    , NotificationsMap(NotificationsMapRef)
 {}
 
 Receptionist::~Receptionist() {}
@@ -46,4 +49,44 @@ QString Receptionist::getClientInfo(const QString &clientId)
     const User &client = usersMap[clientId];
     return QString("Name: %1\nBirth Date: %2\nSubscription Period: %3")
         .arg(client.username, client.birthDate, client.subscriptionPeriod);
+}
+
+void Receptionist::checkSubscriptionStatusForUser(const QString &userId)
+{
+    if (!usersMap.contains(userId))
+        return;
+
+    User &user = usersMap[userId];
+
+    if (!user.isClient || !user.subscriptionStartDate.isValid())
+        return;
+
+    int months = 0;
+
+    if (user.subscriptionPeriod == "Monthly")
+        months = 1;
+    else if (user.subscriptionPeriod == "3 Months")
+        months = 3;
+    else if (user.subscriptionPeriod == "6 Months")
+        months = 6;
+    else if (user.subscriptionPeriod == "Yearly")
+        months = 12;
+    else
+        return;
+
+    QDate endDate = user.subscriptionStartDate.addMonths(months);
+    QString notificationMessage;
+    if (QDate::currentDate() > endDate) {
+        user.isSubscriptionExpired = true;
+        user.isSubscriptionExpiringSoon = true;
+        notificationMessage = "Your subscription period is expired.";
+    } else if (QDate::currentDate().daysTo(endDate) <= 5) {
+        user.isSubscriptionExpired = false;
+        user.isSubscriptionExpiringSoon = true;
+        notificationMessage = "You have to Renewal your subscription.";
+    } else {
+        user.isSubscriptionExpired = false;
+        user.isSubscriptionExpiringSoon = false;
+    }
+    NotificationsMap[userId].append(notificationMessage);
 }

@@ -19,9 +19,9 @@ QMap<QString, User> FileManager::loadUsersFromFile()
 {
     QMap<QString, User> usersMap;
     QFile file;
-    QStringList paths = {":/files/users.txt",
+    QStringList paths = {"Y:/Project1/users.txt",
+                         ":/files/users.txt",
                          "qrc:/files/users.txt",
-                         "Y:/Project/users.txt",
                          "E:/Project/users.txt",
                          "C:\\Users\\ASUS\\Documents\\Project_master\\users.txt",
                          "D:/Project/users.txt",
@@ -55,7 +55,14 @@ QMap<QString, User> FileManager::loadUsersFromFile()
         user.birthDate = fields[4];
         user.subscriptionPeriod = fields[5];
         user.isVIP = (fields[6] == "1");
-
+        QString startDateStr = fields[7].trimmed();
+        if (startDateStr.isEmpty() || startDateStr.toLower() == "null") {
+            user.subscriptionStartDate = QDate();
+        } else {
+            user.subscriptionStartDate = QDate::fromString(startDateStr, Qt::ISODate);
+        }
+        user.isSubscriptionExpired = (fields.size() >= 9 && fields[8].trimmed() == "1");
+        user.isSubscriptionExpired = (fields.size() >= 10 && fields[9].trimmed() == "1");
         usersMap.insert(user.id, user);
     }
     file.close();
@@ -65,7 +72,8 @@ QMap<QString, User> FileManager::loadUsersFromFile()
 void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
 {
     QFile file;
-    QStringList paths = {":/files/users.txt",
+    QStringList paths = {"Y:/Project1/users.txt",
+                         ":/files/users.txt",
                          "qrc:/files/users.txt",
                          "Y:/Project/users.txt",
                          "E:/Project/users.txt",
@@ -82,7 +90,12 @@ void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
     for (const auto &user : usersMap) {
         // Save basic user info
         out << user.username << "," << user.id << "," << user.password << "," << user.isClient
-            << "," << user.birthDate << "," << user.subscriptionPeriod << "," << user.isVIP << "\n";
+            << "," << user.birthDate << "," << user.subscriptionPeriod << "," << user.isVIP << ","
+            << (user.subscriptionStartDate.isValid()
+                    ? user.subscriptionStartDate.toString(Qt::ISODate)
+                    : "null")
+            << "," << (user.isSubscriptionExpired ? "1" : "0") << ","
+            << (user.isSubscriptionExpiringSoon ? "1" : "0") << "\n";
     }
     file.close();
 }
@@ -91,7 +104,8 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
 {
     QMap<int, Court> courtsMap;
     QFile file;
-    QStringList paths = {"E:/Project/courts.txt",
+    QStringList paths = {"Y:/Project1/courts.txt",
+                         "E:/Project/courts.txt",
                          ":/files/courts.txt",
                          "qrc:/files/courts.txt",
                          "Y:/Project/courts.txt",
@@ -104,25 +118,20 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
     }
 
     QTextStream in(&file);
-    int lineNumber = 0;
 
     qDebug() << "File path used:" << file.fileName();
 
-
-    while (!in.atEnd())
-    {
+    while (!in.atEnd()) {
         QString line = in.readLine();
         QStringList parts = line.split(',');
 
-       // qDebug() << "Parsed line:" << parts;
+        // qDebug() << "Parsed line:" << parts;
 
         for (QString &part : parts) {
             part = part.trimmed();
         }
 
-        if (parts.size() == 11)
-         {
-
+        if (parts.size() == 11) {
             int id = parts[0].toInt();
             QString name = parts[1];
             QString location = parts[2];
@@ -159,13 +168,10 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
                 court.waitingListNormal.enqueue(normal);
 
             courtsMap.insert(id, court);
-            ++lineNumber;
         }
     }
 
     file.close();
-
-    //qDebug() << "Total courts loaded:" << courtsMap.size();
 
     return courtsMap;
 }
@@ -173,7 +179,8 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
 void FileManager::saveCourtsToFile(const QMap<int, Court> &courtsMap)
 {
     QFile file;
-    QStringList paths = {"E:/Project/courts.txt",
+    QStringList paths = {"Y:/Project1/courts.txt",
+                         "E:/Project/courts.txt",
                          ":/files/courts.txt",
                          "qrc:/files/courts.txt",
                          "Y:/Project/courts.txt",
@@ -185,23 +192,16 @@ void FileManager::saveCourtsToFile(const QMap<int, Court> &courtsMap)
         return;
     }
     QTextStream out(&file);
-    for (auto it = courtsMap.begin(); it != courtsMap.end(); ++it)
-    {
-        const Court& court = it.value();
+    for (auto it = courtsMap.begin(); it != courtsMap.end(); ++it) {
+        const Court &court = it.value();
         QString vipQueue = court.waitingListVIP.join(";");
         QString normalQueue = court.waitingListNormal.join(";");
 
-        out << court.id << ","
-            << court.name << ","
-            << court.location << ","
-            << court.date.toString("yyyy-MM-dd") << ","
-            << court.time.toString("HH:mm") << ","
-            << court.isBooked << ","
-            << court.clientId << ","
+        out << court.id << "," << court.name << "," << court.location << ","
+            << court.date.toString("yyyy-MM-dd") << "," << court.time.toString("HH:mm") << ","
+            << court.isBooked << "," << court.clientId << ","
             << court.bookingDate.toString("yyyy-MM-dd") << ","
-            << court.bookingTime.toString("HH:mm") << ","
-            << vipQueue << ","
-            << normalQueue << "\n";
+            << court.bookingTime.toString("HH:mm") << "," << vipQueue << "," << normalQueue << "\n";
     }
     file.close();
 }
@@ -210,7 +210,8 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
 {
     QMap<QString, training> trainingsMap;
     QFile file;
-    QStringList paths = {":/files/trainings.txt",
+    QStringList paths = {"Y:/Project1/trainings.txt",
+                         ":/files/trainings.txt",
                          "qrc:/files/trainings.txt",
                          "E:/Project/trainings.txt",
                          "Y:/Final Project/trainings.txt",
@@ -303,7 +304,8 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
 void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMap)
 {
     QFile file;
-    QStringList paths = {":/files/trainings.txt",
+    QStringList paths = {"Y:/Project1/trainings.txt",
+                         ":/files/trainings.txt",
                          "qrc:/files/trainings.txt",
                          "E:/Project/trainings.txt",
                          "Y:/Final Project/trainings.txt",
@@ -361,7 +363,8 @@ QMap<QString, QStringList> FileManager::loadNotificationsFromFile()
 {
     QMap<QString, QStringList> notificationsMap;
     QFile file;
-    QStringList paths = {":/files/notifications.txt",
+    QStringList paths = {"Y:/Project1/notifications.txt",
+                         ":/files/notifications.txt",
                          "qrc:/files/notifications.txt",
                          "E:/Project/notifications.txt",
                          "Y:/Final Project/notifications.txt",
@@ -402,7 +405,8 @@ QMap<QString, QStringList> FileManager::loadNotificationsFromFile()
 void FileManager::saveNotificationsToFile(const QMap<QString, QStringList> &notificationsMap)
 {
     QFile file;
-    QStringList paths = {":/files/notifications.txt",
+    QStringList paths = {"Y:/Project1/notifications.txt",
+                         ":/files/notifications.txt",
                          "qrc:/files/notifications.txt",
                          "E:/Project/notifications.txt",
                          "Y:/Final Project/notifications.txt",

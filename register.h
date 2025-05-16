@@ -15,7 +15,9 @@ class Register : public QDialog
     Q_OBJECT
 
 public:
-    explicit Register(QMap<QString, User> &usersMapRef, QWidget *parent = nullptr);
+    explicit Register(QMap<QString, User> &usersMapRef,
+                      QMap<QString, QStringList> &NotificationsMapRef,
+                      QWidget *parent = nullptr);
     ~Register();
 
 private slots:
@@ -25,6 +27,7 @@ private slots:
 private:
     Ui::Register *ui;
     QMap<QString, User> &usersMap;
+    QMap<QString, QStringList> &NotificationsMap;
     bool isclient = false;
     QString generateUniqueID();
     void clearAll();

@@ -55,4 +55,6 @@ RESOURCES += \
 
 DISTFILES += \
     courts \
-    users
+    trainings.txt \
+    users \
+    users.txt

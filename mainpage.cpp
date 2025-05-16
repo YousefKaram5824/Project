@@ -379,6 +379,13 @@ void MainPage::on_profile_clicked()
         ui->getClientDateOfBirth_2->setText(currentUser.birthDate);
         ui->getSubscriptionPeriod_2->setText(currentUser.subscriptionPeriod);
 
+        ui->workoutTable->setColumnCount(3);
+        QStringList headers = {"Workout", "Progress", "Cancel"};
+        ui->workoutTable->setHorizontalHeaderLabels(headers);
+        ui->workoutTable->setColumnWidth(0, 110); // Workout column
+        ui->workoutTable->setColumnWidth(1, 200); // Progress column
+        ui->workoutTable->setColumnWidth(2, 144);  // Cancel button column
+
         int row = 0;
         for (auto it = trainingsMap.begin(); it != trainingsMap.end(); ++it) {
             const training &t = it.value();
@@ -392,6 +399,15 @@ void MainPage::on_profile_clicked()
                 progressBar->setValue(progress);
                 progressBar->setFormat(QString::number(progress) + "%");
                 ui->workoutTable->setCellWidget(row, 1, progressBar);
+
+                QPushButton *cancelButton = new QPushButton("Cancel");
+                ui->workoutTable->setCellWidget(row, 2, cancelButton);
+
+                QString trainingName = t.name; // Capture training name for lambda
+                connect(cancelButton, &QPushButton::clicked, this, [=]() {
+                    onCancelTraining(trainingName);
+                });
+
                 row++;
             }
             ui->holder->setCurrentIndex(6);
@@ -407,6 +423,42 @@ void MainPage::on_profile_clicked()
         QMessageBox::warning(this, "Error", "Could not load user profile data.");
     }
 }
+
+
+void MainPage::onCancelTraining(const QString &trainingName)
+{
+    QString currentId = loginManager->getCurrentUserId();
+
+    if (trainingsMap.contains(trainingName) && usersMap.contains(currentId)) {
+        training &t = trainingsMap[trainingName];
+        t.users.remove(currentId);
+        t.userProgress.remove(currentId);
+         t.attended.remove(currentId);
+
+        t.capacity++;
+
+        // Attempt to fill the slot with a user from waiting lists
+        if (!t.VIP_waiting_list.isEmpty()) {
+            User vipUser = t.VIP_waiting_list.dequeue();
+            t.users[vipUser.id] = vipUser;
+            t.userProgress[vipUser.id] = 0;
+            t.capacity--;  // Occupied by VIP user now
+
+
+        } else if (!t.waiting_list.isEmpty()) {
+            User normalUser = t.waiting_list.dequeue();
+            t.users[normalUser.id] = normalUser;
+            t.userProgress[normalUser.id] = 0;
+            t.capacity--;  // Occupied by normal user now
+        }
+    }
+
+    QMessageBox::information(this, "Cancelled", "You have been removed from the training.");
+
+    // Refresh UI
+    on_profile_clicked();
+}
+
 
 void MainPage::populateCoachTrainings()
 {

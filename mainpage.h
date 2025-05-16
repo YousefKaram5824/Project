@@ -68,6 +68,7 @@ private slots:
     void on_changeVIP_clicked();
 
     void on_setSubPeriod_clicked();
+    void onCancelTraining(const QString &trainingName);
 
 private:
     Ui::MainPage *ui;

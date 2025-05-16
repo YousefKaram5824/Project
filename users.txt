@@ -1,6 +1,6 @@
 uosef712,9188,1,0,null,null,0
 admin,admin,admin,0,null,null,0
-member1,cl1830,1,1,2000-01-01,,0
+member1,cl1830,1,1,2000-01-01,,1
 member2,cl2112,1,1,2000-01-01,,0
 member5,cl2374,1,1,2000-01-01,,1
 a,cl2502,a,1,2000-01-01,,0

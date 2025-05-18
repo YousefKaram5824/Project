@@ -1,5 +1,7 @@
-cl1830,You have been signed out from a Training.|You have been signed out from a Training.
-cl2112,You have been signed out from a Training.
-cl2227,You have been signed out from a Training.
+cl1830,You have been signed out from a Training.|You have been signed out from a Training.|You have just enterd the requested training.
+cl2112,You have been signed out from a Training.|You have just got the requested court.
+cl2227,You have been signed out from a Training.|You have been signed out from a Training.
 cl2374,You have been signed out from a Training.|You have been signed out from a Training.|You have been signed out from a Training.
 cl251,You have been signed out from a Training.
+cl9364,ttttttttttttttttttt|Your subscription period is updated.
+cl9462,Your subscription period is expired.|Your subscription period is updated.|A 30%% discount has been applied to your subscription renewal. New price: 154 L.E.|Your subscription period is updated.|

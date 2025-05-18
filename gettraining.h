@@ -20,6 +20,9 @@ public:
                          QWidget *parent = nullptr);
     ~GetTraining();
 
+signals:
+    void trainingAdded();
+
 public:
     Ui::GetTraining *ui;
     QMap<QString, training> &trainingsMap;

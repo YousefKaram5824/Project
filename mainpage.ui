@@ -25,7 +25,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="MainWindow">
        <widget class="QFrame" name="frame1">
@@ -1792,7 +1792,7 @@ QPushButton:pressed {
            <second>0</second>
            <year>2025</year>
            <month>3</month>
-           <day>14</day>
+           <day>10</day>
           </datetime>
          </property>
          <property name="time">
@@ -1820,12 +1820,12 @@ QPushButton:pressed {
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>3</hour>
+           <hour>15</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2025</year>
            <month>4</month>
-           <day>28</day>
+           <day>27</day>
           </datetime>
          </property>
          <property name="calendarPopup">
@@ -2132,11 +2132,6 @@ QScrollBar::add-page, QScrollBar::sub-page {
 }
 </string>
          </property>
-         <column>
-          <property name="text">
-           <string>ID</string>
-          </property>
-         </column>
          <column>
           <property name="text">
            <string>Name</string>

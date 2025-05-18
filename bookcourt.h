@@ -13,7 +13,7 @@ class BookCourt : public QDialog
     Q_OBJECT
 
 public:
-    explicit BookCourt(QWidget *parent = nullptr);
+    explicit BookCourt(QMap<QString, QStringList> &NotificationsMapRef, QWidget *parent = nullptr);
     ~BookCourt();
     void setCourtMap(QMap<int, Court> &map);
     void setCurrentUserId(const QString &userId);
@@ -27,7 +27,7 @@ private:
     Ui::BookCourt *ui;
     void bookSelectedCourt(QMap<int, Court> &courtMap);
     QMap<int, Court> *courtMap;
-    QMap<QString, QStringList> *NotificationsMap;
+    QMap<QString, QStringList> &NotificationsMap;
     QString currentUserId;
     bool isCurrentUserVIP = false;
 

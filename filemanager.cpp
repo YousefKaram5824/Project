@@ -19,7 +19,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
 {
     QMap<QString, User> usersMap;
     QFile file;
-    QStringList paths = {"Y:/Project1/users.txt",
+    QStringList paths = {"Y:/Project2/users.txt",
                          ":/files/users.txt",
                          "qrc:/files/users.txt",
                          "E:/Project/users.txt",
@@ -72,7 +72,7 @@ QMap<QString, User> FileManager::loadUsersFromFile()
 void FileManager::saveUsersToFile(const QMap<QString, User> &usersMap)
 {
     QFile file;
-    QStringList paths = {"Y:/Project1/users.txt",
+    QStringList paths = {"Y:/Project2/users.txt",
                          ":/files/users.txt",
                          "qrc:/files/users.txt",
                          "Y:/Project/users.txt",
@@ -104,7 +104,7 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
 {
     QMap<int, Court> courtsMap;
     QFile file;
-    QStringList paths = {"Y:/Project1/courts.txt",
+    QStringList paths = {"Y:/Project2/courts.txt",
                          "E:/Project/courts.txt",
                          ":/files/courts.txt",
                          "qrc:/files/courts.txt",
@@ -179,7 +179,7 @@ QMap<int, Court> FileManager::loadCourtsFromFile()
 void FileManager::saveCourtsToFile(const QMap<int, Court> &courtsMap)
 {
     QFile file;
-    QStringList paths = {"Y:/Project1/courts.txt",
+    QStringList paths = {"Y:/Project2/courts.txt",
                          "E:/Project/courts.txt",
                          ":/files/courts.txt",
                          "qrc:/files/courts.txt",
@@ -210,7 +210,7 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
 {
     QMap<QString, training> trainingsMap;
     QFile file;
-    QStringList paths = {"Y:/Project1/trainings.txt",
+    QStringList paths = {"Y:/Project2/trainings.txt",
                          ":/files/trainings.txt",
                          "qrc:/files/trainings.txt",
                          "E:/Project/trainings.txt",
@@ -304,7 +304,7 @@ QMap<QString, training> FileManager::loadTrainingsFromFile()
 void FileManager::saveTrainingsToFile(const QMap<QString, training> &trainingsMap)
 {
     QFile file;
-    QStringList paths = {"Y:/Project1/trainings.txt",
+    QStringList paths = {"Y:/Project2/trainings.txt",
                          ":/files/trainings.txt",
                          "qrc:/files/trainings.txt",
                          "E:/Project/trainings.txt",
@@ -363,7 +363,7 @@ QMap<QString, QStringList> FileManager::loadNotificationsFromFile()
 {
     QMap<QString, QStringList> notificationsMap;
     QFile file;
-    QStringList paths = {"Y:/Project1/notifications.txt",
+    QStringList paths = {"Y:/Project2/notifications.txt",
                          ":/files/notifications.txt",
                          "qrc:/files/notifications.txt",
                          "E:/Project/notifications.txt",
@@ -405,7 +405,7 @@ QMap<QString, QStringList> FileManager::loadNotificationsFromFile()
 void FileManager::saveNotificationsToFile(const QMap<QString, QStringList> &notificationsMap)
 {
     QFile file;
-    QStringList paths = {"Y:/Project1/notifications.txt",
+    QStringList paths = {"Y:/Project2/notifications.txt",
                          ":/files/notifications.txt",
                          "qrc:/files/notifications.txt",
                          "E:/Project/notifications.txt",

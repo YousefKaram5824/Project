@@ -1,9 +1,10 @@
 #include "bookcourt.h"
 #include <QMessageBox>
 #include "ui_bookcourt.h"
-BookCourt::BookCourt(QWidget *parent)
+BookCourt::BookCourt(QMap<QString, QStringList> &NotificationsMapRef, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::BookCourt)
+    , NotificationsMap(NotificationsMapRef)
 {
     ui->setupUi(this);
 }
@@ -127,18 +128,19 @@ void BookCourt::on_cancel_clicked()
         court.waitingListNormal.pop_front();
     }
 
+    QString message = "You have just got the requested court.";
     if (!court.waitingListVIP.isEmpty()) {
         QString nextVIP = court.waitingListVIP.dequeue();
         qDebug() << "VIP assigned: " << nextVIP;
         court.clientId = nextVIP;
         court.isBooked = true;
-        QMessageBox::information(this, "Reassigned", "Court assigned to VIP user: " + nextVIP);
+        NotificationsMap[nextVIP].append(message);
     } else if (!court.waitingListNormal.isEmpty()) {
         QString nextNormal = court.waitingListNormal.dequeue();
         qDebug() << "Normal assigned: " << nextNormal;
         court.clientId = nextNormal;
         court.isBooked = true;
-        QMessageBox::information(this, "Reassigned", "Court assigned to user: " + nextNormal);
+        NotificationsMap[nextNormal].append(message);
     } else {
         court.clientId = "";
         court.isBooked = false;

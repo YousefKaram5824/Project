@@ -56,6 +56,7 @@ void GetTraining::on_pushButton_clicked()
                                      "Success",
                                      "Successfully enrolled in '" + trainingName + "'.");
             currentTraining.capacity--;
+            emit trainingAdded();
         } else {
             QMessageBox::critical(this, "Error", "Current user data not found.");
         }

@@ -1,5 +1,5 @@
 Training2,0,09:00,2,sat|mon|wed|fri,co2715,cl1830|cl2374,,,cl2374:0,
 boxing,0,16:00,7,sat|sun|mon|tue|wed|thu|fri,co2715,cl251,,,cl251:0,
-galaxi,11,18:00,3,sat|sun|mon,co2715,cl2374,,,,
-test,0,00:00,2,sat|sun,co9604,cl2227|cl2374|cl251,,,cl2227:0|cl2374:0|cl251:0,
-zompaaa,8,00:00,2,sun|mon|wed|fri,co2715,,,,,
+galaxi,9,18:00,3,sat|sun|mon,co2715,cl1830|cl2374|cl8224,,,,
+test,0,00:00,2,sat|sun,co9604,cl1830|cl2374|cl251,,,cl1830:0|cl2374:0|cl251:0,
+zompaaa,6,00:00,2,sun|mon|wed|fri,co2715,cl1830|cl9462,,,,

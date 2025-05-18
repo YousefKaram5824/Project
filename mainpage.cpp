@@ -58,7 +58,7 @@ void MainPage::on_pushButton_clicked()
 
 void MainPage::on_search_3_clicked()
 {
-    bookCourt = new BookCourt();
+    bookCourt = new BookCourt(notificationsMap);
     bookCourt->setCourtMap(this->courtsMap);
     bookCourt->setCurrentUserId(loginManager->getCurrentUserId());
     bookCourt->setUserVIPStatus(loginManager->isCurrentUserVIP());
@@ -80,6 +80,7 @@ void MainPage::on_getTrainingbtn_clicked()
 {
     QString currentUserId = loginManager->getCurrentUserId();
     gettraining = new GetTraining(trainingsMap, usersMap, currentUserId, notificationsMap, this);
+    connect(gettraining, &GetTraining::trainingAdded, this, &MainPage::on_search_4_clicked);
     gettraining->show();
     gettraining->raise();
     gettraining->activateWindow();
@@ -317,13 +318,43 @@ void MainPage::on_setSubPeriod_clicked()
     }
 
     User &client = usersMap[clientId];
+    bool wasExpired = !client.isSubscriptionExpired;
     client.subscriptionPeriod = selectedPeriod;
     client.subscriptionStartDate = QDate::currentDate();
+    
+    // Calculate price with discount if subscription was expired
+    double basePrice = 0;
+    if (selectedPeriod == "Monthly") {
+        basePrice = 200;
+    } else if (selectedPeriod == "3 Months") {
+        basePrice = 600;
+    } else if (selectedPeriod == "6 Months") {
+        basePrice = 1200;
+    } else if (selectedPeriod == "Yearly") {
+        basePrice = 2400;
+    }
+
+    double finalPrice = basePrice;
+    if (client.isVIP) {
+        finalPrice = basePrice * 1.10;
+    }
+    
+    if (wasExpired) {
+        finalPrice = finalPrice * 0.70; // Apply 30% discount
+        QString discountMessage = QString("A 30%% discount has been applied to your subscription renewal. New price: %1 L.E.").arg(finalPrice, 0, 'f', 0);
+        notificationsMap[clientId].append(discountMessage);
+    }
+
+    QString notificationMessage = "Your subscription period is updated.";
+    notificationsMap[clientId].append(notificationMessage);
+    
     QMessageBox::information(this,
                              "Subscription Period Updated",
-                             QString("Client %1's subscription period has been set to %2")
+                             QString("Client %1's subscription period has been set to %2%3")
                                  .arg(clientId)
-                                 .arg(selectedPeriod));
+                                 .arg(selectedPeriod)
+                                 .arg(wasExpired ? "\nA 30% discount has been applied due to expired subscription." : ""));
+    
     ui->periods->setCurrentIndex(-1);
     on_getClientData_clicked();
 }
@@ -553,17 +584,17 @@ void MainPage::on_search_4_clicked()
         int row = ui->trainingTableWidget->rowCount();
         ui->trainingTableWidget->insertRow(row);
 
-        ui->trainingTableWidget->setItem(row, 1, new QTableWidgetItem(training.name));
+        ui->trainingTableWidget->setItem(row, 0, new QTableWidgetItem(training.name));
         ui->trainingTableWidget->setItem(row,
-                                         2,
+                                         1,
                                          new QTableWidgetItem(training.Stime.toString("HH:mm")));
         ui->trainingTableWidget
-            ->setItem(row, 3, new QTableWidgetItem(QString::number(training.duration_time)));
+            ->setItem(row, 2, new QTableWidgetItem(QString::number(training.duration_time)));
 
         ui->trainingTableWidget->setItem(row,
-                                         4,
+                                         3,
                                          new QTableWidgetItem(QString::number(training.capacity)));
-        ui->trainingTableWidget->setItem(row, 5, new QTableWidgetItem(training.assigned_coach));
+        ui->trainingTableWidget->setItem(row, 4, new QTableWidgetItem(training.assigned_coach));
     }
 }
 
